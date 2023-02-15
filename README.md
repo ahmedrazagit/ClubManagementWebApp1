@@ -6,7 +6,11 @@ Madasar Shah for the team project
 Kavin Babu for the team project
 Ahmed Raza for the team project
 Zhange Luo for the team project
+<<<<<<< HEAD
 Meena Muthukumar for the team project
+=======
+Rayna Felix for the team project
+>>>>>>> refs/remotes/origin/main
 
 This application was generated using JHipster 7.9.3, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v7.9.3](https://www.jhipster.tech/documentation-archive/v7.9.3).
 

@@ -1,8 +1,0 @@
-Useful commands for this assignment:
-1. "ls -l /dev/" check the registered device name
-2. "sudo insmod charDeviceDriver.ko" insert the module to kernel
-3. "sudo rmmod charDeviceDriver.ko" remove the kernel module
-4. "dmesg -w &" or "tail -f /var/log/syslog" check the kernel log printed by "printk()"
-5. "mknod /dev/chardev c <major> <minor>" make a device to talk to (check syslog for this, do this before you read or write to device )
-6. "echo <message> > /dev/<devicename>" send message to the device (use "sudo su" change to root user before execute this)
-7. "head -n 1 < /dev/<devicename>" read one message from the device(use "sudo su" change to root user before execute this)

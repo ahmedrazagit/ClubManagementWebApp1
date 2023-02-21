@@ -2,7 +2,7 @@
 
 ## Developed by:
 
-Madasar Shah for the team project
+
 Kavin Babu for the team project
 Ahmed Raza for the team project
 Zhange Luo for the team project

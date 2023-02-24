@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  teamd0722:
+    image: teamd0722
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 3000:3000

@@ -103,6 +103,21 @@ export const Home = () => {
           </a>
           !
         </p>
+        <div style={{ border: '1px solid black', padding: '10px', display: 'inline-block' }}>
+          <h2>Filter out events</h2>
+          <label style={{ display: 'block' }}>
+            <input type="checkbox" value="club1" />
+            Sport Clubs
+          </label>
+          <label style={{ display: 'block' }}>
+            <input type="checkbox" value="club2" />
+            Art Clubs
+          </label>
+          <label style={{ display: 'block' }}>
+            <input type="checkbox" value="club3" />
+            Dance Clubs
+          </label>
+        </div>
       </Col>
     </Row>
   );

@@ -8,7 +8,7 @@ import React, { useState } from 'react';
 //import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Translate } from 'react-jhipster';
-import { Row, Col, Alert } from 'reactstrap';
+import { Row, Col, Alert, Button } from 'reactstrap';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 //import MyApp from 'src/main/webapp/app/modules/components/App';
@@ -132,7 +132,7 @@ export const Home = () => {
           <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer">
             GitHub
           </a>
-          !
+          !<a href="mailto:email@example.com">Contact Us</a>
         </p>
       </Col>
     </Row>

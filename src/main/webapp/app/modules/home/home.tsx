@@ -5,6 +5,7 @@ import { FaCog, FaQuestionCircle, FaUser } from 'react-icons/fa';
 import './home.scss';
 
 import React, { useState } from 'react';
+//import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Translate } from 'react-jhipster';
 import { Row, Col, Alert } from 'reactstrap';

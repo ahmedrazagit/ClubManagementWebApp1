@@ -1,6 +1,7 @@
 //import a sound button which plays metallica music:)
 //import mp3File from "file:///C:/Users/xiao/Desktop/metallica.mp3";
 //import mp3File from "./metallica.mp3";
+import { FaCog, FaQuestionCircle, FaUser } from 'react-icons/fa';
 import './home.scss';
 
 //import React, { useState } from 'react';
@@ -13,20 +14,21 @@ import { useAppSelector } from 'app/config/store';
 
 export const Home = () => {
   const account = useAppSelector(state => state.authentication.account);
-  const [playing, setPlaying] = useState(false);
 
-  const audio = new Audio('./metallica.mp3');
+  function handleSettingsClick() {
+    // Handle settings button click event
+    console.error('Settings clicked');
+  }
 
-  const handleButtonClick = () => {
-    if (playing) {
-      audio.pause();
-    } else {
-      audio.play().catch(error => {
-        console.error(error);
-      });
-    }
-    setPlaying(!playing);
-  };
+  function handleHelpClick() {
+    // Handle help button click event
+    console.error('Help clicked');
+  }
+
+  function handleUserProfileClick() {
+    // Handle user profile button click event
+    console.error('User profile clicked');
+  }
 
   return (
     <Row>
@@ -35,9 +37,17 @@ export const Home = () => {
       </Col>
       <Col md="9">
         <h2>
-          <Translate contentKey="home.title">Welcome, Java Hipster!</Translate>
-          <div>
-            <button onClick={handleButtonClick}>{playing ? 'Pause' : 'Play'}</button>
+          <Translate contentKey="home.title">Welcome to ClubPing Dashboard!</Translate>
+          <div style={{ position: 'absolute', top: '10px', right: '10px' }}>
+            <button onClick={handleSettingsClick}>
+              <FaCog />
+            </button>
+            <button onClick={handleHelpClick}>
+              <FaQuestionCircle />
+            </button>
+            <button onClick={handleUserProfileClick}>
+              <FaUser />
+            </button>
           </div>
         </h2>
         <p className="lead">

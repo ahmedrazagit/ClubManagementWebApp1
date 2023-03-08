@@ -4,16 +4,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Translate } from 'react-jhipster';
 import { Row, Col, Alert } from 'reactstrap';
-import { useState } from 'react';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
-//import MyApp from 'src/main/webapp/app/modules/components/App';
 
 import { useAppSelector } from 'app/config/store';
 
 export const Home = () => {
   const account = useAppSelector(state => state.authentication.account);
-  const [value, onChange] = useState(new Date());
 
   return (
     <Row>
@@ -27,10 +22,7 @@ export const Home = () => {
         <p className="lead">
           <Translate contentKey="home.subtitle">This is your homepage</Translate>
         </p>
-        <div id=".react-calendar">
-          <Calendar onChange={onChange} value={value} />
-        </div>
-        {/* account?.login ? (
+        {account?.login ? (
           <div>
             <Alert color="success">
               <Translate contentKey="home.logged.message" interpolate={{ username: account.login }}>
@@ -60,9 +52,7 @@ export const Home = () => {
               </Link>
             </Alert>
           </div>
-        ) */}
-
-        {/*
+        )}
         <p>
           <Translate contentKey="home.question">If you have any question on JHipster:</Translate>
         </p>
@@ -94,7 +84,6 @@ export const Home = () => {
             </a>
           </li>
         </ul>
-        */}
 
         <p>
           <Translate contentKey="home.like">If you like JHipster, do not forget to give us a star on</Translate>{' '}
@@ -103,6 +92,17 @@ export const Home = () => {
           </a>
           !
         </p>
+        <form>
+          <label>
+            Name:
+            <input type="text" name="Name" />
+          </label>
+          <label>
+            Club Name:
+            <input type="text" name="dance club" />
+          </label>
+          <input type="submit" value="submit" />
+        </form>
       </Col>
     </Row>
   );

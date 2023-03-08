@@ -1,6 +1,10 @@
+//import a sound button which plays metallica music:)
+//import mp3File from "file:///C:/Users/xiao/Desktop/metallica.mp3";
+//import mp3File from "./metallica.mp3";
 import './home.scss';
 
-import React from 'react';
+//import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Translate } from 'react-jhipster';
 import { Row, Col, Alert } from 'reactstrap';
@@ -9,6 +13,20 @@ import { useAppSelector } from 'app/config/store';
 
 export const Home = () => {
   const account = useAppSelector(state => state.authentication.account);
+  const [playing, setPlaying] = useState(false);
+
+  const audio = new Audio('./metallica.mp3');
+
+  const handleButtonClick = () => {
+    if (playing) {
+      audio.pause();
+    } else {
+      audio.play().catch(error => {
+        console.error(error);
+      });
+    }
+    setPlaying(!playing);
+  };
 
   return (
     <Row>
@@ -18,6 +36,9 @@ export const Home = () => {
       <Col md="9">
         <h2>
           <Translate contentKey="home.title">Welcome, Java Hipster!</Translate>
+          <div>
+            <button onClick={handleButtonClick}>{playing ? 'Pause' : 'Play'}</button>
+          </div>
         </h2>
         <p className="lead">
           <Translate contentKey="home.subtitle">This is your homepage</Translate>

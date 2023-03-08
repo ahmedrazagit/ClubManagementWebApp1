@@ -8,3 +8,10 @@ Main page styles
   background: url('../../../content/images/jhipster_family_member_0.svg') no-repeat center top;
   background-size: contain;
 }
+.react-calendar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 200px;
+  height: 300px;
+}

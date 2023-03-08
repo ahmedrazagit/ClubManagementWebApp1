@@ -35,20 +35,20 @@ export const Home = () => {
       <Col md="3" className="pad">
         <span className="hipster rounded" />
       </Col>
+      <div style={{ position: 'absolute', top: '5px', right: '5px' }}>
+        <button onClick={handleSettingsClick}>
+          <FaCog />
+        </button>
+        <button onClick={handleHelpClick}>
+          <FaQuestionCircle />
+        </button>
+        <button onClick={handleUserProfileClick}>
+          <FaUser />
+        </button>
+      </div>
       <Col md="9">
         <h2>
           <Translate contentKey="home.title">Welcome to ClubPing Dashboard!</Translate>
-          <div style={{ position: 'absolute', top: '10px', right: '10px' }}>
-            <button onClick={handleSettingsClick}>
-              <FaCog />
-            </button>
-            <button onClick={handleHelpClick}>
-              <FaQuestionCircle />
-            </button>
-            <button onClick={handleUserProfileClick}>
-              <FaUser />
-            </button>
-          </div>
         </h2>
         <p className="lead">
           <Translate contentKey="home.subtitle">This is your homepage</Translate>

@@ -96,7 +96,7 @@ export const Home = () => {
           Add a new club
         </button>
         <button className="btn btn-outline-dark" style={{ color: 'black' }}>
-          Main Menu
+          MainMenu
         </button>
         <button className="btn btn-outline-dark" style={{ color: 'blue' }}>
           Check your existing groups

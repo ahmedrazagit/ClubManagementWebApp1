@@ -36,9 +36,7 @@ export const Home = () => {
 
   return (
     <Row>
-      <Col md="3" className="pad">
-        <span className="hipster rounded" />
-      </Col>
+      <Col md="3" className="pad"></Col>
       <div style={{ position: 'absolute', top: '5px', right: '5px' }}>
         <button onClick={handleSettingsClick}>
           <FaCog />
@@ -57,7 +55,8 @@ export const Home = () => {
         <p className="lead">
           <Translate contentKey="home.subtitle">This is your homepage</Translate>
         </p>
-        <div id=".react-calendar">
+        {/*<div style={{ position: 'absolute', top: '20px', right: '10px', backgroundColor: '#fff', borderRadius: '5px', padding: '10px', boxShadow: '0 2px 10px rgba(0,0,0,0.2)' }}>*/}
+        <div style={{ position: 'absolute', top: '20px', right: '10px' }}>
           <Calendar onChange={onChange} value={value} />
         </div>
 

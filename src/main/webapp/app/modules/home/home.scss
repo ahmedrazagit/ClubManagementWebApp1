@@ -8,3 +8,21 @@ Main page styles
   background: url('../../../content/images/jhipster_family_member_0.svg') no-repeat center top;
   background-size: contain;
 }
+
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.social-media {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.social-media a {
+  margin-right: 10px;
+  margin-bottom: 10px;
+}

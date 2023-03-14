@@ -1,0 +1,6 @@
+entity Event {
+    name String required minlength(3) maxlength(50),
+    date ZonedDateTime required,
+    location String required minlength(3) maxlength(100),
+    description String required minlength(10) maxlength(500)
+}

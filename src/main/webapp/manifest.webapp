@@ -1,6 +1,7 @@
 {
   "name": "Teamproject",
   "short_name": "Teamproject",
+  /*
   "icons": [
     {
       "src": "./content/images/jhipster_family_member_0_head-192.png",
@@ -23,6 +24,7 @@
       "type": "image/png"
     }
   ],
+  */
   "theme_color": "#000000",
   "background_color": "#e0e0e0",
   "start_url": ".",

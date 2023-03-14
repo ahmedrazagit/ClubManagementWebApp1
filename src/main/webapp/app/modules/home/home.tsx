@@ -3,10 +3,14 @@
 //import mp3File from "./metallica.mp3";
 import { FaCog, FaQuestionCircle, FaUser } from 'react-icons/fa';
 import './home.scss';
+import MySideNav from 'app/modules/components/SideBar';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 import React, { useState } from 'react';
-//import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Translate } from 'react-jhipster';
 import { Row, Col, Alert } from 'reactstrap';
 import Calendar from 'react-calendar';
@@ -14,6 +18,7 @@ import 'react-calendar/dist/Calendar.css';
 //import MyApp from 'src/main/webapp/app/modules/components/App';
 
 import { useAppSelector } from 'app/config/store';
+import Event from 'app/modules/administration/event/event';
 
 export const Home = () => {
   const account = useAppSelector(state => state.authentication.account);
@@ -37,8 +42,11 @@ export const Home = () => {
   return (
     <Row>
       <Col md="3" className="pad">
+        <h2>DashBoard</h2>
         <span className="hipster rounded" />
       </Col>
+
+      {/*
       <div style={{ position: 'absolute', top: '5px', right: '5px' }}>
         <button onClick={handleSettingsClick}>
           <FaCog />
@@ -49,17 +57,51 @@ export const Home = () => {
         <button onClick={handleUserProfileClick}>
           <FaUser />
         </button>
-      </div>
+      </div> */}
+
       <Col md="9">
-        <h2>
+        {/*<h2>
           <Translate contentKey="home.title">Welcome to ClubPing Dashboard!</Translate>
-        </h2>
+        </h2>*/}
         <p className="lead">
-          <Translate contentKey="home.subtitle">This is your homepage</Translate>
+          <Translate contentKey="home.subtitle">Welcome to ClubPing</Translate>
         </p>
-        <div id=".react-calendar">
+        {/*<div id=".react-calendar">
           <Calendar onChange={onChange} value={value} />
+        </div>*/}
+
+        {/*<button className="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+                aria-controls="offcanvasExample">
+          Button with data-bs-target
+        </button>
+        */}
+
+        <div className="offcanvas offcanvas-start" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+          <div className="offcanvas-header">
+            <h5 className="offcanvas-title" id="offcanvasExampleLabel">
+              Menu
+            </h5>
+            <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div className="offcanvas-body">
+            <div></div>
+            <div className="dropdown mt-3">
+              {/*<button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                      data-bs-toggle="dropdown">
+                Dropdown button
+              </button>
+              <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li><a className="dropdown-item" href="#">Action</a></li>
+                <li><a className="dropdown-item" href="#">Another action</a></li>
+                <li><a className="dropdown-item" href="#">Something else here</a></li>
+              </ul>*/}
+              <Link to="/event">Go to Events</Link>
+            </div>
+          </div>
         </div>
+
+        {/*<p>Click the link below to go to the Events page:</p>
+        <Link to="/event" onClick={() => window.location.reload()}>Go to Events</Link>*/}
 
         {/* account?.login ? (
           <div>
@@ -126,7 +168,7 @@ export const Home = () => {
           </li>
         </ul>
         */}
-
+        {/*
         <p>
           <Translate contentKey="home.like">If you like JHipster, do not forget to give us a star on</Translate>{' '}
           <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer">
@@ -134,6 +176,7 @@ export const Home = () => {
           </a>
           !
         </p>
+        */}
       </Col>
     </Row>
   );

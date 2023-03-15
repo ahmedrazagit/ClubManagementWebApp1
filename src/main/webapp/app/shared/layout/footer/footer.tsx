@@ -10,6 +10,8 @@ const Footer = () => (
       <Col md="12">
         <p>
           <Translate contentKey="footer">Your footer</Translate>
+
+          <a href="/gdpr">GDPR</a>
         </p>
       </Col>
     </Row>

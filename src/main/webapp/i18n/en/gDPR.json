@@ -1,0 +1,15 @@
+{
+  "teamprojectApp": {
+    "gDPR": {
+      "home": {
+        "title": "GDPRS",
+        "refreshListLabel": "Refresh list",
+        "notFound": "No GDPRS found"
+      },
+      "detail": {
+        "title": "GDPR"
+      },
+      "id": "ID"
+    }
+  }
+}

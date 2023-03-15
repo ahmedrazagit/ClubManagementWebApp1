@@ -1,0 +1,9 @@
+{
+  "changelogDate": "20230315114246",
+  "fields": [],
+  "name": "GDPR",
+  "pagination": "infinite-scroll",
+  "readOnly": true,
+  "relationships": [],
+  "service": "no"
+}

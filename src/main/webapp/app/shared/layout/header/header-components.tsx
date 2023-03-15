@@ -13,7 +13,7 @@ export const BrandIcon = props => (
 );
 
 export const Brand = () => (
-  <button type="button" className="btn btn-primary btn-sm" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample">
+  <button type="button" className="btn btn-primary btn-sm black-button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample">
     <BrandIcon />
     <span className="brand-title">
       <Translate contentKey="global.title">ClubPing</Translate>

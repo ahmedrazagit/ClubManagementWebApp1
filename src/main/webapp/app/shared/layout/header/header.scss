@@ -121,3 +121,24 @@ Navbar styles
   top: 0px;
   z-index: 1031;
 }
+:root {
+  --offcanvas-width: 270px;
+  --topNavbarHeight: 103px;
+}
+
+#offcanvasExample {
+  width: 250px;
+  /* Other styles here */
+}
+@media (min-width: 992px) {
+  body {
+    overflow: auto !important;
+  }
+  .offcanvas-backdrop::before {
+    display: none;
+  }
+  #offcanvasExample {
+    height: calc(100% - var(--topNavbarHeight));
+    top: var(--topNavbarHeight);
+  }
+}

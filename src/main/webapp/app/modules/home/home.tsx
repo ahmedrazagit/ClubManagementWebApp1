@@ -5,14 +5,21 @@ import { FaCog, FaQuestionCircle, FaUser } from 'react-icons/fa';
 import './home.scss';
 import MySideNav from 'app/modules/components/SideBar';
 
+import SideNav, { Toggle, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
+
+import { FaHome, FaBullhorn, FaUniversity, FaUsers, FaEnvelope, FaComments, FaTwitter, FaFacebookF, FaInstagram } from 'react-icons/fa';
+
+//IMP
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
+import { Row, Col, Alert, Nav, NavLink } from 'reactstrap';
 
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Translate } from 'react-jhipster';
-import { Row, Col, Alert } from 'reactstrap';
+//import { Row, Col, Alert } from 'reactstrap';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 //import MyApp from 'src/main/webapp/app/modules/components/App';
@@ -40,11 +47,43 @@ export const Home = () => {
   }
 
   return (
-    <Row>
-      <Col md="3" className="pad">
-        <h2>DashBoard</h2>
-        <span className="hipster rounded" />
-      </Col>
+    <main className="mt-5 pt-3">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-3 mb-3">
+            <div className="card" style={{ width: '18rem' }}>
+              <img src="..." className="card-img-top" alt="..." />
+              <div className="card-body">
+                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-3 mb-3">
+            <div className="card" style={{ width: '18rem' }}>
+              <img src="..." className="card-img-top" alt="..." />
+              <div className="card-body">
+                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-3 mb-3">
+            <div className="card" style={{ width: '18rem' }}>
+              <img src="..." className="card-img-top" alt="..." />
+              <div className="card-body">
+                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-3 mb-3">
+            <div className="card" style={{ width: '18rem' }}>
+              <img src="..." className="card-img-top" alt="..." />
+              <div className="card-body">
+                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/*
       <div style={{ position: 'absolute', top: '5px', right: '5px' }}>
@@ -59,51 +98,26 @@ export const Home = () => {
         </button>
       </div> */}
 
-      <Col md="9">
-        {/*<h2>
+      {/*<h2>
           <Translate contentKey="home.title">Welcome to ClubPing Dashboard!</Translate>
         </h2>*/}
-        <p className="lead">
+      {/*<p className="lead">
           <Translate contentKey="home.subtitle">Welcome to ClubPing</Translate>
-        </p>
-        {/*<div id=".react-calendar">
+        </p>*/}
+      {/*<div id=".react-calendar">
           <Calendar onChange={onChange} value={value} />
         </div>*/}
 
-        {/*<button className="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+      {/*<button className="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
                 aria-controls="offcanvasExample">
           Button with data-bs-target
         </button>
         */}
 
-        <div className="offcanvas offcanvas-start" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-          <div className="offcanvas-header">
-            <h5 className="offcanvas-title" id="offcanvasExampleLabel">
-              Menu
-            </h5>
-            <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-          </div>
-          <div className="offcanvas-body">
-            <div></div>
-            <div className="dropdown mt-3">
-              {/*<button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                      data-bs-toggle="dropdown">
-                Dropdown button
-              </button>
-              <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <li><a className="dropdown-item" href="#">Action</a></li>
-                <li><a className="dropdown-item" href="#">Another action</a></li>
-                <li><a className="dropdown-item" href="#">Something else here</a></li>
-              </ul>*/}
-              <Link to="/event">Go to Events</Link>
-            </div>
-          </div>
-        </div>
-
-        {/*<p>Click the link below to go to the Events page:</p>
+      {/*<p>Click the link below to go to the Events page:</p>
         <Link to="/event" onClick={() => window.location.reload()}>Go to Events</Link>*/}
 
-        {/* account?.login ? (
+      {/* account?.login ? (
           <div>
             <Alert color="success">
               <Translate contentKey="home.logged.message" interpolate={{ username: account.login }}>
@@ -135,7 +149,7 @@ export const Home = () => {
           </div>
         ) */}
 
-        {/*
+      {/*
         <p>
           <Translate contentKey="home.question">If you have any question on JHipster:</Translate>
         </p>
@@ -168,7 +182,7 @@ export const Home = () => {
           </li>
         </ul>
         */}
-        {/*
+      {/*
         <p>
           <Translate contentKey="home.like">If you like JHipster, do not forget to give us a star on</Translate>{' '}
           <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer">
@@ -177,8 +191,7 @@ export const Home = () => {
           !
         </p>
         */}
-      </Col>
-    </Row>
+    </main>
   );
 };
 

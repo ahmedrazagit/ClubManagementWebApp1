@@ -12,7 +12,6 @@ function MySideNav() {
       }}
       className="sidenav"
     >
-      <SideNav.Toggle />
       <SideNav.Nav>
         <NavItem eventKey="home">
           <NavIcon>

@@ -325,7 +325,7 @@ export const GDPR = () => {
           ) : (
             !loading && (
               <div className="alert alert-warning">
-                <Translate contentKey="teamprojectApp.gDPR.home.notFound">No GDPRS found</Translate>
+                {/*<Translate contentKey="teamprojectApp.gDPR.home.notFound">No GDPRS found</Translate>*/}
               </div>
             )
           )}

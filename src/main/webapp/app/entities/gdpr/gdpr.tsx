@@ -323,11 +323,7 @@ export const GDPR = () => {
               </tbody>*/}
             </Table>
           ) : (
-            !loading && (
-              <div className="alert alert-warning">
-                {/*<Translate contentKey="teamprojectApp.gDPR.home.notFound">No GDPRS found</Translate>*/}
-              </div>
-            )
+            <div></div>
           )}
         </InfiniteScroll>
       </div>

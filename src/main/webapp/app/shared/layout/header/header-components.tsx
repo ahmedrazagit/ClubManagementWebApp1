@@ -1,5 +1,6 @@
 import React from 'react';
 import { Translate } from 'react-jhipster';
+import './header.scss';
 
 import { NavItem, NavLink, NavbarBrand } from 'reactstrap';
 import { NavLink as Link } from 'react-router-dom';
@@ -12,15 +13,14 @@ export const BrandIcon = props => (
 );
 
 export const Brand = () => (
-  <NavbarBrand tag={Link} to="/" className="brand-logo">
+  <button type="button" className="btn btn-primary btn-sm black-button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample">
     <BrandIcon />
     <span className="brand-title">
-      <Translate contentKey="global.title">Teamproject</Translate>
+      <Translate contentKey="global.title">ClubPing</Translate>
     </span>
-    <span className="navbar-version">{VERSION}</span>
-  </NavbarBrand>
+    {/*<span className="navbar-version">{VERSION}</span>*/}
+  </button>
 );
-
 export const Home = () => (
   <NavItem>
     <NavLink tag={Link} to="/" className="d-flex align-items-center">

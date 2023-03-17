@@ -5,6 +5,9 @@ import { Translate, Storage } from 'react-jhipster';
 import { Navbar, Nav, NavbarToggler, Collapse } from 'reactstrap';
 import LoadingBar from 'react-redux-loading-bar';
 
+import { FaHome, FaBullhorn, FaUniversity, FaUsers, FaEnvelope, FaComments, FaTwitter, FaFacebookF, FaInstagram } from 'react-icons/fa';
+import { FaCog, FaQuestionCircle, FaUser } from 'react-icons/fa';
+
 import { Home, Brand } from './header-components';
 import { AdminMenu, EntitiesMenu, AccountMenu, LocaleMenu } from '../menus';
 import { useAppDispatch } from 'app/config/store';
@@ -30,39 +33,111 @@ const Header = (props: IHeaderProps) => {
     dispatch(setLocale(langKey));
   };
 
-  const renderDevRibbon = () =>
+  {
+    /*const renderDevRibbon = () =>
     props.isInProduction === false ? (
       <div className="ribbon dev">
         <a href="">
           <Translate contentKey={`global.ribbon.${props.ribbonEnv}`} />
         </a>
       </div>
-    ) : null;
+    ) : null;*/
+  }
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
   /* jhipster-needle-add-element-to-menu - JHipster will add new menu items here */
 
   return (
-    <div id="app-header">
-      {renderDevRibbon()}
-      <LoadingBar className="loading-bar" />
-      <Navbar data-cy="navbar" dark expand="md" fixed="top" className="jh-navbar">
-        <NavbarToggler aria-label="Menu" onClick={toggleMenu} />
-        <Brand />
-        <Collapse isOpen={menuOpen} navbar>
-          <Nav id="header-tabs" className="ms-auto" navbar>
-            <Home />
-            {props.isAuthenticated && <EntitiesMenu />}
-            {props.isAuthenticated && props.isAdmin && (
-              <AdminMenu showOpenAPI={props.isOpenAPIEnabled} showDatabase={!props.isInProduction} />
-            )}
-            <LocaleMenu currentLocale={props.currentLocale} onClick={handleLocaleChange} />
-            <AccountMenu isAuthenticated={props.isAuthenticated} />
-          </Nav>
-        </Collapse>
-      </Navbar>
-    </div>
+    <>
+      <div
+        className="offcanvas offcanvas-start tabindex={-1} bg-dark text-white"
+        id="offcanvasExample"
+        aria-labelledby="offcanvasExampleLabel"
+      >
+        <div className="offcanvas-header">
+          <h5 className="offcanvas-title text-muted small fw-bold text-uppercase px-3" id="offcanvasExampleLabel">
+            Menu
+          </h5>
+          <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div className="offcanvas-body p-0">
+          <nav className="navbar-dark">
+            <ul className="navbar-nav">
+              <li>
+                <div className="text-muted small fw-bold text-uppercase px-3">CORE</div>
+              </li>
+              <li>
+                <a href="/event" className="nav-link px-3 active">
+                  {/*<span className="me-2"><i className="bi bi-speedometer2"></i></span>*/}
+                  <span className="me-2">
+                    <FaUsers />
+                  </span>
+                  <span>Events</span>
+                </a>
+              </li>
+              <li className="my-4">
+                <hr className="dropdown-divider bg-light" />
+              </li>
+              <li>
+                <div className="text-muted small fw-bold text-uppercase px-3 mb-3"></div>
+              </li>
+
+              <li className="my-4">
+                <hr className="dropdown-divider bg-light" />
+              </li>
+
+              <li>
+                <div className="text-muted small fw-bold text-uppercase px-3 mb-3">Socials</div>
+              </li>
+              <li>
+                <a href="#" className="nav-link px-3">
+                  <span className="me-2">
+                    <i className="bi bi-graph-up"></i>
+                  </span>
+                  <span>Twitter</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" className="nav-link px-3">
+                  <span className="me-2">
+                    <i className="bi bi-table"></i>
+                  </span>
+                  <span>FaceBook</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" className="nav-link px-3">
+                  <span className="me-2">
+                    <i className="bi bi-table"></i>
+                  </span>
+                  <span>Instagram</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div id="app-header">
+        {/*{renderDevRibbon()}*/}
+        <LoadingBar className="loading-bar" />
+        <Navbar data-cy="navbar" dark expand="md" fixed="top" className="jh-navbar">
+          <NavbarToggler aria-label="Menu" onClick={toggleMenu} />
+          <Brand />
+          <Collapse isOpen={menuOpen} navbar>
+            <Nav id="header-tabs" className="ms-auto" navbar>
+              <Home />
+              {props.isAuthenticated && <EntitiesMenu />}
+              {props.isAuthenticated && props.isAdmin && (
+                <AdminMenu showOpenAPI={props.isOpenAPIEnabled} showDatabase={!props.isInProduction} />
+              )}
+              <LocaleMenu currentLocale={props.currentLocale} onClick={handleLocaleChange} />
+              <AccountMenu isAuthenticated={props.isAuthenticated} />
+            </Nav>
+          </Collapse>
+        </Navbar>
+      </div>
+    </>
   );
 };
 

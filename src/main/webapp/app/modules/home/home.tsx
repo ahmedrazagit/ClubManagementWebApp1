@@ -52,7 +52,8 @@ export const Home = () => {
         <div className="row">
           <div className="col-md-3 mb-3">
             <div className="card" style={{ width: '18rem' }}>
-              <img src={require('../../../content/images/elementor-placeholder-image.png')} className="card-img-top" />
+              {/*<img src={require('../../../content/images/elementor-placeholder-image.png')} className="card-img-top" />*/}
+              <img src="content/images/elementor-placeholder-image.png" alt="Logo" />
               <div className="card-body">
                 <h5 className="card-title">Card with stretched link</h5>
                 <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -64,11 +65,12 @@ export const Home = () => {
           </div>
           <div className="col-md-3 mb-3">
             <div className="card" style={{ width: '18rem' }}>
-              <img src="..." className="card-img-top" alt="..." />
+              {/*<img src={require('../../../content/images/elementor-placeholder-image.png')} className="card-img-top" />*/}
+              <img src="content/images/elementor-placeholder-image.png" alt="Logo" />
               <div className="card-body">
-                <h5 className="card-title">Card title</h5>
+                <h5 className="card-title">Card with stretched link</h5>
                 <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" className="btn btn-primary">
+                <a href="#" className="btn btn-primary stretched-link">
                   Go somewhere
                 </a>
               </div>
@@ -76,11 +78,12 @@ export const Home = () => {
           </div>
           <div className="col-md-3 mb-3">
             <div className="card" style={{ width: '18rem' }}>
-              <img src="..." className="card-img-top" alt="..." />
+              {/*<img src={require('../../../content/images/elementor-placeholder-image.png')} className="card-img-top" />*/}
+              <img src="content/images/elementor-placeholder-image.png" alt="Logo" />
               <div className="card-body">
-                <h5 className="card-title">Card title</h5>
+                <h5 className="card-title">Card with stretched link</h5>
                 <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" className="btn btn-primary">
+                <a href="#" className="btn btn-primary stretched-link">
                   Go somewhere
                 </a>
               </div>
@@ -88,11 +91,12 @@ export const Home = () => {
           </div>
           <div className="col-md-3 mb-3">
             <div className="card" style={{ width: '18rem' }}>
-              <img src="..." className="card-img-top" alt="..." />
+              {/*<img src={require('../../../content/images/elementor-placeholder-image.png')} className="card-img-top" />*/}
+              <img src="content/images/elementor-placeholder-image.png" alt="Logo" />
               <div className="card-body">
-                <h5 className="card-title">Card title</h5>
+                <h5 className="card-title">Card with stretched link</h5>
                 <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" className="btn btn-primary">
+                <a href="#" className="btn btn-primary stretched-link">
                   Go somewhere
                 </a>
               </div>

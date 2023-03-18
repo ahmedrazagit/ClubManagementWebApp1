@@ -32,3 +32,11 @@ Main page styles
   margin-right: 10px;
   margin-bottom: 10px;
 }
+.eventcard {
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}

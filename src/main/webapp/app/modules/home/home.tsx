@@ -50,8 +50,8 @@ export const Home = () => {
     <main className="mt-5 pt-3">
       <div className="container">
         <div className="row">
-          <div className="col-md-3 mb-3">
-            <div className="card" style={{ width: '18rem' }}>
+          <div style={{ marginRight: '10px' }} className="col-md-3 mb-3">
+            <div className="card eventcard" style={{ width: '18rem', marginRight: '10px' }}>
               {/*<img src={require('../../../content/images/elementor-placeholder-image.png')} className="card-img-top" />*/}
               <img src="content/images/elementor-placeholder-image.png" alt="Logo" />
               <div className="card-body">
@@ -63,8 +63,8 @@ export const Home = () => {
               </div>
             </div>
           </div>
-          <div className="col-md-3 mb-3">
-            <div className="card" style={{ width: '18rem' }}>
+          <div style={{ marginRight: '10px' }} className="col-md-3 mb-3">
+            <div className="card eventcard" style={{ width: '18rem', marginRight: '10px' }}>
               {/*<img src={require('../../../content/images/elementor-placeholder-image.png')} className="card-img-top" />*/}
               <img src="content/images/elementor-placeholder-image.png" alt="Logo" />
               <div className="card-body">
@@ -76,8 +76,8 @@ export const Home = () => {
               </div>
             </div>
           </div>
-          <div className="col-md-3 mb-3">
-            <div className="card" style={{ width: '18rem' }}>
+          <div style={{ marginRight: '10px' }} className="col-md-3 mb-3">
+            <div className="card eventcard" style={{ width: '18rem', marginRight: '10px' }}>
               {/*<img src={require('../../../content/images/elementor-placeholder-image.png')} className="card-img-top" />*/}
               <img src="content/images/elementor-placeholder-image.png" alt="Logo" />
               <div className="card-body">
@@ -89,8 +89,47 @@ export const Home = () => {
               </div>
             </div>
           </div>
-          <div className="col-md-3 mb-3">
-            <div className="card" style={{ width: '18rem' }}>
+          <div style={{ marginRight: '10px' }} className="col-md-3 mb-3">
+            <div className="card eventcard" style={{ width: '18rem' }}>
+              {/*<img src={require('../../../content/images/elementor-placeholder-image.png')} className="card-img-top" />*/}
+              <img src="content/images/elementor-placeholder-image.png" alt="Logo" />
+              <div className="card-body">
+                <h5 className="card-title">Card with stretched link</h5>
+                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" className="btn btn-primary stretched-link">
+                  Go somewhere
+                </a>
+              </div>
+            </div>
+          </div>
+          <div style={{ marginRight: '10px' }} className="col-md-3 mb-3">
+            <div className="card eventcard" style={{ width: '18rem' }}>
+              {/*<img src={require('../../../content/images/elementor-placeholder-image.png')} className="card-img-top" />*/}
+              <img src="content/images/elementor-placeholder-image.png" alt="Logo" />
+              <div className="card-body">
+                <h5 className="card-title">Card with stretched link</h5>
+                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" className="btn btn-primary stretched-link">
+                  Go somewhere
+                </a>
+              </div>
+            </div>
+          </div>
+          <div style={{ marginRight: '10px' }} className="col-md-3 mb-3">
+            <div className="card eventcard" style={{ width: '18rem' }}>
+              {/*<img src={require('../../../content/images/elementor-placeholder-image.png')} className="card-img-top" />*/}
+              <img src="content/images/elementor-placeholder-image.png" alt="Logo" />
+              <div className="card-body">
+                <h5 className="card-title">Card with stretched link</h5>
+                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" className="btn btn-primary stretched-link">
+                  Go somewhere
+                </a>
+              </div>
+            </div>
+          </div>
+          <div style={{ marginRight: '10px' }} className="col-md-3 mb-3">
+            <div className="card eventcard" style={{ width: '18rem' }}>
               {/*<img src={require('../../../content/images/elementor-placeholder-image.png')} className="card-img-top" />*/}
               <img src="content/images/elementor-placeholder-image.png" alt="Logo" />
               <div className="card-body">

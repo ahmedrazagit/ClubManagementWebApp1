@@ -76,6 +76,42 @@ const Header = (props: IHeaderProps) => {
                   <span>Events</span>
                 </a>
               </li>
+              <li>
+                <a href="#" className="nav-link px-3 active">
+                  {/*<span className="me-2"><i className="bi bi-speedometer2"></i></span>*/}
+                  <span className="me-2">
+                    <FaBullhorn />
+                  </span>
+                  <span>Announcements</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" className="nav-link px-3 active">
+                  {/*<span className="me-2"><i className="bi bi-speedometer2"></i></span>*/}
+                  <span className="me-2">
+                    <FaUniversity />
+                  </span>
+                  <span>Universities</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" className="nav-link px-3 active">
+                  {/*<span className="me-2"><i className="bi bi-speedometer2"></i></span>*/}
+                  <span className="me-2">
+                    <FaComments />
+                  </span>
+                  <span>Messages</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" className="nav-link px-3 active">
+                  {/*<span className="me-2"><i className="bi bi-speedometer2"></i></span>*/}
+                  <span className="me-2">
+                    <FaEnvelope />
+                  </span>
+                  <span>Forum</span>
+                </a>
+              </li>
               <li className="my-4">
                 <hr className="dropdown-divider bg-light" />
               </li>
@@ -93,7 +129,7 @@ const Header = (props: IHeaderProps) => {
               <li>
                 <a href="#" className="nav-link px-3">
                   <span className="me-2">
-                    <i className="bi bi-graph-up"></i>
+                    <FaTwitter />
                   </span>
                   <span>Twitter</span>
                 </a>
@@ -101,7 +137,7 @@ const Header = (props: IHeaderProps) => {
               <li>
                 <a href="#" className="nav-link px-3">
                   <span className="me-2">
-                    <i className="bi bi-table"></i>
+                    <FaFacebookF />
                   </span>
                   <span>FaceBook</span>
                 </a>
@@ -109,7 +145,7 @@ const Header = (props: IHeaderProps) => {
               <li>
                 <a href="#" className="nav-link px-3">
                   <span className="me-2">
-                    <i className="bi bi-table"></i>
+                    <FaInstagram />
                   </span>
                   <span>Instagram</span>
                 </a>

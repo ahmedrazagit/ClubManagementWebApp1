@@ -74,6 +74,14 @@ module.exports = async options => {
             include: [utils.root('./src/main/webapp/app')],
             exclude: [utils.root('node_modules')],
           },
+          {
+            test: /\.png$/,
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'images/',
+            },
+          },
           /*
        ,
        Disabled due to https://github.com/jhipster/generator-jhipster/issues/16116

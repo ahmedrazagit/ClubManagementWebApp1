@@ -51,6 +51,7 @@ export const Home = () => {
       <div className="container" style={{ position: 'relative' }}>
         <img src="content/images/student-pic.jpg" alt="logo" style={{ width: '100%' }} />
         <div
+          className="welcomeText"
           style={{
             position: 'absolute',
             top: '50%',

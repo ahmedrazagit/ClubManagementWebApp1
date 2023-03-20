@@ -127,7 +127,10 @@ const Header = (props: IHeaderProps) => {
                 <div className="text-muted small fw-bold text-uppercase px-3 mb-3">Socials</div>
               </li>
               <li>
-                <a href="#" className="nav-link px-3">
+                <a
+                  href="https://twitter.com/unibirmingham?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"
+                  className="nav-link px-3"
+                >
                   <span className="me-2">
                     <FaTwitter />
                   </span>
@@ -135,7 +138,7 @@ const Header = (props: IHeaderProps) => {
                 </a>
               </li>
               <li>
-                <a href="#" className="nav-link px-3">
+                <a href="https://www.facebook.com/unibirmingham/" className="nav-link px-3">
                   <span className="me-2">
                     <FaFacebookF />
                   </span>
@@ -143,7 +146,7 @@ const Header = (props: IHeaderProps) => {
                 </a>
               </li>
               <li>
-                <a href="#" className="nav-link px-3">
+                <a href="https://www.instagram.com/unibirmingham/?hl=en" className="nav-link px-3">
                   <span className="me-2">
                     <FaInstagram />
                   </span>

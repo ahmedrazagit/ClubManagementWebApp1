@@ -48,6 +48,24 @@ export const Home = () => {
 
   return (
     <main className="mt-5 pt-3">
+      <div className="container" style={{ position: 'relative' }}>
+        <img src="content/images/student-pic.jpg" alt="logo" style={{ width: '100%' }} />
+        <div
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            color: 'blue',
+            fontSize: '3rem',
+            fontWeight: 'bold',
+            textShadow: '2px 2px #000000',
+          }}
+        >
+          {' '}
+          Welcome to Clubping
+        </div>
+      </div>
       <div className="container">
         <div className="row">
           <div style={{ marginRight: '10px' }} className="col-md-3 mb-3">

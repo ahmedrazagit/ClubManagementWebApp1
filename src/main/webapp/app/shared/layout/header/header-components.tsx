@@ -8,16 +8,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const BrandIcon = props => (
   <div {...props} className="brand-icon">
-    <img src="content/images/logo-jhipster.png" alt="Logo" />
+    <img style={{ width: 90, height: 50 }} src="content/images/clubping-logo.png" alt="Logo" />
   </div>
 );
 
 export const Brand = () => (
   <button type="button" className="btn btn-primary btn-sm black-button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample">
     <BrandIcon />
-    <span className="brand-title">
-      <Translate contentKey="global.title">ClubPing</Translate>
-    </span>
+
     {/*<span className="navbar-version">{VERSION}</span>*/}
   </button>
 );

@@ -1,11 +1,5 @@
-//import a sound button which plays metallica music:)
-//import mp3File from "file:///C:/Users/xiao/Desktop/metallica.mp3";
-//import mp3File from "./metallica.mp3";
 import { FaCog, FaQuestionCircle, FaUser } from 'react-icons/fa';
 import './home.scss';
-import MySideNav from 'app/modules/components/SideBar';
-
-import SideNav, { Toggle, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 
 import { FaHome, FaBullhorn, FaUniversity, FaUsers, FaEnvelope, FaComments, FaTwitter, FaFacebookF, FaInstagram } from 'react-icons/fa';
 

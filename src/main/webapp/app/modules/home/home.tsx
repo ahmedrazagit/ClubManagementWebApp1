@@ -31,21 +31,6 @@ export const Home = () => {
   const account = useAppSelector(state => state.authentication.account);
   const [value, onChange] = useState(new Date());
 
-  function handleSettingsClick() {
-    // Handle settings button click event
-    console.error('Settings clicked');
-  }
-
-  function handleHelpClick() {
-    // Handle help button click event
-    console.error('Help clicked');
-  }
-
-  function handleUserProfileClick() {
-    // Handle user profile button click event
-    console.error('User profile clicked');
-  }
-
   return (
     <main className="mt-5 pt-3">
       <div className="container" style={{ position: 'relative' }}>

@@ -41,3 +41,17 @@ Main page styles
   justify-content: space-between;
   cursor: pointer;
 }
+:root {
+  --font-headline: 'ABC Ginto Nord', 'Noto Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+.welcomeText {
+  font-family: var(--font-headline);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: blue;
+  font-size: 3rem;
+  font-weight: bold;
+  text-shadow: 2px 2px #000000;
+}

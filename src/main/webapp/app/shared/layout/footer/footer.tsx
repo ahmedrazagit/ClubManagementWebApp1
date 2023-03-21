@@ -8,11 +8,13 @@ const Footer = () => (
   <div className="footer page-content">
     <Row>
       <Col md="12">
-        <p>
-          <Translate contentKey="footer">Your footer</Translate>
-
-          <a href="/gdpr">GDPR</a>
-        </p>
+        <div className="text-center" style={{ fontSize: '10px' }}>
+          <p>
+            <Translate contentKey="footer">Your footer</Translate>
+            <p>&copy; 2023 ClubPing | All Rights Reserved</p>
+            <a href="/gdpr">GDPR</a>
+          </p>
+        </div>
       </Col>
     </Row>
   </div>

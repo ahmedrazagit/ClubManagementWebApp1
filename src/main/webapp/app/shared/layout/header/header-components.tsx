@@ -13,12 +13,11 @@ export const BrandIcon = props => (
 );
 
 export const Brand = () => (
-  <button type="button" className="btn btn-primary btn-sm black-button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample">
+  <a href="#" className="black-button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample">
     <BrandIcon />
-
-    {/*<span className="navbar-version">{VERSION}</span>*/}
-  </button>
+  </a>
 );
+
 export const Home = () => (
   <NavItem>
     <NavLink tag={Link} to="/" className="d-flex align-items-center">

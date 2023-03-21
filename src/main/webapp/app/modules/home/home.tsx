@@ -29,22 +29,7 @@ export const Home = () => {
     <main className="mt-5 pt-3">
       <div className="container" style={{ position: 'relative' }}>
         <img src="content/images/student-pic.jpg" alt="logo" style={{ width: '100%' }} />
-        <div
-          className="welcomeText"
-          style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            color: 'blue',
-            fontSize: '3rem',
-            fontWeight: 'bold',
-            textShadow: '2px 2px #000000',
-          }}
-        >
-          {' '}
-          Welcome to Clubping
-        </div>
+        <div className="welcomeText"> Welcome to Clubping</div>
       </div>
       <div className="container">
         <div className="row">

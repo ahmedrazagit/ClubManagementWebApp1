@@ -14,8 +14,9 @@ public class JWTConfigurer extends SecurityConfigurerAdapter<DefaultSecurityFilt
     }
 
     @Override
-    public void configure(HttpSecurity http) {
+    public void configure(HttpSecurity http) throws Exception {
         JWTFilter customFilter = new JWTFilter(tokenProvider);
         http.addFilterBefore(customFilter, UsernamePasswordAuthenticationFilter.class);
+        http.authorizeRequests().antMatchers("/gdpr").permitAll().anyRequest().authenticated();
     }
 }

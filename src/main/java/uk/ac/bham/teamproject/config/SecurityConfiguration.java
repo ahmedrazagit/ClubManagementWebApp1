@@ -91,12 +91,19 @@ public class SecurityConfiguration {
             .antMatchers("/management/info").permitAll()
             .antMatchers("/management/prometheus").permitAll()
             .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
+
         .and()
             .httpBasic()
         .and()
             .apply(securityConfigurerAdapter());
+
         return http.build();
         // @formatter:on
+    }
+
+    @Bean
+    public JWTFilter jwtFilter(TokenProvider tokenProvider) {
+        return new JWTFilter(tokenProvider);
     }
 
     private JWTConfigurer securityConfigurerAdapter() {

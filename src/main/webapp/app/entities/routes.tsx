@@ -13,7 +13,7 @@ export default () => {
       <ErrorBoundaryRoutes>
         {/* prettier-ignore */}
         <Route path="event/*" element={<Event />} />
-        <Route path="gdpr/*" element={<GDPR />} />
+        {/*<Route path="gdpr/*" element={<GDPR />} />*/}
         {/* jhipster-needle-add-route-path - JHipster will add routes here */}
       </ErrorBoundaryRoutes>
     </div>

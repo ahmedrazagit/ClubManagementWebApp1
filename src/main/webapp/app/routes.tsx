@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import Loadable from 'react-loadable';
-
+import GDPR from 'app/entities/gdpr/gdpr';
 import Login from 'app/modules/login/login';
 import Register from 'app/modules/account/register/register';
 import Activate from 'app/modules/account/activate/activate';
@@ -10,6 +10,7 @@ import PasswordResetFinish from 'app/modules/account/password-reset/finish/passw
 import Logout from 'app/modules/login/logout';
 import Home from 'app/modules/home/home';
 import EntitiesRoutes from 'app/entities/routes';
+import ViewEvents from 'app/modules/view-events/view-events';
 import PrivateRoute from 'app/shared/auth/private-route';
 import ErrorBoundaryRoutes from 'app/shared/error/error-boundary-routes';
 import PageNotFound from 'app/shared/error/page-not-found';
@@ -32,8 +33,10 @@ const AppRoutes = () => {
     <div className="view-routes">
       <ErrorBoundaryRoutes>
         <Route index element={<Home />} />
+        <Route path="gdpr/*" element={<GDPR />} />
         <Route path="login" element={<Login />} />
         <Route path="logout" element={<Logout />} />
+        <Route path="view-events" element={<ViewEvents />} />
         <Route path="account">
           <Route
             path="*"

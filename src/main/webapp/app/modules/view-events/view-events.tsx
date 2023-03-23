@@ -84,91 +84,119 @@ export const ViewEvent = () => {
   return (
     <div>
       <h2 id="event-heading" data-cy="EventHeading">
-        <Translate contentKey="teamprojectApp.event.home.title">Events</Translate>
+        {/*<Translate contentKey="teamprojectApp.event.home.title">Events</Translate>*/}
+        <div className="text-center">
+          <Translate contentKey="teamprojectApp.event.home.title">Events</Translate>
+        </div>
         <div className="d-flex justify-content-end">
           <Button className="me-2" color="info" onClick={handleSyncList} disabled={loading}>
             <FontAwesomeIcon icon="sync" spin={loading} />{' '}
             <Translate contentKey="teamprojectApp.event.home.refreshListLabel">Refresh List</Translate>
           </Button>
-          <Link to="/event/new" className="btn btn-primary jh-create-entity" id="jh-create-entity" data-cy="entityCreateButton">
+          {/*<Link to="/event/new" className="btn btn-primary jh-create-entity" id="jh-create-entity" data-cy="entityCreateButton">
             <FontAwesomeIcon icon="plus" />
             &nbsp;
             <Translate contentKey="teamprojectApp.event.home.createLabel">Create new Event</Translate>
           </Link>
+          */}
         </div>
       </h2>
       <div className="table-responsive">
         {eventList && eventList.length > 0 ? (
           <Table responsive>
-            <thead>
-              <tr>
+            {/*
                 <th className="hand" onClick={sort('id')}>
                   <Translate contentKey="teamprojectApp.event.id">ID</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
+
                 <th className="hand" onClick={sort('name')}>
-                  <Translate contentKey="teamprojectApp.event.name">Name</Translate> <FontAwesomeIcon icon="sort" />
+                  <Translate contentKey="teamprojectApp.event.name">Name</Translate> <FontAwesomeIcon icon="sort"/>
                 </th>
                 <th className="hand" onClick={sort('date')}>
-                  <Translate contentKey="teamprojectApp.event.date">Date</Translate> <FontAwesomeIcon icon="sort" />
+                  <Translate contentKey="teamprojectApp.event.date">Date</Translate> <FontAwesomeIcon icon="sort"/>
                 </th>
                 <th className="hand" onClick={sort('location')}>
-                  <Translate contentKey="teamprojectApp.event.location">Location</Translate> <FontAwesomeIcon icon="sort" />
+                  <Translate contentKey="teamprojectApp.event.location">Location</Translate> <FontAwesomeIcon
+                  icon="sort"/>
                 </th>
                 <th className="hand" onClick={sort('description')}>
-                  <Translate contentKey="teamprojectApp.event.description">Description</Translate> <FontAwesomeIcon icon="sort" />
+                  <Translate contentKey="teamprojectApp.event.description">Description</Translate> <FontAwesomeIcon
+                  icon="sort"/>
                 </th>
-                <th />
-              </tr>
-            </thead>
-            <tbody>
-              {eventList.map((event, i) => (
-                <tr key={`entity-${i}`} data-cy="entityTable">
-                  <td>
+                <th/>
+                */}
+
+            {eventList.map((event, i) => (
+              <div key={`entity-${i}`} data-cy="entityTable">
+                {/*<td>
                     <Button tag={Link} to={`/event/${event.id}`} color="link" size="sm">
                       {event.id}
                     </Button>
                   </td>
                   <td>{event.name}</td>
-                  <td>{event.date ? <TextFormat type="date" value={event.date} format={APP_DATE_FORMAT} /> : null}</td>
+                  <td>{event.date ? <TextFormat type="date" value={event.date} format={APP_DATE_FORMAT}/> : null}</td>
                   <td>{event.location}</td>
                   <td>{event.description}</td>
-                  <td className="text-end">
-                    <div className="btn-group flex-btn-group-container">
+                  */}
+
+                <div className="card text-center">
+                  <div className="card-header">{event.name}</div>
+                  <div className="card-body">
+                    <h5 className="card-title">Special title treatment</h5>
+                    <p className="card-text">{event.description}</p>
+                    <Button tag={Link} to={`/event/${event.id}`} color="info" size="sm" data-cy="entityDetailsButton">
+                      <FontAwesomeIcon icon="eye" />{' '}
+                      <span className="d-none d-md-inline">
+                        <Translate contentKey="entity.action.view">View</Translate>
+                      </span>
+                    </Button>
+                  </div>
+                  <div className="card-footer text-muted">
+                    {event.date ? <TextFormat type="date" value={event.date} format={APP_DATE_FORMAT} /> : null}
+                  </div>
+                </div>
+
+                {/*<div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`/event/${event.id}`} color="info" size="sm" data-cy="entityDetailsButton">
-                        <FontAwesomeIcon icon="eye" />{' '}
+                        <FontAwesomeIcon icon="eye"/>{' '}
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.view">View</Translate>
                         </span>
                       </Button>
-                      <Button
-                        tag={Link}
-                        to={`/event/${event.id}/edit?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
-                        color="primary"
-                        size="sm"
-                        data-cy="entityEditButton"
-                      >
-                        <FontAwesomeIcon icon="pencil-alt" />{' '}
-                        <span className="d-none d-md-inline">
-                          <Translate contentKey="entity.action.edit">Edit</Translate>
-                        </span>
-                      </Button>
-                      <Button
-                        tag={Link}
-                        to={`/event/${event.id}/delete?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
-                        color="danger"
-                        size="sm"
-                        data-cy="entityDeleteButton"
-                      >
-                        <FontAwesomeIcon icon="trash" />{' '}
-                        <span className="d-none d-md-inline">
-                          <Translate contentKey="entity.action.delete">Delete</Translate>
-                        </span>
-                      </Button>
                     </div>
+                    */}
+
+                {/*<Button
+                          tag={Link}
+                          to={`/event/${event.id}/edit?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
+                          color="primary"
+                          size="sm"
+                          data-cy="entityEditButton"
+                        >
+                          <FontAwesomeIcon icon="pencil-alt" />{' '}
+                          <span className="d-none d-md-inline">
+                            <Translate contentKey="entity.action.edit">Edit</Translate>
+                          </span>
+                        </Button>
+                        */}
+                {/*<Button
+                          tag={Link}
+                          to={`/event/${event.id}/delete?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
+                          color="danger"
+                          size="sm"
+                          data-cy="entityDeleteButton"
+                        >
+                          <FontAwesomeIcon icon="trash" />{' '}
+                          <span className="d-none d-md-inline">
+                            <Translate contentKey="entity.action.delete">Delete</Translate>
+                          </span>
+                        </Button>
+                      */}
+                {/*<td className="text-end">
                   </td>
-                </tr>
-              ))}
-            </tbody>
+                  */}
+              </div>
+            ))}
           </Table>
         ) : (
           !loading && (

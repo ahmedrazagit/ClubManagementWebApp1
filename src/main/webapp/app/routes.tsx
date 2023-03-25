@@ -32,7 +32,14 @@ const AppRoutes = () => {
   return (
     <div className="view-routes">
       <ErrorBoundaryRoutes>
-        <Route index element={<Home />} />
+        <Route
+          index
+          element={
+            <PrivateRoute hasAnyAuthorities={[AUTHORITIES.ADMIN, AUTHORITIES.USER]}>
+              <Home />
+            </PrivateRoute>
+          }
+        />
         <Route path="gdpr/*" element={<GDPR />} />
         <Route path="login" element={<Login />} />
         <Route path="logout" element={<Logout />} />

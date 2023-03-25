@@ -84,7 +84,7 @@ export const ViewEvent = () => {
   return (
     <div>
       <h2 id="event-heading" data-cy="EventHeading">
-        {/*<Translate contentKey="teamprojectApp.event.home.title">Events</Translate>*/}
+        z{/*<Translate contentKey="teamprojectApp.event.home.title">Events</Translate>*/}
         <div className="text-center">
           <Translate contentKey="teamprojectApp.event.home.title">Events</Translate>
         </div>

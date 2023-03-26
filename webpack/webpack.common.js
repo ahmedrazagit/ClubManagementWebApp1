@@ -75,11 +75,11 @@ module.exports = async options => {
             exclude: [utils.root('node_modules')],
           },
           {
-            test: /\.png$/,
+            test: /\.(woff|woff2|eot|ttf|otf|png)$/,
             loader: 'file-loader',
             options: {
               name: '[name].[ext]',
-              outputPath: 'images/',
+              outputPath: 'output/',
             },
           },
           /*

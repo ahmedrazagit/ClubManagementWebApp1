@@ -46,8 +46,14 @@ Main page styles
 :root {
   --font-headline: 'ABC Ginto Nord', 'Noto Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
+
+.font-loader {
+  font-family: 'Droid Sans';
+  font-weight: bold;
+  font-size: 3rem;
+}
+
 .welcomeText {
-  font-family: var(--font-headline);
   position: absolute;
   top: 50%;
   left: 50%;

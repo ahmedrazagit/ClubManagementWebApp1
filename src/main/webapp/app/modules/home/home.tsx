@@ -7,6 +7,8 @@ import { Button, Table } from 'reactstrap';
 import { Translate, TextFormat, getSortState, JhiPagination, JhiItemCount } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import WebFont from 'webfontloader';
+
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/shared/util/pagination.constants';
 import { overridePaginationStateWithQueryParams } from 'app/shared/util/entity-utils';
@@ -39,6 +41,14 @@ export const Home = () => {
 
   const location = useLocation();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    WebFont.load({
+      google: {
+        families: ['Droid Sans'],
+      },
+    });
+  }, []);
 
   const [paginationState, setPaginationState] = useState(
     overridePaginationStateWithQueryParams(getSortState(location, ITEMS_PER_PAGE, 'id'), location.search)
@@ -110,9 +120,9 @@ export const Home = () => {
         <div className="welcomeText"> Welcome to Clubping</div>
       </div>
       */}
-      <div className="welcomeText" style={{ position: 'relative', textAlign: 'center' }}>
+      <div className="font-loader" style={{ position: 'relative', textAlign: 'center' }}>
         {' '}
-        Welcome to Clubping
+        Welcome to Clubping!
       </div>
       <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel">
         <div className="carousel-indicators">

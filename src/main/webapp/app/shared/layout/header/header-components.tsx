@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const BrandIcon = props => (
   <div {...props} className="brand-icon">
-    <img style={{ width: 90, height: 50 }} src="content/images/clubping-logo.png" alt="Logo" />
+    <img style={{ width: 90, height: 60 }} src="content/images/new-clubping-logo.png" alt="Logo" />
   </div>
 );
 

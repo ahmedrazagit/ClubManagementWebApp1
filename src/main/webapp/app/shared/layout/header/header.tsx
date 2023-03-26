@@ -51,9 +51,10 @@ const Header = (props: IHeaderProps) => {
   return (
     <>
       <div
-        className="offcanvas offcanvas-start tabindex={-1} bg-dark text-white"
+        className="offcanvas offcanvas-start tabindex={-1} text-white"
         id="offcanvasExample"
         aria-labelledby="offcanvasExampleLabel"
+        style={{ backgroundColor: '#000000' }}
       >
         <div className="offcanvas-header">
           <h5 className="offcanvas-title text-muted small fw-bold text-uppercase px-3" id="offcanvasExampleLabel">

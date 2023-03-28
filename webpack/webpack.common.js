@@ -75,6 +75,16 @@ module.exports = async options => {
             exclude: [utils.root('node_modules')],
           },
           {
+            test: /\.(js|jsx)$/,
+            exclude: /node_modules/,
+            use: {
+              loader: 'babel-loader',
+              options: {
+                presets: ['@babel/preset-env', '@babel/preset-react'],
+              },
+            },
+          },
+          {
             test: /\.(woff|woff2|eot|ttf|otf|png)$/,
             loader: 'file-loader',
             options: {

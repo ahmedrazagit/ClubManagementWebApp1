@@ -16,8 +16,10 @@ import Announcements from 'app/modules/announcements/announcements';
 import Messages from 'app/modules/messages/messages';
 import Forum from 'app/modules/forum/forum';
 import Universities from 'app/modules/universities/universities';
-
 import ViewEvents from 'app/modules/view-events/view-events';
+
+import Chatbotty from 'app/modules/chatbot/Chatbotty';
+
 import PrivateRoute from 'app/shared/auth/private-route';
 import ErrorBoundaryRoutes from 'app/shared/error/error-boundary-routes';
 import PageNotFound from 'app/shared/error/page-not-found';
@@ -56,6 +58,7 @@ const AppRoutes = () => {
         <Route path="messages" element={<Messages />} />
         <Route path="forum" element={<Forum />} />
         <Route path="universities" element={<Universities />} />
+        <Route path="chatbot" element={<Chatbotty />} />
         <Route path="account">
           <Route
             path="*"

@@ -1,4 +1,4 @@
-import { FaCog, FaQuestionCircle, FaUser } from 'react-icons/fa';
+import { FaCog, FaCross, FaQuestion, FaQuestionCircle, FaUser } from 'react-icons/fa';
 import './home.scss';
 
 import { FaHome, FaBullhorn, FaUniversity, FaUsers, FaEnvelope, FaComments, FaTwitter, FaFacebookF, FaInstagram } from 'react-icons/fa';
@@ -8,6 +8,8 @@ import { Translate, TextFormat, getSortState, JhiPagination, JhiItemCount } from
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import WebFont from 'webfontloader';
+
+import Chatbutton from 'app/modules/chatbot/Chatbutton';
 
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/shared/util/pagination.constants';
@@ -33,6 +35,10 @@ import 'react-calendar/dist/Calendar.css';
 
 import Event from 'app/modules/administration/event/event';
 import { map } from 'lodash';
+import Chatbot from 'react-chatbot-kit';
+import ActionProvider from 'app/modules/chatbot/ActionProvider';
+import MessageParser from 'app/modules/chatbot/MessageParser';
+import config from 'app/modules/chatbot/config';
 
 export const Home = () => {
   const account = useAppSelector(state => state.authentication.account);
@@ -41,6 +47,26 @@ export const Home = () => {
 
   const location = useLocation();
   const navigate = useNavigate();
+
+  //Chatbot code
+  const [isChatOpen, setIsChatOpen] = useState(false);
+  const [chatState, setChatState] = useState(null);
+
+  const toggleChat = () => {
+    setIsChatOpen(!isChatOpen);
+  };
+
+  const handleEnd = chatState => {
+    setIsChatOpen(false);
+    setChatState(chatState);
+  };
+
+  const closeChat = event => {
+    event.stopPropagation(); // prevent state reset
+    setIsChatOpen(false);
+  };
+
+  //Chatbot code ends
 
   useEffect(() => {
     document.title = 'Home Page';
@@ -161,6 +187,8 @@ export const Home = () => {
           <span className="visually-hidden">Next</span>
         </button>
       </div>
+
+      <Chatbutton />
 
       {/*}
           <div style={{marginRight: '10px'}} className="col-md-3 mb-3">

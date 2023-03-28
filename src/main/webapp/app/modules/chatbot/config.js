@@ -16,12 +16,6 @@ const config = {
   initialMessages: [createChatBotMessage(`Hi! I'm ${botName}`)],
   botName,
   customStyles,
-  widgets: [
-    {
-      widgetName: 'dogPicture',
-      widgetFunc: props => <DogPicture {...props} />,
-    },
-  ],
 };
 
 export default config;

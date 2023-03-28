@@ -7,9 +7,7 @@ const MessageParser = ({ children, actions }) => {
       actions.handleHello();
     }
 
-    if (message.includes('dog')) {
-      actions.handleDog();
-    }
+
   };
 
   return (

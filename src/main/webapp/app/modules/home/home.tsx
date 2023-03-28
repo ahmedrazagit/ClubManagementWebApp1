@@ -43,6 +43,10 @@ export const Home = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    document.title = 'Home Page';
+  }, []);
+
+  useEffect(() => {
     WebFont.load({
       google: {
         families: ['Droid Sans'],

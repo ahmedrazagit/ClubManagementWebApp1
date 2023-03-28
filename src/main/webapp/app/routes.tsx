@@ -14,6 +14,8 @@ import EntitiesRoutes from 'app/entities/routes';
 import Clubs from 'app/modules/clubs/clubs';
 import Announcements from 'app/modules/announcements/announcements';
 import Messages from 'app/modules/messages/messages';
+import Forum from 'app/modules/forum/forum';
+import Universities from 'app/modules/universities/universities';
 
 import ViewEvents from 'app/modules/view-events/view-events';
 import PrivateRoute from 'app/shared/auth/private-route';
@@ -52,6 +54,8 @@ const AppRoutes = () => {
         <Route path="clubs" element={<Clubs />} />
         <Route path="announcements" element={<Announcements />} />
         <Route path="messages" element={<Messages />} />
+        <Route path="forum" element={<Forum />} />
+        <Route path="universities" element={<Universities />} />
         <Route path="account">
           <Route
             path="*"

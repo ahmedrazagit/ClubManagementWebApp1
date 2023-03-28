@@ -96,7 +96,7 @@ const Header = (props: IHeaderProps) => {
                 </a>
               </li>
               <li>
-                <a href="#" className="nav-link px-3 active">
+                <a href="/universities" className="nav-link px-3 active">
                   {/*<span className="me-2"><i className="bi bi-speedometer2"></i></span>*/}
                   <span className="me-2">
                     <FaUniversity />
@@ -114,7 +114,7 @@ const Header = (props: IHeaderProps) => {
                 </a>
               </li>
               <li>
-                <a href="#" className="nav-link px-3 active">
+                <a href="/forum" className="nav-link px-3 active">
                   {/*<span className="me-2"><i className="bi bi-speedometer2"></i></span>*/}
                   <span className="me-2">
                     <FaEnvelope />

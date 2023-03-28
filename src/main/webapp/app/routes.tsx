@@ -10,6 +10,9 @@ import PasswordResetFinish from 'app/modules/account/password-reset/finish/passw
 import Logout from 'app/modules/login/logout';
 import Home from 'app/modules/home/home';
 import EntitiesRoutes from 'app/entities/routes';
+
+import Clubs from 'app/modules/clubs/clubs';
+
 import ViewEvents from 'app/modules/view-events/view-events';
 import PrivateRoute from 'app/shared/auth/private-route';
 import ErrorBoundaryRoutes from 'app/shared/error/error-boundary-routes';
@@ -44,6 +47,7 @@ const AppRoutes = () => {
         <Route path="login" element={<Login />} />
         <Route path="logout" element={<Logout />} />
         <Route path="view-events" element={<ViewEvents />} />
+        <Route path="clubs" element={<Clubs />} />
         <Route path="account">
           <Route
             path="*"

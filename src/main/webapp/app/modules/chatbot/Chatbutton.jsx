@@ -13,20 +13,9 @@ function Chatbutton() {
 
   //Chatbot code
   const [isChatOpen, setIsChatOpen] = useState(false);
-  const [chatState, setChatState] = useState(null);
 
   const toggleChat = () => {
     setIsChatOpen(!isChatOpen);
-  }
-
-  const handleEnd = (chatState) => {
-    setIsChatOpen(false);
-    setChatState(chatState);
-  }
-
-  const closeChat = (event) => {
-    event.stopPropagation(); // prevent state reset
-    setIsChatOpen(false);
   };
 
   //Chatbot code ends
@@ -41,8 +30,7 @@ function Chatbutton() {
       {isChatOpen && (
         <div className="chat-window">
           <div className="chat-header">
-            <div className="chat-title">Chat</div>
-            <button className="close-button" onClick={closeChat}>
+            <button className="close-button" onClick={toggleChat}>
               <FaCrosshairs />
             </button>
           </div>
@@ -50,8 +38,8 @@ function Chatbutton() {
             actionProvider={ActionProvider}
             messageParser={MessageParser}
             config={config}
-            headerText='Chatbot'
-            placeholderText='Enter message'
+            headerText="Chatbot"
+            placeholderText="Enter message"
           />
         </div>
       )}

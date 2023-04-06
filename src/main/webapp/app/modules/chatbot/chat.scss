@@ -1,31 +1,22 @@
-.close-button {
-  background-color: red;
+.feedback {
+  background-color: #31b0d5;
   color: white;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: none;
-  outline: none;
-  cursor: pointer;
-}
-
-.chat-button-container {
+  padding: 10px 20px;
+  border-radius: 4px;
+  border-color: #46b8da;
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: -4px;
+  right: 10px;
+  transition: all 0.5s ease-in-out;
+  z-index: 1000;
 }
 
-.chat-button {
-  background-color: #641fa1;
+.clicked {
+  bottom: 500px;
+  background-color: #d53131;
   color: white;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: none;
-  outline: none;
-  cursor: pointer;
-}
-
-.chat-button:hover {
-  background-color: #641fa1;
+  padding: 10px 20px;
+  border-radius: 4px;
+  border-color: #d53131;
+  z-index: 1000;
 }

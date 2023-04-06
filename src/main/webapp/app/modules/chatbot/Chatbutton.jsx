@@ -8,40 +8,49 @@ import './chat.scss';
 import React, {useState} from "react";
 
 import {FaCrosshairs, FaQuestion} from "react-icons/fa";
+import Chatbotty from "app/modules/chatbot/Chatbotty";
 
 function Chatbutton() {
 
   //Chatbot code
-  const [isChatOpen, setIsChatOpen] = useState(false);
 
-  const toggleChat = () => {
-    setIsChatOpen(!isChatOpen);
+
+
+  const [showBot, setShowBot] = useState(false);
+  const [buttonClicked, setButtonClicked] = useState(false);
+
+  const toggleBot = () => {
+    setShowBot((prev) => !prev);
+    setButtonClicked(!buttonClicked);
   };
+
+  const loadMessages = () => {
+    const messages = JSON.parse(localStorage.getItem('chat_messages'));
+    console.log(messages);
+    return messages;
+  };
+
+
+
+
+
+
 
   //Chatbot code ends
 
 
 
   return (
-    <div className="chat-button-container">
-      <button className="chat-button" onClick={toggleChat}>
-        <FaQuestion />
+
+    <div className='App'>
+      <button
+        className={`feedback${buttonClicked ? ' clicked' : ''}`}
+        onClick={toggleBot}
+      >
+        {buttonClicked ? 'Close Chat' : 'Chat Now!'}
       </button>
-      {isChatOpen && (
-        <div className="chat-window">
-          <div className="chat-header">
-            <button className="close-button" onClick={toggleChat}>
-              <FaCrosshairs />
-            </button>
-          </div>
-          <Chatbot
-            actionProvider={ActionProvider}
-            messageParser={MessageParser}
-            config={config}
-            headerText="Chatbot"
-            placeholderText="Enter message"
-          />
-        </div>
+      {showBot && (
+        <Chatbotty />
       )}
     </div>
 

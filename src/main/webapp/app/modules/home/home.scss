@@ -9,6 +9,13 @@ Main page styles
   background-size: contain;
 }
 
+//start of snippet
+.home {
+  font-family: 'Droid Sans';
+}
+
+//end of snippet
+
 .react-calendar {
   position: absolute;
   top: 0;
@@ -16,6 +23,7 @@ Main page styles
   width: 200px;
   height: 300px;
 }
+
 .nav-menu {
   display: flex;
   flex-direction: column;

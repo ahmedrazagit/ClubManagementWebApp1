@@ -6,6 +6,10 @@ const MessageParser = ({ children, actions }) => {
     if (message.includes('hello')) {
       actions.handleHello();
     }
+    if (!message.trim()) {
+      // Message is empty or only contains whitespace
+      return;
+    }
 
 
   };

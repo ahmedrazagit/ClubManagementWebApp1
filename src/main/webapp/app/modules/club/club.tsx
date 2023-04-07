@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './clubs.scss';
+import './club.scss';
 
-export const Clubs = () => {
+export const Club = () => {
   useEffect(() => {
     document.title = 'Clubs Page';
   }, []);
@@ -41,4 +41,4 @@ export const Clubs = () => {
   );
 };
 
-export default Clubs;
+export default Club;

@@ -11,7 +11,7 @@ import Logout from 'app/modules/login/logout';
 import Home from 'app/modules/home/home';
 import EntitiesRoutes from 'app/entities/routes';
 
-import Clubs from 'app/modules/clubs/clubs';
+import Club from 'app/modules/club/club';
 import Announcements from 'app/modules/announcements/announcements';
 import Messages from 'app/modules/messages/messages';
 import Forum from 'app/modules/forum/forum';
@@ -53,7 +53,7 @@ const AppRoutes = () => {
         <Route path="login" element={<Login />} />
         <Route path="logout" element={<Logout />} />
         <Route path="view-events" element={<ViewEvents />} />
-        <Route path="clubs" element={<Clubs />} />
+        <Route path="club" element={<Club />} />
         <Route path="announcements" element={<Announcements />} />
         <Route path="messages" element={<Messages />} />
         <Route path="forum" element={<Forum />} />

@@ -163,11 +163,13 @@ public class PostResource {
     ) {
         log.debug("REST request to get a page of Posts");
         Page<Post> page;
-        if (eagerload) {
+        /*if (eagerload) {
             page = postRepository.findAllWithEagerRelationships(pageable);
         } else {
             page = postRepository.findAll(pageable);
-        }
+
+        }*/
+        page = postRepository.findByUserIsCurrentUserPage(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

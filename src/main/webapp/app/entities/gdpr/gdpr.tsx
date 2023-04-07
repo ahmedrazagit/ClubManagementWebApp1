@@ -328,9 +328,8 @@ export const GDPR = () => {
           contact the Information Commissioner’s Office.
         </p>
 
-        <p>
-          Contact via : <a href={'https://ico.org.uk/global/contact-us/contact-us-public/'}></a>
-        </p>
+        <p>Contact via :</p>
+        <a href={'https://ico.org.uk/global/contact-us/contact-us-public/'}></a>
       </pre>
     </div>
   );

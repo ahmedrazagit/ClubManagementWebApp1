@@ -129,15 +129,15 @@ export const PostUpdate = () => {
                   required: { value: true, message: translate('entity.validation.required') },
                 }}
               />
-              <ValidatedField id="post-user" name="user" data-cy="user" label={translate('teamprojectApp.post.user')} type="select">
+              <ValidatedField style={{ display: 'none' }} id="post-user" name="user" data-cy="user" type="select">
                 <option value="" key="0" />
-                {users
+                {/*{users
                   ? users.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
                         {otherEntity.login}
                       </option>
                     ))
-                  : null}
+                  : null}*/}
               </ValidatedField>
               <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/post" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />

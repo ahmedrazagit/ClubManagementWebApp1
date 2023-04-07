@@ -4,11 +4,10 @@ entity Post {
     date Instant required,
 }
 
-
-
 relationship ManyToOne {
     Post{user(login)} to User
 }
 
-paginate Post with infinite-scroll
 
+
+paginate Post with infinite-scroll

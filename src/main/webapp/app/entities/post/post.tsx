@@ -35,7 +35,12 @@ export const Post = () => {
 
   const currentUser = useAppSelector(state => state.authentication.account);
 
+  const isAdmin = useAppSelector(state => state.authentication.account.authorities.includes('ROLE_ADMIN'));
+
   const isCurrentUserPost = post => {
+    if (isAdmin) {
+      return isAuthenticated;
+    }
     return isAuthenticated && post.user && post.user.login === currentUser.login;
   };
 

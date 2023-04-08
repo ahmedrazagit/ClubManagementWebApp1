@@ -28,6 +28,22 @@ export const RegisterPage = () => {
 
   const successMessage = useAppSelector(state => state.register.successMessage);
 
+  const [agreePrivacyPolicy, setAgreePrivacyPolicy] = useState(false);
+  const [showAgreePrivacyPolicyError, setShowAgreePrivacyPolicyError] = useState(false);
+
+  const handleCheckboxChange = event => {
+    setAgreePrivacyPolicy(event.target.checked);
+    setShowAgreePrivacyPolicyError(!event.target.checked);
+  };
+
+  const handleFormSubmit = (event, values) => {
+    if (agreePrivacyPolicy) {
+      handleValidSubmit(values);
+    } else {
+      setShowAgreePrivacyPolicyError(true);
+    }
+  };
+
   useEffect(() => {
     if (successMessage) {
       toast.success(translate(successMessage));
@@ -101,6 +117,21 @@ export const RegisterPage = () => {
               }}
               data-cy="secondPassword"
             />
+
+            <div>
+              <input
+                type="checkbox"
+                id="privacy-policy-checkbox"
+                checked={agreePrivacyPolicy}
+                onChange={handleCheckboxChange}
+                data-cy="privacyPolicyCheckbox"
+              />
+              <label htmlFor="privacy-policy-checkbox" className="form-check-label">
+                Please agree to our <a href="/GDPR">privacy policy</a>
+              </label>
+              {showAgreePrivacyPolicyError && <div className="text-danger">Please agree to proceed ahead</div>}
+            </div>
+
             <Button id="register-submit" color="primary" type="submit" data-cy="submit">
               <Translate contentKey="register.form.button">Register</Translate>
             </Button>

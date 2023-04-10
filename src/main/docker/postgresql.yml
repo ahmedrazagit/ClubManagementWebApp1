@@ -3,8 +3,8 @@ version: '3.8'
 services:
   teamproject-postgresql:
     image: postgres:14.5
-    # volumes:
-    #   - ~/volumes/jhipster/teamproject/postgresql/:/var/lib/postgresql/data/
+    volumes:
+      - ~/volumes/jhipster/teamproject/postgresql/:/var/lib/postgresql/data/
     environment:
       - POSTGRES_USER=teamproject
       - POSTGRES_PASSWORD=

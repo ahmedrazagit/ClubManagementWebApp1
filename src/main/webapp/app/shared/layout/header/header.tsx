@@ -51,9 +51,10 @@ const Header = (props: IHeaderProps) => {
   return (
     <>
       <div
-        className="offcanvas offcanvas-start tabindex={-1} bg-dark text-white"
+        className="offcanvas offcanvas-start tabindex={-1} text-white"
         id="offcanvasExample"
         aria-labelledby="offcanvasExampleLabel"
+        style={{ backgroundColor: '#000000' }}
       >
         <div className="offcanvas-header">
           <h5 className="offcanvas-title text-muted small fw-bold text-uppercase px-3" id="offcanvasExampleLabel">
@@ -76,6 +77,51 @@ const Header = (props: IHeaderProps) => {
                   <span>Events</span>
                 </a>
               </li>
+              <li>
+                <a href="/clubs" className="nav-link px-3 active">
+                  {/*<span className="me-2"><i className="bi bi-speedometer2"></i></span>*/}
+                  <span className="me-2">
+                    <FaUsers />
+                  </span>
+                  <span>Clubs</span>
+                </a>
+              </li>
+              <li>
+                <a href="/announcements" className="nav-link px-3 active">
+                  {/*<span className="me-2"><i className="bi bi-speedometer2"></i></span>*/}
+                  <span className="me-2">
+                    <FaBullhorn />
+                  </span>
+                  <span>Announcements</span>
+                </a>
+              </li>
+              <li>
+                <a href="/universities" className="nav-link px-3 active">
+                  {/*<span className="me-2"><i className="bi bi-speedometer2"></i></span>*/}
+                  <span className="me-2">
+                    <FaUniversity />
+                  </span>
+                  <span>Universities</span>
+                </a>
+              </li>
+              <li>
+                <a href="/messages" className="nav-link px-3 active">
+                  {/*<span className="me-2"><i className="bi bi-speedometer2"></i></span>*/}
+                  <span className="me-2">
+                    <FaComments />
+                  </span>
+                  <span>Messages</span>
+                </a>
+              </li>
+              <li>
+                <a href="/forum" className="nav-link px-3 active">
+                  {/*<span className="me-2"><i className="bi bi-speedometer2"></i></span>*/}
+                  <span className="me-2">
+                    <FaEnvelope />
+                  </span>
+                  <span>Forum</span>
+                </a>
+              </li>
               <li className="my-4">
                 <hr className="dropdown-divider bg-light" />
               </li>
@@ -91,25 +137,28 @@ const Header = (props: IHeaderProps) => {
                 <div className="text-muted small fw-bold text-uppercase px-3 mb-3">Socials</div>
               </li>
               <li>
-                <a href="#" className="nav-link px-3">
+                <a
+                  href="https://twitter.com/unibirmingham?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"
+                  className="nav-link px-3"
+                >
                   <span className="me-2">
-                    <i className="bi bi-graph-up"></i>
+                    <FaTwitter />
                   </span>
                   <span>Twitter</span>
                 </a>
               </li>
               <li>
-                <a href="#" className="nav-link px-3">
+                <a href="https://www.facebook.com/unibirmingham/" className="nav-link px-3">
                   <span className="me-2">
-                    <i className="bi bi-table"></i>
+                    <FaFacebookF />
                   </span>
                   <span>FaceBook</span>
                 </a>
               </li>
               <li>
-                <a href="#" className="nav-link px-3">
+                <a href="https://www.instagram.com/unibirmingham/?hl=en" className="nav-link px-3">
                   <span className="me-2">
-                    <i className="bi bi-table"></i>
+                    <FaInstagram />
                   </span>
                   <span>Instagram</span>
                 </a>

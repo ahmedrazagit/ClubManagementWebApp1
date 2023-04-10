@@ -1,0 +1,36 @@
+{
+  "changelogDate": "20230328132906",
+  "dto": "no",
+  "fields": [
+    {
+      "fieldName": "clubname",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique", "minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "30",
+      "fieldValidateRulesMinlength": "5"
+    },
+    {
+      "fieldName": "clubdescription",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "600",
+      "fieldValidateRulesMinlength": "10"
+    },
+    {
+      "fieldName": "numberofmembers",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "numberofevents",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "Clubs",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import Loadable from 'react-loadable';
-
+import GDPR from 'app/entities/gdpr/gdpr';
 import Login from 'app/modules/login/login';
 import Register from 'app/modules/account/register/register';
 import Activate from 'app/modules/account/activate/activate';
@@ -10,6 +10,16 @@ import PasswordResetFinish from 'app/modules/account/password-reset/finish/passw
 import Logout from 'app/modules/login/logout';
 import Home from 'app/modules/home/home';
 import EntitiesRoutes from 'app/entities/routes';
+
+import Clubs from 'app/modules/clubs/clubs';
+import Announcements from 'app/modules/announcements/announcements';
+import Messages from 'app/modules/messages/messages';
+import Forum from 'app/modules/forum/forum';
+import Universities from 'app/modules/universities/universities';
+import ViewEvents from 'app/modules/view-events/view-events';
+
+import Chatbotty from 'app/modules/chatbot/Chatbotty';
+
 import PrivateRoute from 'app/shared/auth/private-route';
 import ErrorBoundaryRoutes from 'app/shared/error/error-boundary-routes';
 import PageNotFound from 'app/shared/error/page-not-found';
@@ -31,9 +41,24 @@ const AppRoutes = () => {
   return (
     <div className="view-routes">
       <ErrorBoundaryRoutes>
-        <Route index element={<Home />} />
+        <Route
+          index
+          element={
+            <PrivateRoute hasAnyAuthorities={[AUTHORITIES.ADMIN, AUTHORITIES.USER]}>
+              <Home />
+            </PrivateRoute>
+          }
+        />
+        <Route path="gdpr/*" element={<GDPR />} />
         <Route path="login" element={<Login />} />
         <Route path="logout" element={<Logout />} />
+        <Route path="view-events" element={<ViewEvents />} />
+        <Route path="clubs" element={<Clubs />} />
+        <Route path="announcements" element={<Announcements />} />
+        <Route path="messages" element={<Messages />} />
+        <Route path="forum" element={<Forum />} />
+        <Route path="universities" element={<Universities />} />
+        <Route path="chatbot" element={<Chatbotty />} />
         <Route path="account">
           <Route
             path="*"

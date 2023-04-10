@@ -1,0 +1,13 @@
+entity Post {
+    title String required minlength(10),
+    content TextBlob required,
+    date Instant required,
+}
+
+relationship ManyToOne {
+    Post{user(login)} to User
+}
+
+
+
+paginate Post with infinite-scroll

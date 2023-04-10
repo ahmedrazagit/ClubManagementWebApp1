@@ -1,178 +1,266 @@
-//import a sound button which plays metallica music:)
-//import mp3File from "file:///C:/Users/xiao/Desktop/metallica.mp3";
-//import mp3File from "./metallica.mp3";
-import { FaHome, FaBullhorn, FaUniversity, FaUsers, FaEnvelope, FaComments, FaTwitter, FaFacebookF, FaInstagram } from 'react-icons/fa';
-import { FaCog, FaQuestionCircle, FaUser } from 'react-icons/fa';
-import './home.scss';
-import MySideNav from 'app/modules/components/SideBar';
+import { FaCog, FaCross, FaQuestion, FaQuestionCircle, FaUser } from 'react-icons/fa';
 
-import SideNav, { Toggle, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
+import './home.scss';
 
 //import { FaHome, FaBullhorn, FaUniversity, FaUsers, FaEnvelope, FaComments, FaTwitter, FaFacebookF, FaInstagram } from 'react-icons/fa';
 
+import { Button, Table } from 'reactstrap';
+import { Translate, TextFormat, getSortState, JhiPagination, JhiItemCount } from 'react-jhipster';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import WebFont from 'webfontloader';
+
+import Chatbutton from 'app/modules/chatbot/Chatbutton';
+
+import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
+import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/shared/util/pagination.constants';
+import { overridePaginationStateWithQueryParams } from 'app/shared/util/entity-utils';
+import { useAppDispatch, useAppSelector } from 'app/config/store';
+
+import { IEvent } from 'app/shared/model/event.model';
+import { getEntities } from 'app/entities/event/event.reducer';
 //IMP
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 import { Row, Col, Alert, Nav, NavLink } from 'reactstrap';
 
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Translate } from 'react-jhipster';
+
 //import { Row, Col, Alert } from 'reactstrap';
 
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 //import MyApp from 'src/main/webapp/app/modules/components/App';
 
-import { useAppSelector } from 'app/config/store';
 import Event from 'app/modules/administration/event/event';
+import { map } from 'lodash';
+import Chatbot from 'react-chatbot-kit';
+import ActionProvider from 'app/modules/chatbot/ActionProvider';
+import MessageParser from 'app/modules/chatbot/MessageParser';
+import config from 'app/modules/chatbot/config';
 
 export const Home = () => {
   const account = useAppSelector(state => state.authentication.account);
   const [value, onChange] = useState(new Date());
+  const dispatch = useAppDispatch();
 
-  function handleSettingsClick() {
-    // Handle settings button click event
-    console.error('Settings clicked');
-  }
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  function handleHelpClick() {
-    // Handle help button click event
-    console.error('Help clicked');
-  }
+  //Chatbot code
+  const loadMessages = () => {
+    const messages = JSON.parse(localStorage.getItem('chat_messages'));
+    console.log(messages);
+    return messages;
+  };
 
-  function handleUserProfileClick() {
-    // Handle user profile button click event
-    console.error('User profile clicked');
-  }
+  //Chatbot code ends
+
+  useEffect(() => {
+    document.title = 'Home Page';
+  }, []);
+
+  useEffect(() => {
+    WebFont.load({
+      google: {
+        families: ['Droid Sans'],
+      },
+    });
+  }, []);
+
+  const [paginationState, setPaginationState] = useState(
+    overridePaginationStateWithQueryParams(getSortState(location, ITEMS_PER_PAGE, 'id'), location.search)
+  );
+
+  const eventList = useAppSelector(state => state.event.entities);
+  const loading = useAppSelector(state => state.event.loading);
+  const totalItems = useAppSelector(state => state.event.totalItems);
+
+  const getAllEntities = () => {
+    dispatch(
+      getEntities({
+        page: paginationState.activePage - 1,
+        size: paginationState.itemsPerPage,
+        sort: `${paginationState.sort},${paginationState.order}`,
+      })
+    );
+  };
+
+  const sortEntities = () => {
+    getAllEntities();
+    const endURL = `?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`;
+    if (location.search !== endURL) {
+      navigate(`${location.pathname}${endURL}`);
+    }
+  };
+
+  useEffect(() => {
+    sortEntities();
+  }, [paginationState.activePage, paginationState.order, paginationState.sort]);
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const page = params.get('page');
+    const sort = params.get(SORT);
+    if (page && sort) {
+      const sortSplit = sort.split(',');
+      setPaginationState({
+        ...paginationState,
+        activePage: +page,
+        sort: sortSplit[0],
+        order: sortSplit[1],
+      });
+    }
+  }, [location.search]);
+
+  const sort = p => () => {
+    setPaginationState({
+      ...paginationState,
+      order: paginationState.order === ASC ? DESC : ASC,
+      sort: p,
+    });
+  };
+
+  const handlePagination = currentPage =>
+    setPaginationState({
+      ...paginationState,
+      activePage: currentPage,
+    });
+
+  const handleSyncList = () => {
+    sortEntities();
+  };
 
   return (
-    <main className="mt-5 pt-3">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-3 mb-3">
-            <div className="card" style={{ width: '18rem' }}>
-              <img src="..." className="card-img-top" alt="..." />
-              <div className="card-body">
-                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
+    <main className="home mt-5 pt-3">
+      <Chatbutton />
+      {/*<div className="container" style={{ position: 'relative' }}>
+        <img src="content/images/student-pic.jpg" alt="logo" style={{ width: '100%' }} />
+        <div className="welcomeText"> Welcome to Clubping</div>
+      </div>
+      */}
+      <div className="font-loader" style={{ position: 'relative', textAlign: 'center' }}>
+        {' '}
+        Welcome to Clubping!
+      </div>
+      <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel">
+        <div className="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="0"
+            className="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div className="carousel-inner">
+          <div className="carousel-item active">
+            <img src="content/images/elementor-placeholder-image.png" className="d-block w-100" alt="..." />
           </div>
-          <div className="col-md-3 mb-3">
-            <div className="card" style={{ width: '18rem' }}>
-              <img src="..." className="card-img-top" alt="..." />
-              <div className="card-body">
-                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
+          <div className="carousel-item">
+            <img src="content/images/student-pic.jpg" className="d-block w-100" alt="..." />
           </div>
-          <div className="col-md-3 mb-3">
-            <div className="card" style={{ width: '18rem' }}>
-              <img src="..." className="card-img-top" alt="..." />
-              <div className="card-body">
-                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-3 mb-3">
-            <div className="card" style={{ width: '18rem' }}>
-              <img src="..." className="card-img-top" alt="..." />
-              <div className="card-body">
-                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
+          <div className="carousel-item">
+            <img src="..." className="d-block w-100" alt="..." />
           </div>
         </div>
+        <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Previous</span>
+        </button>
+        <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span className="carousel-control-next-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Next</span>
+        </button>
       </div>
-      {/*
 
-      <div style={{ position: 'absolute', top: '5px', right: '5px' }}>
-        <button onClick={handleSettingsClick}>
-          <FaCog />
-        </button>
-        <button onClick={handleHelpClick}>
-          <FaQuestionCircle />
-        </button>
-        <button onClick={handleUserProfileClick}>
-          <FaUser />
-        </button>
-      </div> */}
+      {/*}
+          <div style={{marginRight: '10px'}} className="col-md-3 mb-3">
+            <div className="card eventcard" style={{width: '18rem', marginRight: '10px'}}>
+              <img src="content/images/elementor-placeholder-image.png" alt="Logo"/>
+              <div className="card-body">
+                <h5 className="card-title">Card with stretched link</h5>
+                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the
+                  card's content.</p>
+                <a href="#" className="btn btn-primary stretched-link">
+                  Go somewhere
+                </a>
+              </div>
+            </div>
+          </div>
+
+      */}
+
       <div>
-        <Alert color="success">
-          <Translate contentKey="home.logged.message" interpolate={{ username: account.login }}>
-            You are logged in as user {account.login}.
-          </Translate>
-        </Alert>
+        <h2 id="event-heading" data-cy="EventHeading">
+          <div className="d-flex justify-content-end">
+            <Button className="me-2" color="info" onClick={handleSyncList} disabled={loading}>
+              <FontAwesomeIcon icon="sync" spin={loading} />{' '}
+              <Translate contentKey="teamprojectApp.event.home.refreshListLabel">Refresh List</Translate>
+            </Button>
+          </div>
+        </h2>
+        <div className="container">
+          <div className="row">
+            {eventList && eventList.length > 0 && (
+              <>
+                {eventList.map((event, i) => (
+                  <div style={{ marginRight: '10px' }} key={`entity-${i}`} data-cy="entityTable" className="col-md-3 mb-3">
+                    <div className="card eventcard">
+                      <img src="content/images/elementor-placeholder-image.png" alt="Logo" />
+                      <div className="card-body">
+                        <h5 className="card-title">{event.name}</h5>
+                        <h6 className="card-subtitle mb-2 text-muted">
+                          {event.date ? <TextFormat type="date" value={event.date} format={APP_DATE_FORMAT} /> : null}
+                        </h6>
+                        <p className="card-text">{event.description}</p>
+                        <Button tag={Link} to={`/event/${event.id}`} color="info" size="sm" data-cy="entityDetailsButton">
+                          <FontAwesomeIcon icon="eye" />{' '}
+                          <span className="d-none d-md-inline">
+                            <Translate contentKey="entity.action.view">View</Translate>
+                          </span>
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </>
+            )}
+            {/*: (
+              !loading && (
+                <div className="alert alert-warning">
+                  <Translate contentKey="teamprojectApp.event.home.notFound">No Events found</Translate>
+                </div>
+              )
+              */}
+          </div>
+        </div>
+
+        {totalItems ? (
+          <div className={eventList && eventList.length > 0 ? '' : 'd-none'}>
+            <div className="justify-content-center d-flex">
+              <JhiItemCount page={paginationState.activePage} total={totalItems} itemsPerPage={paginationState.itemsPerPage} i18nEnabled />
+            </div>
+            <div className="justify-content-center d-flex">
+              <JhiPagination
+                activePage={paginationState.activePage}
+                onSelect={handlePagination}
+                maxButtons={5}
+                itemsPerPage={paginationState.itemsPerPage}
+                totalItems={totalItems}
+              />
+            </div>
+          </div>
+        ) : (
+          ''
+        )}
       </div>
-      ) : (
-      <div>
-        <Alert color="warning">
-          <Translate contentKey="global.messages.info.authenticated.prefix">If you want to </Translate>
-
-          <Link to="/login" className="alert-link">
-            <Translate contentKey="global.messages.info.authenticated.link"> sign in</Translate>
-          </Link>
-          <Translate contentKey="global.messages.info.authenticated.suffix">
-            , you can try the default accounts:
-            <br />- Administrator (login=&quot;admin&quot; and password=&quot;admin&quot;)
-            <br />- User (login=&quot;user&quot; and password=&quot;user&quot;).
-          </Translate>
-        </Alert>
-
-        <Alert color="warning">
-          <Translate contentKey="global.messages.info.register.noaccount">You do not have an account yet?</Translate>&nbsp;
-          <Link to="/account/register" className="alert-link">
-            <Translate contentKey="global.messages.info.register.link">Register a new account</Translate>
-          </Link>
-        </Alert>
-      </div>
-      )
-      {/*
-
-        <p>
-          <Translate contentKey="home.question">If you have any question on JHipster:</Translate>
-        </p>
-
-        <ul>
-          <li>
-            <a href="https://www.jhipster.tech/" target="_blank" rel="noopener noreferrer">
-              <Translate contentKey="home.link.homepage">JHipster homepage</Translate>
-            </a>
-          </li>
-          <li>
-            <a href="https://stackoverflow.com/tags/jhipster/info" target="_blank" rel="noopener noreferrer">
-              <Translate contentKey="home.link.stackoverflow">JHipster on Stack Overflow</Translate>
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank" rel="noopener noreferrer">
-              <Translate contentKey="home.link.bugtracker">JHipster bug tracker</Translate>
-            </a>
-          </li>
-          <li>
-            <a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer">
-              <Translate contentKey="home.link.chat">JHipster public chat room</Translate>
-            </a>
-          </li>
-          <li>
-            <a href="https://twitter.com/jhipster" target="_blank" rel="noopener noreferrer">
-              <Translate contentKey="home.link.follow">follow @jhipster on Twitter</Translate>
-            </a>
-          </li>
-        </ul>
-        */}
-      {/*
-
-        <p>
-          <Translate contentKey="home.like">If you like JHipster, do not forget to give us a star on</Translate>{' '}
-          <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer">
-            GitHub
-          </a>
-          !
-        </p>
-        */}
     </main>
   );
 };

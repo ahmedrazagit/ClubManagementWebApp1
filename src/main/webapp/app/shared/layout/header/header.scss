@@ -37,6 +37,10 @@ Developement Ribbon
 /* ==========================================================================
 Navbar styles
 ========================================================================== */
+.offcanvas-backdrop {
+  background-color: #000000;
+  opacity: 0.5;
+}
 .jh-navbar {
   background-color: #000000;
   padding: 0.2em 1em;
@@ -121,9 +125,10 @@ Navbar styles
   top: 0px;
   z-index: 1031;
 }
+
 :root {
   --offcanvas-width: 270px;
-  --topNavbarHeight: 103px;
+  --topNavbarHeight: 72px;
 }
 
 #offcanvasExample {

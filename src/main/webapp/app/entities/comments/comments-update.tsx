@@ -8,12 +8,14 @@ import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateT
 import { mapIdList } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
+import { IPost } from 'app/shared/model/post.model';
+import { getEntities as getPosts } from 'app/entities/post/post.reducer';
 import { IUser } from 'app/shared/model/user.model';
 import { getUsers } from 'app/modules/administration/user-management/user-management.reducer';
-import { IPost } from 'app/shared/model/post.model';
-import { getEntity, updateEntity, createEntity, reset } from './post.reducer';
+import { IComments } from 'app/shared/model/comments.model';
+import { getEntity, updateEntity, createEntity, reset } from './comments.reducer';
 
-export const PostUpdate = () => {
+export const CommentsUpdate = () => {
   const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
@@ -21,21 +23,25 @@ export const PostUpdate = () => {
   const { id } = useParams<'id'>();
   const isNew = id === undefined;
 
+  const posts = useAppSelector(state => state.post.entities);
   const users = useAppSelector(state => state.userManagement.users);
-  const postEntity = useAppSelector(state => state.post.entity);
-  const loading = useAppSelector(state => state.post.loading);
-  const updating = useAppSelector(state => state.post.updating);
-  const updateSuccess = useAppSelector(state => state.post.updateSuccess);
+  const commentsEntity = useAppSelector(state => state.comments.entity);
+  const loading = useAppSelector(state => state.comments.loading);
+  const updating = useAppSelector(state => state.comments.updating);
+  const updateSuccess = useAppSelector(state => state.comments.updateSuccess);
 
   const handleClose = () => {
-    navigate('/post');
+    navigate('/comments');
   };
 
   useEffect(() => {
-    if (!isNew) {
+    if (isNew) {
+      dispatch(reset());
+    } else {
       dispatch(getEntity(id));
     }
 
+    dispatch(getPosts({}));
     dispatch(getUsers({}));
   }, []);
 
@@ -46,11 +52,10 @@ export const PostUpdate = () => {
   }, [updateSuccess]);
 
   const saveEntity = values => {
-    values.date = convertDateTimeToServer(values.date);
-
     const entity = {
-      ...postEntity,
+      ...commentsEntity,
       ...values,
+      post: posts.find(it => it.id.toString() === values.post.toString()),
       user: users.find(it => it.id.toString() === values.user.toString()),
     };
 
@@ -63,21 +68,19 @@ export const PostUpdate = () => {
 
   const defaultValues = () =>
     isNew
-      ? {
-          date: displayDefaultDateTime(),
-        }
+      ? {}
       : {
-          ...postEntity,
-          date: convertDateTimeFromServer(postEntity.date),
-          user: postEntity?.user?.id,
+          ...commentsEntity,
+          post: commentsEntity?.post?.id,
+          user: commentsEntity?.user?.id,
         };
 
   return (
     <div>
       <Row className="justify-content-center">
         <Col md="8">
-          <h2 id="teamprojectApp.post.home.createOrEditLabel" data-cy="PostCreateUpdateHeading">
-            <Translate contentKey="teamprojectApp.post.home.createOrEditLabel">Create or edit a Post</Translate>
+          <h2 id="teamprojectApp.comments.home.createOrEditLabel" data-cy="CommentsCreateUpdateHeading">
+            <Translate contentKey="teamprojectApp.comments.home.createOrEditLabel">Create or edit a Comments</Translate>
           </h2>
         </Col>
       </Row>
@@ -92,44 +95,32 @@ export const PostUpdate = () => {
                   name="id"
                   required
                   readOnly
-                  id="post-id"
+                  id="comments-id"
                   label={translate('global.field.id')}
                   validate={{ required: true }}
                 />
               ) : null}
               <ValidatedField
-                label={translate('teamprojectApp.post.title')}
-                id="post-title"
-                name="title"
-                data-cy="title"
-                type="text"
-                validate={{
-                  required: { value: true, message: translate('entity.validation.required') },
-                  minLength: { value: 10, message: translate('entity.validation.minlength', { min: 10 }) },
-                }}
-              />
-              <ValidatedField
-                label={translate('teamprojectApp.post.content')}
-                id="post-content"
-                name="content"
-                data-cy="content"
+                label={translate('teamprojectApp.comments.comment')}
+                id="comments-comment"
+                name="comment"
+                data-cy="comment"
                 type="textarea"
                 validate={{
                   required: { value: true, message: translate('entity.validation.required') },
                 }}
               />
-              <ValidatedField
-                label={translate('teamprojectApp.post.date')}
-                id="post-date"
-                name="date"
-                data-cy="date"
-                type="datetime-local"
-                placeholder="YYYY-MM-DD HH:mm"
-                validate={{
-                  required: { value: true, message: translate('entity.validation.required') },
-                }}
-              />
-              <ValidatedField id="post-user" name="user" data-cy="user" label={translate('teamprojectApp.post.user')} type="select">
+              <ValidatedField id="comments-post" name="post" data-cy="post" label={translate('teamprojectApp.comments.post')} type="select">
+                <option value="" key="0" />
+                {posts
+                  ? posts.map(otherEntity => (
+                      <option value={otherEntity.id} key={otherEntity.id}>
+                        {otherEntity.title}
+                      </option>
+                    ))
+                  : null}
+              </ValidatedField>
+              <ValidatedField id="comments-user" name="user" data-cy="user" label={translate('teamprojectApp.comments.user')} type="select">
                 <option value="" key="0" />
                 {users
                   ? users.map(otherEntity => (
@@ -139,7 +130,7 @@ export const PostUpdate = () => {
                     ))
                   : null}
               </ValidatedField>
-              <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/post" replace color="info">
+              <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/comments" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
                 <span className="d-none d-md-inline">
@@ -160,4 +151,4 @@ export const PostUpdate = () => {
   );
 };
 
-export default PostUpdate;
+export default CommentsUpdate;

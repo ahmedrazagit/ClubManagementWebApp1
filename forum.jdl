@@ -3,11 +3,21 @@ entity Post {
     content TextBlob required,
     date Instant required,
 }
+entity Comments {
+    comment TextBlob required
+}
+
+relationship ManyToOne {
+    Comments{post(title)} to Post
+}
 
 relationship ManyToOne {
     Post{user(login)} to User
 }
 
+relationship ManyToOne {
+    Comments{user(login)} to User
+}
 
 
 paginate Post with infinite-scroll

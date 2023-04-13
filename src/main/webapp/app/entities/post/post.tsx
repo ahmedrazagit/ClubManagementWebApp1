@@ -31,19 +31,6 @@ export const Post = () => {
   const entity = useAppSelector(state => state.post.entity);
   const updateSuccess = useAppSelector(state => state.post.updateSuccess);
 
-  const isAuthenticated = useAppSelector(state => state.authentication.isAuthenticated);
-
-  const currentUser = useAppSelector(state => state.authentication.account);
-
-  const isAdmin = useAppSelector(state => state.authentication.account.authorities.includes('ROLE_ADMIN'));
-
-  const isCurrentUserPost = post => {
-    if (isAdmin) {
-      return isAuthenticated;
-    }
-    return isAuthenticated && post.user && post.user.login === currentUser.login;
-  };
-
   const getAllEntities = () => {
     dispatch(
       getEntities({
@@ -173,25 +160,6 @@ export const Post = () => {
                             <Translate contentKey="entity.action.view">View</Translate>
                           </span>
                         </Button>
-
-                        {isCurrentUserPost(post) && (
-                          <>
-                            <Button tag={Link} to={`/post/${post.id}/edit`} color="primary" size="sm" data-cy="entityEditButton">
-                              <FontAwesomeIcon icon="pencil-alt" />{' '}
-                              <span className="d-none d-md-inline">
-                                <Translate contentKey="entity.action.edit">Edit</Translate>
-                              </span>
-                            </Button>
-                            <Button tag={Link} to={`/post/${post.id}/delete`} color="danger" size="sm" data-cy="entityDeleteButton">
-                              <FontAwesomeIcon icon="trash" />{' '}
-                              <span className="d-none d-md-inline">
-                                <Translate contentKey="entity.action.delete">Delete</Translate>
-                              </span>
-                            </Button>
-                          </>
-                        )}
-
-                        {/*
                         <Button tag={Link} to={`/post/${post.id}/edit`} color="primary" size="sm" data-cy="entityEditButton">
                           <FontAwesomeIcon icon="pencil-alt" />{' '}
                           <span className="d-none d-md-inline">
@@ -204,7 +172,6 @@ export const Post = () => {
                             <Translate contentKey="entity.action.delete">Delete</Translate>
                           </span>
                         </Button>
-                        */}
                       </div>
                     </td>
                   </tr>

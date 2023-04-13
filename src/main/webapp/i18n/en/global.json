@@ -12,6 +12,7 @@
         "extendEvent": "Extend Event",
         "clubs": "Clubs",
         "post": "Post",
+        "comments": "Comments",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

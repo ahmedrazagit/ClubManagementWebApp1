@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,8 +23,12 @@ import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
 import uk.ac.bham.teamproject.domain.Post;
+import uk.ac.bham.teamproject.domain.User;
 import uk.ac.bham.teamproject.repository.CommentsRepository;
 import uk.ac.bham.teamproject.repository.PostRepository;
+import uk.ac.bham.teamproject.security.SecurityUtils;
+import uk.ac.bham.teamproject.service.UserService;
+import uk.ac.bham.teamproject.service.UserService;
 import uk.ac.bham.teamproject.web.rest.errors.BadRequestAlertException;
 
 /**
@@ -37,6 +42,9 @@ public class PostResource {
     private final Logger log = LoggerFactory.getLogger(PostResource.class);
 
     private static final String ENTITY_NAME = "post";
+
+    @Autowired
+    private UserService userService;
 
     private final CommentsRepository commentsRepository;
 
@@ -63,6 +71,17 @@ public class PostResource {
         if (post.getId() != null) {
             throw new BadRequestAlertException("A new post cannot already have an ID", ENTITY_NAME, "idexists");
         }
+
+        final Optional<User> isUser = userService.getUserWithAuthorities();
+        if (!isUser.isPresent()) {
+            log.error("User is not logged in");
+            throw new BadRequestAlertException("User is not logged in", ENTITY_NAME, "usernotloggedin");
+        }
+
+        final User user = isUser.get();
+
+        post.setUser(user);
+
         Post result = postRepository.save(post);
         return ResponseEntity
             .created(new URI("/api/posts/" + result.getId()))

@@ -1,0 +1,13 @@
+.booton {
+  margin: 0px;
+  padding: 0px;
+  align-items: center;
+  display: flex;
+  align-content: space-around;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.booton button {
+  margin-bottom: 10px;
+}

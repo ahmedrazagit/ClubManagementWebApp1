@@ -1,8 +1,23 @@
 import React from 'react';
 
+
 const ActionProvider = ({ createChatBotMessage, setState, children }) => {
   const handleHello = () => {
     const botMessage = createChatBotMessage('Hello. Nice to meet you.');
+
+    setState((prev) => ({
+      ...prev,
+      messages: [...prev.messages, botMessage],
+    }));
+  };
+
+  const handleButton = () => {
+    const botMessage = createChatBotMessage(
+      "Here's ur buttons",
+      {
+        widget: 'MyButton',
+      }
+    );
 
     setState((prev) => ({
       ...prev,
@@ -19,6 +34,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
         return React.cloneElement(child, {
           actions: {
             handleHello,
+            handleButton,
           },
         });
       })}

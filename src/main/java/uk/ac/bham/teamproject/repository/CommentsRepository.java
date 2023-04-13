@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import uk.ac.bham.teamproject.domain.Comments;
+import uk.ac.bham.teamproject.domain.Post;
 
 /**
  * Spring Data JPA repository for the Comments entity.
@@ -20,6 +21,11 @@ public interface CommentsRepository extends JpaRepository<Comments, Long> {
     default Optional<Comments> findOneWithEagerRelationships(Long id) {
         return this.findOneWithToOneRelationships(id);
     }
+
+    //Added by KB
+    @Modifying
+    @Query("DELETE FROM Comments c WHERE c.post = :post")
+    void deleteByPost(@Param("post") Post post);
 
     default List<Comments> findAllWithEagerRelationships() {
         return this.findAllWithToOneRelationships();

@@ -5,6 +5,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
@@ -13,7 +14,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +22,7 @@ import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
 import uk.ac.bham.teamproject.domain.Post;
+import uk.ac.bham.teamproject.repository.CommentsRepository;
 import uk.ac.bham.teamproject.repository.PostRepository;
 import uk.ac.bham.teamproject.web.rest.errors.BadRequestAlertException;
 
@@ -37,12 +38,15 @@ public class PostResource {
 
     private static final String ENTITY_NAME = "post";
 
+    private final CommentsRepository commentsRepository;
+
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
     private final PostRepository postRepository;
 
-    public PostResource(PostRepository postRepository) {
+    public PostResource(CommentsRepository commentsRepository, PostRepository postRepository) {
+        this.commentsRepository = commentsRepository;
         this.postRepository = postRepository;
     }
 
@@ -194,7 +198,12 @@ public class PostResource {
     @DeleteMapping("/posts/{id}")
     public ResponseEntity<Void> deletePost(@PathVariable Long id) {
         log.debug("REST request to delete Post : {}", id);
+
+        Post post = postRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Post not found"));
+
+        commentsRepository.deleteByPost(post);
         postRepository.deleteById(id);
+
         return ResponseEntity
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))

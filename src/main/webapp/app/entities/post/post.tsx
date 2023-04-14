@@ -31,6 +31,8 @@ export const Post = () => {
   const entity = useAppSelector(state => state.post.entity);
   const updateSuccess = useAppSelector(state => state.post.updateSuccess);
 
+  //Added by KB
+
   const isAdmin = useAppSelector(state => state.authentication.account.authorities.includes('ROLE_ADMIN'));
 
   const isAuthenticated = useAppSelector(state => state.authentication.isAuthenticated);
@@ -173,6 +175,7 @@ export const Post = () => {
                             <Translate contentKey="entity.action.view">View</Translate>
                           </span>
                         </Button>
+
                         {isCurrentUserPost(post) && (
                           <>
                             <Button tag={Link} to={`/post/${post.id}/edit`} color="primary" size="sm" data-cy="entityEditButton">

@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.*;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
 import uk.ac.bham.teamproject.domain.Comments;
+import uk.ac.bham.teamproject.domain.User;
 import uk.ac.bham.teamproject.repository.CommentsRepository;
+import uk.ac.bham.teamproject.service.UserService;
 import uk.ac.bham.teamproject.web.rest.errors.BadRequestAlertException;
 
 /**
@@ -30,6 +33,9 @@ public class CommentsResource {
     private final Logger log = LoggerFactory.getLogger(CommentsResource.class);
 
     private static final String ENTITY_NAME = "comments";
+
+    @Autowired
+    private UserService userService;
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
@@ -53,6 +59,18 @@ public class CommentsResource {
         if (comments.getId() != null) {
             throw new BadRequestAlertException("A new comments cannot already have an ID", ENTITY_NAME, "idexists");
         }
+
+        final Optional<User> isUser = userService.getUserWithAuthorities();
+
+        if (!isUser.isPresent()) {
+            log.error("User is not logged in");
+            throw new BadRequestAlertException("User is not logged in", ENTITY_NAME, "usernotloggedin");
+        }
+
+        final User user = isUser.get();
+
+        comments.setUser(user);
+
         Comments result = commentsRepository.save(comments);
         return ResponseEntity
             .created(new URI("/api/comments/" + result.getId()))

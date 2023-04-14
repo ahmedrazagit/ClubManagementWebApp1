@@ -54,12 +54,14 @@ export const CommentsDetail = () => {
           </span>
         </Button>
         &nbsp;
+        {/*
         <Button tag={Link} to={`/comments/${commentsEntity.id}/edit`} replace color="primary">
           <FontAwesomeIcon icon="pencil-alt" />{' '}
           <span className="d-none d-md-inline">
             <Translate contentKey="entity.action.edit">Edit</Translate>
           </span>
         </Button>
+        */}
       </Col>
     </Row>
   );

@@ -120,15 +120,22 @@ export const CommentsUpdate = () => {
                     ))
                   : null}
               </ValidatedField>
-              <ValidatedField id="comments-user" name="user" data-cy="user" label={translate('teamprojectApp.comments.user')} type="select">
+              <ValidatedField
+                style={{ display: 'none' }}
+                id="comments-user"
+                name="user"
+                data-cy="user"
+                label={translate('teamprojectApp.comments.user')}
+                type="select"
+              >
                 <option value="" key="0" />
-                {users
+                {/*{users
                   ? users.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
                         {otherEntity.login}
                       </option>
                     ))
-                  : null}
+                  : null}*/}
               </ValidatedField>
               <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/comments" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />

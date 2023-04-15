@@ -5,9 +5,9 @@ import { Translate } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { useAppDispatch, useAppSelector } from 'app/config/store';
-import { getEntity, deleteEntity } from './post.reducer';
+import { getEntity, deleteEntity } from 'app/entities/post/post.reducer';
 
-export const PostDeleteDialog = () => {
+export const ForumDeleteDialog = () => {
   const dispatch = useAppDispatch();
 
   const location = useLocation();
@@ -25,7 +25,7 @@ export const PostDeleteDialog = () => {
   const updateSuccess = useAppSelector(state => state.post.updateSuccess);
 
   const handleClose = () => {
-    navigate('/forum');
+    navigate('/post');
   };
 
   useEffect(() => {
@@ -65,4 +65,4 @@ export const PostDeleteDialog = () => {
   );
 };
 
-export default PostDeleteDialog;
+export default ForumDeleteDialog;

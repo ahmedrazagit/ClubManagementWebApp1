@@ -11,9 +11,9 @@ import { useAppDispatch, useAppSelector } from 'app/config/store';
 import { IUser } from 'app/shared/model/user.model';
 import { getUsers } from 'app/modules/administration/user-management/user-management.reducer';
 import { IPost } from 'app/shared/model/post.model';
-import { getEntity, updateEntity, createEntity, reset } from './post.reducer';
+import { getEntity, updateEntity, createEntity, reset } from 'app/entities/post/post.reducer';
 
-export const PostUpdate = () => {
+export const ForumUpdate = () => {
   const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ export const PostUpdate = () => {
   const updateSuccess = useAppSelector(state => state.post.updateSuccess);
 
   const handleClose = () => {
-    navigate('/forum');
+    navigate('/post');
   };
 
   useEffect(() => {
@@ -89,13 +89,12 @@ export const PostUpdate = () => {
             <ValidatedForm defaultValues={defaultValues()} onSubmit={saveEntity}>
               {!isNew ? (
                 <ValidatedField
-                  name=""
+                  name="id"
                   required
                   readOnly
                   id="post-id"
                   label={translate('global.field.id')}
                   validate={{ required: true }}
-                  style={{ display: 'none' }}
                 />
               ) : null}
               <ValidatedField
@@ -132,13 +131,6 @@ export const PostUpdate = () => {
               />
               <ValidatedField style={{ display: 'none' }} id="post-user" name="user" data-cy="user" type="select">
                 <option value="" key="0" />
-                {/*{users
-                  ? users.map(otherEntity => (
-                      <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.login}
-                      </option>
-                    ))
-                  : null}*/}
               </ValidatedField>
               <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/post" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
@@ -161,4 +153,4 @@ export const PostUpdate = () => {
   );
 };
 
-export default PostUpdate;
+export default ForumUpdate;

@@ -16,6 +16,7 @@ import { IPost } from 'app/shared/model/post.model';
 import { getEntities, reset } from 'app/entities/post/post.reducer';
 
 import { getEntities as getComments } from 'app/entities/comments/comments.reducer';
+import { FaComments, FaThumbsUp, FaUsers } from 'react-icons/fa';
 
 export const Forum = () => {
   useEffect(() => {
@@ -240,7 +241,7 @@ export const Forum = () => {
                             </div>
 
                             <div className="px-4 pt-3">
-                              <div className="btn-group flex-btn-group-container">
+                              <div className="btn-group flex-btn-group-container ml-auto">
                                 <Button tag={Link} to={`/post/${post.id}`} color="info" size="sm" data-cy="entityDetailsButton">
                                   <FontAwesomeIcon icon="eye" />{' '}
                                   <span className="d-none d-md-inline">
@@ -264,59 +265,61 @@ export const Forum = () => {
                                   </>
                                 )}
                                 <Button color="primary" size="sm" onClick={() => toggleComments(post.id)}>
-                                  {showComments[post.id] ? 'Hide Comments' : 'Show Comments'}
+                                  {showComments[post.id] ? 'Hide' : <FaComments />} {'Comments'}
                                 </Button>
                               </div>
                             </div>
 
-                            {showComments[post.id] && (
-                              <>
-                                <div className="ml-auto">
-                                  <div className="table-responsive-comment">
-                                    {commentsList && commentsList.length > 0 ? (
-                                      <div>
-                                        {commentsList.map((comments, i) => (
+                            <div className="px-4">
+                              {post && showComments[post.id] && (
+                                <div className="table-responsive-comment text-end">
+                                  {commentsList && commentsList.length > 0 ? (
+                                    <div>
+                                      {commentsList.map((comment, i) =>
+                                        comment.post && comment.post.id === post.id ? (
                                           <div key={`entity-${i}`} data-cy="entityTableComment">
-                                            <div className="container mt-3">
-                                              <div className="row">
-                                                <div className="col-md-8">
-                                                  <div className="text-left">{/*<h6>All comments (5)</h6>*/}</div>
-                                                  <div className="card p-3 mb-2">
-                                                    <div className="d-flex flex-row">
-                                                      <div className="d-flex flex-column ms-2">
-                                                        <h6 className="mb-1 text-primary">{comments.user ? comments.user.login : ''}</h6>
-                                                        <p className="comment-text">{comments.comment}</p>
-                                                      </div>
+                                            <div className="col-md-8">
+                                              <div className="text-left">
+                                                {comment.post && (
+                                                  <div className="text-left">
+                                                    <Link to={`/post/${comment.post.id}`}>{comment.post.title}</Link>
+                                                  </div>
+                                                )}
+                                              </div>
+                                              <div className="card p-3 mb-2">
+                                                <div className="d-flex flex-row">
+                                                  <div className="d-flex flex-column ms-2">
+                                                    <h6 className="mb-1 text-primary">{comment.user ? comment.user.login : ''}</h6>
+                                                    <p className="comment-text">{comment.comment}</p>
+                                                  </div>
+                                                </div>
+                                                <div className="d-flex justify-content-between">
+                                                  <div className="d-flex flex-row gap-3 align-items-center">
+                                                    <div className="d-flex align-items-center">
+                                                      <FaThumbsUp />
+                                                      <span className="ms-1 fs-10">Like</span>
                                                     </div>
-                                                    <div className="d-flex justify-content-between">
-                                                      <div className="d-flex flex-row gap-3 align-items-center">
-                                                        <div className="d-flex align-items-center">
-                                                          <i className="fa fa-heart-o"></i>
-                                                          <span className="ms-1 fs-10">Like</span>
-                                                        </div>
-                                                        <div className="d-flex align-items-center">
-                                                          <i className="fa fa-comment-o"></i>
-                                                          <span className="ms-1 fs-10">Comments</span>
-                                                        </div>
-                                                      </div>
-                                                      <div className="d-flex flex-row">
-                                                        <span className="text-muted fw-normal fs-10">May 22, 2020 12:10 PM</span>
-                                                      </div>
-                                                    </div>
+                                                    {/*<div className="d-flex align-items-center">
+                                                        <FaComments />
+                                                        <span className="ms-1 fs-10">Comments</span>
+                                                      </div>*/}
+                                                  </div>
+                                                  <div className="d-flex flex-row">
+                                                    <span className="text-muted fw-normal fs-10">May 22, 2020 12:10 PM</span>
                                                   </div>
                                                 </div>
                                               </div>
                                             </div>
                                           </div>
-                                        ))}
-                                      </div>
-                                    ) : (
-                                      ''
-                                    )}
-                                  </div>
+                                        ) : null
+                                      )}
+                                    </div>
+                                  ) : (
+                                    ''
+                                  )}
                                 </div>
-                              </>
-                            )}
+                              )}
+                            </div>
                           </div>
                         </div>
                       </div>

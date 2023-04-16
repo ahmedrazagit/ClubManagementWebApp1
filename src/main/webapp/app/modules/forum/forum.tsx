@@ -271,47 +271,49 @@ export const Forum = () => {
 
                             {showComments[post.id] && (
                               <>
-                                <div className="table-responsive-comment">
-                                  {commentsList && commentsList.length > 0 ? (
-                                    <div>
-                                      {commentsList.map((comments, i) => (
-                                        <div key={`entity-${i}`} data-cy="entityTableComment">
-                                          <div className="container mt-3">
-                                            <div className="row">
-                                              <div className="col-md-8">
-                                                <div className="text-left">{/*<h6>All comments (5)</h6>*/}</div>
-                                                <div className="card p-3 mb-2">
-                                                  <div className="d-flex flex-row">
-                                                    <div className="d-flex flex-column ms-2">
-                                                      <h6 className="mb-1 text-primary">{comments.user ? comments.user.login : ''}</h6>
-                                                      <p className="comment-text">{comments.comment}</p>
-                                                    </div>
-                                                  </div>
-                                                  <div className="d-flex justify-content-between">
-                                                    <div className="d-flex flex-row gap-3 align-items-center">
-                                                      <div className="d-flex align-items-center">
-                                                        <i className="fa fa-heart-o"></i>
-                                                        <span className="ms-1 fs-10">Like</span>
-                                                      </div>
-                                                      <div className="d-flex align-items-center">
-                                                        <i className="fa fa-comment-o"></i>
-                                                        <span className="ms-1 fs-10">Comments</span>
-                                                      </div>
-                                                    </div>
+                                <div className="ml-auto">
+                                  <div className="table-responsive-comment">
+                                    {commentsList && commentsList.length > 0 ? (
+                                      <div>
+                                        {commentsList.map((comments, i) => (
+                                          <div key={`entity-${i}`} data-cy="entityTableComment">
+                                            <div className="container mt-3">
+                                              <div className="row">
+                                                <div className="col-md-8">
+                                                  <div className="text-left">{/*<h6>All comments (5)</h6>*/}</div>
+                                                  <div className="card p-3 mb-2">
                                                     <div className="d-flex flex-row">
-                                                      <span className="text-muted fw-normal fs-10">May 22, 2020 12:10 PM</span>
+                                                      <div className="d-flex flex-column ms-2">
+                                                        <h6 className="mb-1 text-primary">{comments.user ? comments.user.login : ''}</h6>
+                                                        <p className="comment-text">{comments.comment}</p>
+                                                      </div>
+                                                    </div>
+                                                    <div className="d-flex justify-content-between">
+                                                      <div className="d-flex flex-row gap-3 align-items-center">
+                                                        <div className="d-flex align-items-center">
+                                                          <i className="fa fa-heart-o"></i>
+                                                          <span className="ms-1 fs-10">Like</span>
+                                                        </div>
+                                                        <div className="d-flex align-items-center">
+                                                          <i className="fa fa-comment-o"></i>
+                                                          <span className="ms-1 fs-10">Comments</span>
+                                                        </div>
+                                                      </div>
+                                                      <div className="d-flex flex-row">
+                                                        <span className="text-muted fw-normal fs-10">May 22, 2020 12:10 PM</span>
+                                                      </div>
                                                     </div>
                                                   </div>
                                                 </div>
                                               </div>
                                             </div>
                                           </div>
-                                        </div>
-                                      ))}
-                                    </div>
-                                  ) : (
-                                    ''
-                                  )}
+                                        ))}
+                                      </div>
+                                    ) : (
+                                      ''
+                                    )}
+                                  </div>
                                 </div>
                               </>
                             )}

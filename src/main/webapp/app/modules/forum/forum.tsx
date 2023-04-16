@@ -15,6 +15,8 @@ import { useAppDispatch, useAppSelector } from 'app/config/store';
 import { IPost } from 'app/shared/model/post.model';
 import { getEntities, reset } from 'app/entities/post/post.reducer';
 
+import { getEntities as getComments } from 'app/entities/comments/comments.reducer';
+
 export const Forum = () => {
   useEffect(() => {
     document.title = 'Forum';
@@ -113,6 +115,8 @@ export const Forum = () => {
     resetAll();
   };
 
+  //SearchBar and Comment button
+
   const [searchText, setSearchText] = useState('');
   const [filteredPosts, setFilteredPosts] = useState(postList);
 
@@ -122,11 +126,38 @@ export const Forum = () => {
 
   const entityTable = document.querySelector('[data-cy="entityTable"]');
 
+  const [showComments, setShowComments] = useState({});
+
+  const toggleComments = postId => {
+    setShowComments(prevState => ({
+      ...prevState,
+      [postId]: !prevState[postId],
+    }));
+  };
+
+  //Comments code
+  const commentsList = useAppSelector(state => state.comments.entities);
+  const loadingComment = useAppSelector(state => state.comments.loading);
+
+  useEffect(() => {
+    dispatch(getComments({}));
+  }, []);
+
+  const handleSyncCommentList = () => {
+    dispatch(getComments({}));
+  };
+
+  const isCurrentUserComment = comments => {
+    return isAuthenticated && comments.user && comments.user.login === currentUser.login;
+  };
+
+  //End of Comments code
+
   return (
     <div>
       <h1 style={{ textAlign: 'center' }}>Forum</h1>
       <div className="forum">
-        <div className="input-group mb-3">
+        <div className="input-group mb-3" style={{ marginRight: '5px' }}>
           <input
             type="text"
             className="form-control"
@@ -139,6 +170,16 @@ export const Forum = () => {
               Search
             </button>
           </div>
+
+          <Button className="btn btn-outline-secondary" color="info" onClick={handleSyncList} disabled={loading}>
+            <FontAwesomeIcon icon="sync" spin={loading} />{' '}
+            <Translate contentKey="teamprojectApp.post.home.refreshListLabel">Refresh List</Translate>
+          </Button>
+          <Link to="/post/new" className="btn btn-primary jh-create-entity" id="jh-create-entity" data-cy="entityCreateButton">
+            <FontAwesomeIcon icon="plus" />
+            &nbsp;
+            <Translate contentKey="teamprojectApp.post.home.createLabel">Create new Post</Translate>
+          </Link>
         </div>
         <InfiniteScroll
           dataLength={filteredPosts ? filteredPosts.length : 0}
@@ -222,8 +263,58 @@ export const Forum = () => {
                                     </Button>
                                   </>
                                 )}
+                                <Button color="primary" size="sm" onClick={() => toggleComments(post.id)}>
+                                  {showComments[post.id] ? 'Hide Comments' : 'Show Comments'}
+                                </Button>
                               </div>
                             </div>
+
+                            {showComments[post.id] && (
+                              <>
+                                <div className="table-responsive-comment">
+                                  {commentsList && commentsList.length > 0 ? (
+                                    <div>
+                                      {commentsList.map((comments, i) => (
+                                        <div key={`entity-${i}`} data-cy="entityTableComment">
+                                          <div className="container mt-3">
+                                            <div className="row">
+                                              <div className="col-md-8">
+                                                <div className="text-left">{/*<h6>All comments (5)</h6>*/}</div>
+                                                <div className="card p-3 mb-2">
+                                                  <div className="d-flex flex-row">
+                                                    <div className="d-flex flex-column ms-2">
+                                                      <h6 className="mb-1 text-primary">{comments.user ? comments.user.login : ''}</h6>
+                                                      <p className="comment-text">{comments.comment}</p>
+                                                    </div>
+                                                  </div>
+                                                  <div className="d-flex justify-content-between">
+                                                    <div className="d-flex flex-row gap-3 align-items-center">
+                                                      <div className="d-flex align-items-center">
+                                                        <i className="fa fa-heart-o"></i>
+                                                        <span className="ms-1 fs-10">Like</span>
+                                                      </div>
+                                                      <div className="d-flex align-items-center">
+                                                        <i className="fa fa-comment-o"></i>
+                                                        <span className="ms-1 fs-10">Comments</span>
+                                                      </div>
+                                                    </div>
+                                                    <div className="d-flex flex-row">
+                                                      <span className="text-muted fw-normal fs-10">May 22, 2020 12:10 PM</span>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      ))}
+                                    </div>
+                                  ) : (
+                                    ''
+                                  )}
+                                </div>
+                              </>
+                            )}
                           </div>
                         </div>
                       </div>
@@ -235,7 +326,11 @@ export const Forum = () => {
               ))}
             </>
           ) : (
-            ''
+            !loading && (
+              <div className="alert alert-warning">
+                <Translate contentKey="teamprojectApp.post.home.notFound">No Posts found</Translate>
+              </div>
+            )
           )}
         </InfiniteScroll>
       </div>

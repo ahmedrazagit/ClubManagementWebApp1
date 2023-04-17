@@ -31,7 +31,7 @@ export const CommentsUpdate = () => {
   const updateSuccess = useAppSelector(state => state.comments.updateSuccess);
 
   const handleClose = () => {
-    navigate('/comments');
+    navigate('/forum');
   };
 
   useEffect(() => {

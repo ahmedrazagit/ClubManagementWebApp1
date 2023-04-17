@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import './forum.scss';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Button, Table } from 'reactstrap';
-import { byteSize, Translate, TextFormat, getSortState } from 'react-jhipster';
+import { byteSize, Translate, TextFormat, getSortState, ValidatedField, translate, ValidatedForm } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
@@ -15,8 +15,17 @@ import { useAppDispatch, useAppSelector } from 'app/config/store';
 import { IPost } from 'app/shared/model/post.model';
 import { getEntities, reset } from 'app/entities/post/post.reducer';
 
-import { getEntities as getComments } from 'app/entities/comments/comments.reducer';
+import { getEntities as getComments, getEntity } from 'app/entities/comments/comments.reducer';
 import { FaComments, FaThumbsUp, FaUsers } from 'react-icons/fa';
+
+import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
+import { mapIdList } from 'app/shared/util/entity-utils';
+
+import { getEntities as getPosts } from 'app/entities/post/post.reducer';
+import { IUser } from 'app/shared/model/user.model';
+import { getUsers } from 'app/modules/administration/user-management/user-management.reducer';
+import { IComments } from 'app/shared/model/comments.model';
+import { updateEntity, createEntity, reset as commentreset } from 'app/entities/comments/comments.reducer';
 
 export const Forum = () => {
   useEffect(() => {
@@ -137,8 +146,62 @@ export const Forum = () => {
   };
 
   //Comments code
+
+  const { id } = useParams<'id'>();
+  const isNew = id === undefined;
+
+  const posts = useAppSelector(state => state.post.entities);
+  const users = useAppSelector(state => state.userManagement.users);
+  const commentsEntity = useAppSelector(state => state.comments.entity);
+  const updating = useAppSelector(state => state.comments.updating);
+  const updateCommentSuccess = useAppSelector(state => state.comments.updateSuccess); //changed
   const commentsList = useAppSelector(state => state.comments.entities);
-  const loadingComment = useAppSelector(state => state.comments.loading);
+  const loadingComment = useAppSelector(state => state.comments.loading); //changed
+
+  const handleClose = () => {
+    navigate('/forum');
+  };
+
+  useEffect(() => {
+    if (isNew) {
+      dispatch(reset());
+    } else {
+      dispatch(getEntity(id));
+    }
+
+    dispatch(getPosts({}));
+    dispatch(getUsers({}));
+  }, []);
+
+  useEffect(() => {
+    if (updateCommentSuccess) {
+      handleClose();
+    }
+  }, [updateCommentSuccess]);
+
+  const saveEntity = values => {
+    const entity = {
+      ...commentsEntity,
+      ...values,
+      post: posts.find(it => it.id.toString() === values.post.toString()),
+      user: users.find(it => it.id.toString() === values.user.toString()),
+    };
+
+    if (isNew) {
+      dispatch(createEntity(entity));
+    } else {
+      dispatch(updateEntity(entity));
+    }
+  };
+
+  const defaultValues = () =>
+    isNew
+      ? {}
+      : {
+          ...commentsEntity,
+          post: commentsEntity?.post?.id,
+          user: commentsEntity?.user?.id,
+        };
 
   useEffect(() => {
     dispatch(getComments({}));
@@ -197,7 +260,6 @@ export const Forum = () => {
                   onClick={() => {
                     //navigate(`/post/${post.id}`);
                   }}
-                  style={{ cursor: 'pointer' }}
                 >
                   <div className="container-fluid mt-100">
                     <div className="row">
@@ -230,17 +292,6 @@ export const Forum = () => {
                           </div>
                           <div className="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3">
                             <div className="px-4 pt-3">
-                              <a href="" className="text-muted d-inline-flex align-items-center align-middle" data-abc="true">
-                                {' '}
-                                <i className="fa fa-heart text-danger"></i>&nbsp; <span className="align-middle"></span>{' '}
-                              </a>{' '}
-                              <span className="text-muted d-inline-flex align-items-center align-middle ml-4">
-                                {' '}
-                                <i className="fa fa-eye text-muted fsize-3"></i>&nbsp; <span className="align-middle"></span>{' '}
-                              </span>
-                            </div>
-
-                            <div className="px-4 pt-3">
                               <div className="btn-group flex-btn-group-container ml-auto">
                                 <Button tag={Link} to={`/post/${post.id}`} color="info" size="sm" data-cy="entityDetailsButton">
                                   <FontAwesomeIcon icon="eye" />{' '}
@@ -272,6 +323,47 @@ export const Forum = () => {
 
                             <div className="container mt-3 d-flex justify-content-start">
                               <div className="row d-flex justify-content-start">
+                                <ValidatedForm defaultValues={defaultValues()} onSubmit={saveEntity}>
+                                  {!isNew ? (
+                                    <ValidatedField
+                                      name="id"
+                                      required
+                                      readOnly
+                                      id="comments-id"
+                                      label={translate('global.field.id')}
+                                      validate={{ required: true }}
+                                    />
+                                  ) : null}
+                                  <ValidatedField
+                                    label={translate('teamprojectApp.comments.comment')}
+                                    id="comments-comment"
+                                    name="comment"
+                                    data-cy="comment"
+                                    type="textarea"
+                                    validate={{
+                                      required: { value: true, message: translate('entity.validation.required') },
+                                    }}
+                                  />
+                                  <ValidatedField style={{ display: 'none' }} id="comments-post" name="post" data-cy="post" type="select">
+                                    <option value={post.id} key="0" />
+                                  </ValidatedField>
+                                  <ValidatedField style={{ display: 'none' }} id="comments-user" name="user" data-cy="user" type="select">
+                                    <option value="" key="0" />
+                                  </ValidatedField>
+                                  &nbsp;
+                                  <Button
+                                    color="primary"
+                                    id="save-entity"
+                                    data-cy="entityCreateSaveButton"
+                                    type="submit"
+                                    disabled={updating}
+                                  >
+                                    <FontAwesomeIcon icon="save" />
+                                    &nbsp;
+                                    <Translate contentKey="entity.action.save">Save Comment</Translate>
+                                  </Button>
+                                </ValidatedForm>
+
                                 {post && showComments[post.id] && (
                                   <div className="table-responsive-comment text-end">
                                     {commentsList && commentsList.length > 0 ? (
@@ -314,7 +406,7 @@ export const Forum = () => {
                                         )}
                                       </div>
                                     ) : (
-                                      ''
+                                      <p>No comments</p>
                                     )}
                                   </div>
                                 )}

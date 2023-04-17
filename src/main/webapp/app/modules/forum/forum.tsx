@@ -194,6 +194,15 @@ export const Forum = () => {
     }
   };
 
+  const resetForm = () => {
+    // Reset the comment textarea
+    (document.getElementById('comments-comment') as HTMLInputElement).value = '';
+
+    // Reset the post and user select fields (if necessary)
+    // document.getElementById('comments-post').value = '';
+    // document.getElementById('comments-user').value = '';
+  };
+
   const defaultValues = () =>
     isNew
       ? {}
@@ -229,11 +238,12 @@ export const Forum = () => {
             value={searchText}
             onChange={e => setSearchText(e.target.value)}
           />
-          <div className="input-group-append">
+          {/*<div className="input-group-append">
             <button className="btn btn-outline-secondary" type="button">
               Search
             </button>
           </div>
+          */}
 
           <Button className="btn btn-outline-secondary" color="info" onClick={handleSyncList} disabled={loading}>
             <FontAwesomeIcon icon="sync" spin={loading} />{' '}
@@ -350,13 +360,17 @@ export const Forum = () => {
                                   <ValidatedField style={{ display: 'none' }} id="comments-user" name="user" data-cy="user" type="select">
                                     <option value="" key="0" />
                                   </ValidatedField>
-                                  &nbsp;
+                                  &nbsp; &nbsp;
                                   <Button
                                     color="primary"
                                     id="save-entity"
                                     data-cy="entityCreateSaveButton"
                                     type="submit"
                                     disabled={updating}
+                                    onClick={() => {
+                                      (document.getElementById('comments-comment') as HTMLInputElement).value = '';
+                                    }}
+                                    style={{ marginBottom: '4px' }}
                                   >
                                     <FontAwesomeIcon icon="save" />
                                     &nbsp;

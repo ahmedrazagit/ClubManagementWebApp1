@@ -27,6 +27,8 @@ public interface CommentsRepository extends JpaRepository<Comments, Long> {
     @Query("DELETE FROM Comments c WHERE c.post = :post")
     void deleteByPost(@Param("post") Post post);
 
+    //Ends here
+
     default List<Comments> findAllWithEagerRelationships() {
         return this.findAllWithToOneRelationships();
     }

@@ -39,6 +39,16 @@ public class Post implements Serializable {
     @Column(name = "date", nullable = false)
     private Instant date;
 
+    @Lob
+    @Column(name = "image")
+    private byte[] image;
+
+    @Column(name = "image_content_type")
+    private String imageContentType;
+
+    @Column(name = "annoncement")
+    private Boolean annoncement;
+
     @ManyToOne
     private User user;
 
@@ -96,6 +106,45 @@ public class Post implements Serializable {
         this.date = date;
     }
 
+    public byte[] getImage() {
+        return this.image;
+    }
+
+    public Post image(byte[] image) {
+        this.setImage(image);
+        return this;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+    public String getImageContentType() {
+        return this.imageContentType;
+    }
+
+    public Post imageContentType(String imageContentType) {
+        this.imageContentType = imageContentType;
+        return this;
+    }
+
+    public void setImageContentType(String imageContentType) {
+        this.imageContentType = imageContentType;
+    }
+
+    public Boolean getAnnoncement() {
+        return this.annoncement;
+    }
+
+    public Post annoncement(Boolean annoncement) {
+        this.setAnnoncement(annoncement);
+        return this;
+    }
+
+    public void setAnnoncement(Boolean annoncement) {
+        this.annoncement = annoncement;
+    }
+
     public User getUser() {
         return this.user;
     }
@@ -136,6 +185,9 @@ public class Post implements Serializable {
             ", title='" + getTitle() + "'" +
             ", content='" + getContent() + "'" +
             ", date='" + getDate() + "'" +
+            ", image='" + getImage() + "'" +
+            ", imageContentType='" + getImageContentType() + "'" +
+            ", annoncement='" + getAnnoncement() + "'" +
             "}";
     }
 }

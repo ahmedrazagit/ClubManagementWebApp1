@@ -42,9 +42,9 @@ export const CommentsDetail = () => {
             <Translate contentKey="teamprojectApp.comments.post">Post</Translate>
           </dt>
           <dd>{commentsEntity.post ? commentsEntity.post.title : ''}</dd>
-          {/*<dt>
+          <dt>
             <Translate contentKey="teamprojectApp.comments.user">User</Translate>
-          </dt>*/}
+          </dt>
           <dd>{commentsEntity.user ? commentsEntity.user.login : ''}</dd>
         </dl>
         <Button tag={Link} to="/comments" replace color="info" data-cy="entityDetailsBackButton">
@@ -54,14 +54,12 @@ export const CommentsDetail = () => {
           </span>
         </Button>
         &nbsp;
-        {/*
         <Button tag={Link} to={`/comments/${commentsEntity.id}/edit`} replace color="primary">
           <FontAwesomeIcon icon="pencil-alt" />{' '}
           <span className="d-none d-md-inline">
             <Translate contentKey="entity.action.edit">Edit</Translate>
           </span>
         </Button>
-        */}
       </Col>
     </Row>
   );

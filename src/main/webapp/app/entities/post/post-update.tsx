@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Button, Row, Col, FormText } from 'reactstrap';
-import { isNumber, Translate, translate, ValidatedField, ValidatedForm } from 'react-jhipster';
+import { isNumber, Translate, translate, ValidatedField, ValidatedForm, ValidatedBlobField } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
@@ -89,13 +89,12 @@ export const PostUpdate = () => {
             <ValidatedForm defaultValues={defaultValues()} onSubmit={saveEntity}>
               {!isNew ? (
                 <ValidatedField
-                  name=""
+                  name="id"
                   required
                   readOnly
                   id="post-id"
                   label={translate('global.field.id')}
                   validate={{ required: true }}
-                  style={{ display: 'none' }}
                 />
               ) : null}
               <ValidatedField
@@ -130,17 +129,33 @@ export const PostUpdate = () => {
                   required: { value: true, message: translate('entity.validation.required') },
                 }}
               />
-              <ValidatedField style={{ display: 'none' }} id="post-user" name="user" data-cy="user" type="select">
+              <ValidatedBlobField
+                label={translate('teamprojectApp.post.image')}
+                id="post-image"
+                name="image"
+                data-cy="image"
+                isImage
+                accept="image/*"
+              />
+              <ValidatedField
+                label={translate('teamprojectApp.post.annoncement')}
+                id="post-annoncement"
+                name="annoncement"
+                data-cy="annoncement"
+                check
+                type="checkbox"
+              />
+              <ValidatedField id="post-user" name="user" data-cy="user" label={translate('teamprojectApp.post.user')} type="select">
                 <option value="" key="0" />
-                {/*{users
+                {users
                   ? users.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
                         {otherEntity.login}
                       </option>
                     ))
-                  : null}*/}
+                  : null}
               </ValidatedField>
-              <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/forum" replace color="info">
+              <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/post" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
                 <span className="d-none d-md-inline">

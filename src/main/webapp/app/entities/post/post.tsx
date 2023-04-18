@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button, Table } from 'reactstrap';
-import { byteSize, Translate, TextFormat, getSortState } from 'react-jhipster';
+import { openFile, byteSize, Translate, TextFormat, getSortState } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
@@ -30,21 +30,6 @@ export const Post = () => {
   const links = useAppSelector(state => state.post.links);
   const entity = useAppSelector(state => state.post.entity);
   const updateSuccess = useAppSelector(state => state.post.updateSuccess);
-
-  //Added by KB
-
-  const isAdmin = useAppSelector(state => state.authentication.account.authorities.includes('ROLE_ADMIN'));
-
-  const isAuthenticated = useAppSelector(state => state.authentication.isAuthenticated);
-
-  const currentUser = useAppSelector(state => state.authentication.account);
-
-  const isCurrentUserPost = post => {
-    if (isAdmin) {
-      return isAuthenticated;
-    }
-    return isAuthenticated && post.user && post.user.login === currentUser.login;
-  };
 
   const getAllEntities = () => {
     dispatch(
@@ -149,6 +134,12 @@ export const Post = () => {
                   <th className="hand" onClick={sort('date')}>
                     <Translate contentKey="teamprojectApp.post.date">Date</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
+                  <th className="hand" onClick={sort('image')}>
+                    <Translate contentKey="teamprojectApp.post.image">Image</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
+                  <th className="hand" onClick={sort('annoncement')}>
+                    <Translate contentKey="teamprojectApp.post.annoncement">Annoncement</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
                   <th>
                     <Translate contentKey="teamprojectApp.post.user">User</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
@@ -166,6 +157,22 @@ export const Post = () => {
                     <td>{post.title}</td>
                     <td>{post.content}</td>
                     <td>{post.date ? <TextFormat type="date" value={post.date} format={APP_DATE_FORMAT} /> : null}</td>
+                    <td>
+                      {post.image ? (
+                        <div>
+                          {post.imageContentType ? (
+                            <a onClick={openFile(post.imageContentType, post.image)}>
+                              <img src={`data:${post.imageContentType};base64,${post.image}`} style={{ maxHeight: '30px' }} />
+                              &nbsp;
+                            </a>
+                          ) : null}
+                          <span>
+                            {post.imageContentType}, {byteSize(post.image)}
+                          </span>
+                        </div>
+                      ) : null}
+                    </td>
+                    <td>{post.annoncement ? 'true' : 'false'}</td>
                     <td>{post.user ? post.user.login : ''}</td>
                     <td className="text-end">
                       <div className="btn-group flex-btn-group-container">
@@ -175,24 +182,7 @@ export const Post = () => {
                             <Translate contentKey="entity.action.view">View</Translate>
                           </span>
                         </Button>
-
-                        {isCurrentUserPost(post) && (
-                          <>
-                            <Button tag={Link} to={`/post/${post.id}/edit`} color="primary" size="sm" data-cy="entityEditButton">
-                              <FontAwesomeIcon icon="pencil-alt" />{' '}
-                              <span className="d-none d-md-inline">
-                                <Translate contentKey="entity.action.edit">Edit</Translate>
-                              </span>
-                            </Button>
-                            <Button tag={Link} to={`/post/${post.id}/delete`} color="danger" size="sm" data-cy="entityDeleteButton">
-                              <FontAwesomeIcon icon="trash" />{' '}
-                              <span className="d-none d-md-inline">
-                                <Translate contentKey="entity.action.delete">Delete</Translate>
-                              </span>
-                            </Button>
-                          </>
-                        )}
-                        {/*<Button tag={Link} to={`/post/${post.id}/edit`} color="primary" size="sm" data-cy="entityEditButton">
+                        <Button tag={Link} to={`/post/${post.id}/edit`} color="primary" size="sm" data-cy="entityEditButton">
                           <FontAwesomeIcon icon="pencil-alt" />{' '}
                           <span className="d-none d-md-inline">
                             <Translate contentKey="entity.action.edit">Edit</Translate>
@@ -203,7 +193,7 @@ export const Post = () => {
                           <span className="d-none d-md-inline">
                             <Translate contentKey="entity.action.delete">Delete</Translate>
                           </span>
-                        </Button>*/}
+                        </Button>
                       </div>
                     </td>
                   </tr>

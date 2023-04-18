@@ -16,9 +16,9 @@ describe('Post e2e test', () => {
   const username = Cypress.env('E2E_USERNAME') ?? 'user';
   const password = Cypress.env('E2E_PASSWORD') ?? 'user';
   const postSample = {
-    title: 'Associate programming transmitter',
+    title: 'Salad transmitter visualize',
     content: 'Li4vZmFrZS1kYXRhL2Jsb2IvaGlwc3Rlci50eHQ=',
-    date: '2023-04-07T11:40:39.287Z',
+    date: '2023-04-07T08:01:13.056Z',
   };
 
   let post;
@@ -175,6 +175,13 @@ describe('Post e2e test', () => {
 
       cy.get(`[data-cy="date"]`).type('2023-04-07T09:32').blur().should('have.value', '2023-04-07T09:32');
 
+      cy.setFieldImageAsBytesOfEntity('image', 'integration-test.png', 'image/png');
+
+      cy.get(`[data-cy="annoncement"]`).should('not.be.checked');
+      cy.get(`[data-cy="annoncement"]`).click().should('be.checked');
+
+      // since cypress clicks submit too fast before the blob fields are validated
+      cy.wait(200); // eslint-disable-line cypress/no-unnecessary-waiting
       cy.get(entityCreateSaveButtonSelector).click();
 
       cy.wait('@postEntityRequest').then(({ response }) => {

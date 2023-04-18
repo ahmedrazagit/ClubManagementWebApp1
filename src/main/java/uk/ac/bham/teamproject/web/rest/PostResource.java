@@ -26,8 +26,6 @@ import uk.ac.bham.teamproject.domain.Post;
 import uk.ac.bham.teamproject.domain.User;
 import uk.ac.bham.teamproject.repository.CommentsRepository;
 import uk.ac.bham.teamproject.repository.PostRepository;
-import uk.ac.bham.teamproject.security.SecurityUtils;
-import uk.ac.bham.teamproject.service.UserService;
 import uk.ac.bham.teamproject.service.UserService;
 import uk.ac.bham.teamproject.web.rest.errors.BadRequestAlertException;
 
@@ -71,7 +69,6 @@ public class PostResource {
         if (post.getId() != null) {
             throw new BadRequestAlertException("A new post cannot already have an ID", ENTITY_NAME, "idexists");
         }
-
         final Optional<User> isUser = userService.getUserWithAuthorities();
         if (!isUser.isPresent()) {
             log.error("User is not logged in");
@@ -161,6 +158,15 @@ public class PostResource {
                 if (post.getDate() != null) {
                     existingPost.setDate(post.getDate());
                 }
+                if (post.getImage() != null) {
+                    existingPost.setImage(post.getImage());
+                }
+                if (post.getImageContentType() != null) {
+                    existingPost.setImageContentType(post.getImageContentType());
+                }
+                if (post.getAnnoncement() != null) {
+                    existingPost.setAnnoncement(post.getAnnoncement());
+                }
 
                 return existingPost;
             })
@@ -217,12 +223,11 @@ public class PostResource {
     @DeleteMapping("/posts/{id}")
     public ResponseEntity<Void> deletePost(@PathVariable Long id) {
         log.debug("REST request to delete Post : {}", id);
-
         Post post = postRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Post not found"));
 
         commentsRepository.deleteByPost(post);
-        postRepository.deleteById(id);
 
+        postRepository.deleteById(id);
         return ResponseEntity
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))

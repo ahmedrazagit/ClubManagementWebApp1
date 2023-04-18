@@ -23,6 +23,15 @@
             <column name="date" type="${datetimeType}">
                 <constraints nullable="false" />
             </column>
+            <column name="image" type="${blobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="image_content_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="annoncement" type="boolean">
+                <constraints nullable="true" />
+            </column>
             <column name="user_id" type="bigint">
                 <constraints nullable="true" />
             </column>
@@ -51,6 +60,9 @@
             <column name="title" type="string"/>
             <column name="content" type="clob"/>
             <column name="date" type="date"/>
+            <column name="image" type="blob"/>
+            <column name="image_content_type" type="string"/>
+            <column name="annoncement" type="boolean"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

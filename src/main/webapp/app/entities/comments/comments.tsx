@@ -19,20 +19,6 @@ export const Comments = () => {
   const commentsList = useAppSelector(state => state.comments.entities);
   const loading = useAppSelector(state => state.comments.loading);
 
-  //Added by KB
-  const isAdmin = useAppSelector(state => state.authentication.account.authorities.includes('ROLE_ADMIN'));
-
-  const isAuthenticated = useAppSelector(state => state.authentication.isAuthenticated);
-
-  const currentUser = useAppSelector(state => state.authentication.account);
-
-  const isCurrentUserPost = comments => {
-    if (isAdmin) {
-      return isAuthenticated;
-    }
-    return isAuthenticated && comments.user && comments.user.login === currentUser.login;
-  };
-
   useEffect(() => {
     dispatch(getEntities({}));
   }, []);
@@ -96,25 +82,6 @@ export const Comments = () => {
                           <Translate contentKey="entity.action.view">View</Translate>
                         </span>
                       </Button>
-
-                      {isCurrentUserPost(comments) && (
-                        <>
-                          <Button tag={Link} to={`/comments/${comments.id}/edit`} color="primary" size="sm" data-cy="entityEditButton">
-                            <FontAwesomeIcon icon="pencil-alt" />{' '}
-                            <span className="d-none d-md-inline">
-                              <Translate contentKey="entity.action.edit">Edit</Translate>
-                            </span>
-                          </Button>
-                          <Button tag={Link} to={`/comments/${comments.id}/delete`} color="danger" size="sm" data-cy="entityDeleteButton">
-                            <FontAwesomeIcon icon="trash" />{' '}
-                            <span className="d-none d-md-inline">
-                              <Translate contentKey="entity.action.delete">Delete</Translate>
-                            </span>
-                          </Button>
-                        </>
-                      )}
-
-                      {/*
                       <Button tag={Link} to={`/comments/${comments.id}/edit`} color="primary" size="sm" data-cy="entityEditButton">
                         <FontAwesomeIcon icon="pencil-alt" />{' '}
                         <span className="d-none d-md-inline">
@@ -127,7 +94,6 @@ export const Comments = () => {
                           <Translate contentKey="entity.action.delete">Delete</Translate>
                         </span>
                       </Button>
-                      */}
                     </div>
                   </td>
                 </tr>

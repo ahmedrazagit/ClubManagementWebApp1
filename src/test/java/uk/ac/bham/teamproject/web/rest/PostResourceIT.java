@@ -50,6 +50,14 @@ class PostResourceIT {
     private static final Instant DEFAULT_DATE = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_DATE = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
+    private static final byte[] DEFAULT_IMAGE = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_IMAGE = TestUtil.createByteArray(1, "1");
+    private static final String DEFAULT_IMAGE_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_IMAGE_CONTENT_TYPE = "image/png";
+
+    private static final Boolean DEFAULT_ANNONCEMENT = false;
+    private static final Boolean UPDATED_ANNONCEMENT = true;
+
     private static final String ENTITY_API_URL = "/api/posts";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -77,7 +85,13 @@ class PostResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Post createEntity(EntityManager em) {
-        Post post = new Post().title(DEFAULT_TITLE).content(DEFAULT_CONTENT).date(DEFAULT_DATE);
+        Post post = new Post()
+            .title(DEFAULT_TITLE)
+            .content(DEFAULT_CONTENT)
+            .date(DEFAULT_DATE)
+            .image(DEFAULT_IMAGE)
+            .imageContentType(DEFAULT_IMAGE_CONTENT_TYPE)
+            .annoncement(DEFAULT_ANNONCEMENT);
         return post;
     }
 
@@ -88,7 +102,13 @@ class PostResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Post createUpdatedEntity(EntityManager em) {
-        Post post = new Post().title(UPDATED_TITLE).content(UPDATED_CONTENT).date(UPDATED_DATE);
+        Post post = new Post()
+            .title(UPDATED_TITLE)
+            .content(UPDATED_CONTENT)
+            .date(UPDATED_DATE)
+            .image(UPDATED_IMAGE)
+            .imageContentType(UPDATED_IMAGE_CONTENT_TYPE)
+            .annoncement(UPDATED_ANNONCEMENT);
         return post;
     }
 
@@ -113,6 +133,9 @@ class PostResourceIT {
         assertThat(testPost.getTitle()).isEqualTo(DEFAULT_TITLE);
         assertThat(testPost.getContent()).isEqualTo(DEFAULT_CONTENT);
         assertThat(testPost.getDate()).isEqualTo(DEFAULT_DATE);
+        assertThat(testPost.getImage()).isEqualTo(DEFAULT_IMAGE);
+        assertThat(testPost.getImageContentType()).isEqualTo(DEFAULT_IMAGE_CONTENT_TYPE);
+        assertThat(testPost.getAnnoncement()).isEqualTo(DEFAULT_ANNONCEMENT);
     }
 
     @Test
@@ -181,7 +204,10 @@ class PostResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(post.getId().intValue())))
             .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)))
             .andExpect(jsonPath("$.[*].content").value(hasItem(DEFAULT_CONTENT.toString())))
-            .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())));
+            .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())))
+            .andExpect(jsonPath("$.[*].imageContentType").value(hasItem(DEFAULT_IMAGE_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].image").value(hasItem(Base64Utils.encodeToString(DEFAULT_IMAGE))))
+            .andExpect(jsonPath("$.[*].annoncement").value(hasItem(DEFAULT_ANNONCEMENT.booleanValue())));
     }
 
     @SuppressWarnings({ "unchecked" })
@@ -215,7 +241,10 @@ class PostResourceIT {
             .andExpect(jsonPath("$.id").value(post.getId().intValue()))
             .andExpect(jsonPath("$.title").value(DEFAULT_TITLE))
             .andExpect(jsonPath("$.content").value(DEFAULT_CONTENT.toString()))
-            .andExpect(jsonPath("$.date").value(DEFAULT_DATE.toString()));
+            .andExpect(jsonPath("$.date").value(DEFAULT_DATE.toString()))
+            .andExpect(jsonPath("$.imageContentType").value(DEFAULT_IMAGE_CONTENT_TYPE))
+            .andExpect(jsonPath("$.image").value(Base64Utils.encodeToString(DEFAULT_IMAGE)))
+            .andExpect(jsonPath("$.annoncement").value(DEFAULT_ANNONCEMENT.booleanValue()));
     }
 
     @Test
@@ -237,7 +266,13 @@ class PostResourceIT {
         Post updatedPost = postRepository.findById(post.getId()).get();
         // Disconnect from session so that the updates on updatedPost are not directly saved in db
         em.detach(updatedPost);
-        updatedPost.title(UPDATED_TITLE).content(UPDATED_CONTENT).date(UPDATED_DATE);
+        updatedPost
+            .title(UPDATED_TITLE)
+            .content(UPDATED_CONTENT)
+            .date(UPDATED_DATE)
+            .image(UPDATED_IMAGE)
+            .imageContentType(UPDATED_IMAGE_CONTENT_TYPE)
+            .annoncement(UPDATED_ANNONCEMENT);
 
         restPostMockMvc
             .perform(
@@ -254,6 +289,9 @@ class PostResourceIT {
         assertThat(testPost.getTitle()).isEqualTo(UPDATED_TITLE);
         assertThat(testPost.getContent()).isEqualTo(UPDATED_CONTENT);
         assertThat(testPost.getDate()).isEqualTo(UPDATED_DATE);
+        assertThat(testPost.getImage()).isEqualTo(UPDATED_IMAGE);
+        assertThat(testPost.getImageContentType()).isEqualTo(UPDATED_IMAGE_CONTENT_TYPE);
+        assertThat(testPost.getAnnoncement()).isEqualTo(UPDATED_ANNONCEMENT);
     }
 
     @Test
@@ -324,6 +362,8 @@ class PostResourceIT {
         Post partialUpdatedPost = new Post();
         partialUpdatedPost.setId(post.getId());
 
+        partialUpdatedPost.image(UPDATED_IMAGE).imageContentType(UPDATED_IMAGE_CONTENT_TYPE);
+
         restPostMockMvc
             .perform(
                 patch(ENTITY_API_URL_ID, partialUpdatedPost.getId())
@@ -339,6 +379,9 @@ class PostResourceIT {
         assertThat(testPost.getTitle()).isEqualTo(DEFAULT_TITLE);
         assertThat(testPost.getContent()).isEqualTo(DEFAULT_CONTENT);
         assertThat(testPost.getDate()).isEqualTo(DEFAULT_DATE);
+        assertThat(testPost.getImage()).isEqualTo(UPDATED_IMAGE);
+        assertThat(testPost.getImageContentType()).isEqualTo(UPDATED_IMAGE_CONTENT_TYPE);
+        assertThat(testPost.getAnnoncement()).isEqualTo(DEFAULT_ANNONCEMENT);
     }
 
     @Test
@@ -353,7 +396,13 @@ class PostResourceIT {
         Post partialUpdatedPost = new Post();
         partialUpdatedPost.setId(post.getId());
 
-        partialUpdatedPost.title(UPDATED_TITLE).content(UPDATED_CONTENT).date(UPDATED_DATE);
+        partialUpdatedPost
+            .title(UPDATED_TITLE)
+            .content(UPDATED_CONTENT)
+            .date(UPDATED_DATE)
+            .image(UPDATED_IMAGE)
+            .imageContentType(UPDATED_IMAGE_CONTENT_TYPE)
+            .annoncement(UPDATED_ANNONCEMENT);
 
         restPostMockMvc
             .perform(
@@ -370,6 +419,9 @@ class PostResourceIT {
         assertThat(testPost.getTitle()).isEqualTo(UPDATED_TITLE);
         assertThat(testPost.getContent()).isEqualTo(UPDATED_CONTENT);
         assertThat(testPost.getDate()).isEqualTo(UPDATED_DATE);
+        assertThat(testPost.getImage()).isEqualTo(UPDATED_IMAGE);
+        assertThat(testPost.getImageContentType()).isEqualTo(UPDATED_IMAGE_CONTENT_TYPE);
+        assertThat(testPost.getAnnoncement()).isEqualTo(UPDATED_ANNONCEMENT);
     }
 
     @Test

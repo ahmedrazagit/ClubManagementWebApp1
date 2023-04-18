@@ -2,6 +2,8 @@ entity Post {
     title String required minlength(10),
     content TextBlob required,
     date Instant required,
+    image ImageBlob,
+    annoncement Boolean,
 }
 entity Comments {
     comment TextBlob required

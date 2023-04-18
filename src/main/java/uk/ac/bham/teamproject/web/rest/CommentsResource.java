@@ -19,6 +19,7 @@ import tech.jhipster.web.util.ResponseUtil;
 import uk.ac.bham.teamproject.domain.Comments;
 import uk.ac.bham.teamproject.domain.User;
 import uk.ac.bham.teamproject.repository.CommentsRepository;
+import uk.ac.bham.teamproject.security.SecurityUtils;
 import uk.ac.bham.teamproject.service.UserService;
 import uk.ac.bham.teamproject.web.rest.errors.BadRequestAlertException;
 

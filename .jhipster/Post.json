@@ -21,6 +21,15 @@
       "fieldName": "date",
       "fieldType": "Instant",
       "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "image",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "annoncement",
+      "fieldType": "Boolean"
     }
   ],
   "fluentMethods": true,

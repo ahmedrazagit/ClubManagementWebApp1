@@ -6,7 +6,12 @@ export interface IPost {
   title?: string;
   content?: string;
   date?: string;
+  imageContentType?: string | null;
+  image?: string | null;
+  annoncement?: boolean | null;
   user?: IUser | null;
 }
 
-export const defaultValue: Readonly<IPost> = {};
+export const defaultValue: Readonly<IPost> = {
+  annoncement: false,
+};

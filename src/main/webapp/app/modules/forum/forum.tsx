@@ -4,7 +4,7 @@ import './forum.scss';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Button, Table } from 'reactstrap';
-import { byteSize, Translate, TextFormat, getSortState, ValidatedField, translate, ValidatedForm } from 'react-jhipster';
+import { byteSize, Translate, TextFormat, getSortState, ValidatedField, translate, ValidatedForm, openFile } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
@@ -229,6 +229,7 @@ export const Forum = () => {
   return (
     <div>
       <h1 style={{ textAlign: 'center' }}>Forum</h1>
+
       <div className="forum">
         <div className="input-group mb-3" style={{ marginRight: '5px' }}>
           <input
@@ -238,12 +239,6 @@ export const Forum = () => {
             value={searchText}
             onChange={e => setSearchText(e.target.value)}
           />
-          {/*<div className="input-group-append">
-            <button className="btn btn-outline-secondary" type="button">
-              Search
-            </button>
-          </div>
-          */}
 
           <Button className="btn btn-outline-secondary" color="info" onClick={handleSyncList} disabled={loading}>
             <FontAwesomeIcon icon="sync" spin={loading} />{' '}
@@ -277,12 +272,16 @@ export const Forum = () => {
                         <div className="card mb-4 forumcard">
                           <div className="card-header">
                             <div className="media flex-wrap w-100 align-items-center">
-                              <img src="https://i.imgur.com/iNmBizf.jpg" className="d-block ui-w-40 rounded-circle" alt="" />
-                              {/*<div className="media-body ml-3"><a href="#" data-abc="true">{post.user ? post.user.login : ''}</a>
-                                <div className="text-muted small">13 days ago</div>
-                              </div>*/}
-
-                              <div style={{ textAlign: 'center' }}>
+                              {post.annoncement ? (
+                                <button type="button" className="btn btn-outline-warning btn-sm">
+                                  Announcement
+                                </button>
+                              ) : (
+                                <button type="button" className="btn btn-outline-success btn-sm">
+                                  General Post
+                                </button>
+                              )}
+                              <div style={{ textAlign: 'center', fontSize: '20px' }}>
                                 <strong>{post.title}</strong>
                               </div>
 
@@ -298,7 +297,18 @@ export const Forum = () => {
                             </div>
                           </div>
                           <div className="card-body">
-                            <p>{post.content}</p>
+                            <p style={{ textAlign: 'center', margin: '4px' }}>{post.content}</p>
+                            {post.image ? (
+                              <div style={{ textAlign: 'center' }}>
+                                {post.imageContentType ? (
+                                  <img
+                                    src={`data:${post.imageContentType};base64,${post.image}`}
+                                    style={{ height: '300px', width: '300px' }}
+                                  />
+                                ) : null}
+                                <span>{/*{post.imageContentType}, {byteSize(post.image)}*/}</span>
+                              </div>
+                            ) : null}
                           </div>
                           <div className="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3">
                             <div className="px-4 pt-3">
@@ -386,15 +396,6 @@ export const Forum = () => {
                                           comment.post && comment.post.id === post.id ? (
                                             <div key={`entity-${i}`} data-cy="entityTableComment">
                                               <div className="col-md-8">
-                                                {/*<div className="text-left">
-                                                {comment.post && (
-                                                  <div className="text-left">
-                                                    <Link to={`/post/${comment.post.id}`}>{comment.post.title}</Link>
-                                                  </div>
-
-                                                )}
-                                              </div>
-                                              */}
                                                 <div className="card p-3 mb-2">
                                                   <div className="d-flex flex-row">
                                                     <div className="d-flex flex-column ms-2">
@@ -404,76 +405,37 @@ export const Forum = () => {
                                                   </div>
                                                   <div className="d-flex justify-content-between">
                                                     <div className="d-flex flex-row gap-3 align-items-center">
-                                                      <div className="d-flex align-items-center">
-                                                        <FaThumbsUp />
-                                                        <span className="ms-1 fs-10">Like</span>
-                                                      </div>
+                                                      {/*
+                      <div className="d-flex align-items-center">
+                        <FaThumbsUp />
+                        <span className="ms-1 fs-10">Like</span>
+                      </div>
+                      */}
                                                     </div>
-                                                    <div className="d-flex flex-row">
-                                                      <span className="text-muted fw-normal fs-10">May 22, 2020 12:10 PM</span>
-                                                    </div>
+                                                    {/*
+                    <div className="d-flex flex-row">
+                      <span className="text-muted fw-normal fs-10">May 22, 2020 12:10 PM</span>
+                    </div>
+                    */}
                                                   </div>
                                                 </div>
                                               </div>
                                             </div>
                                           ) : null
                                         )}
+                                        {commentsList.filter(comment => comment.post && comment.post.id === post.id).length === 0 && (
+                                          <div className="text-start">
+                                            <p>No Comments</p>
+                                          </div>
+                                        )}
                                       </div>
                                     ) : (
-                                      <p>No comments</p>
+                                      <p>No Comments</p>
                                     )}
                                   </div>
                                 )}
                               </div>
                             </div>
-
-                            {/*
-                            <div className="container mt-3 d-flex justify-content-start">
-
-                              <div className="row d-flex justify-content-start">
-                                <div className="col-md-8">
-                                  <div className="text-left">
-                                    <h6>All comment(5)</h6>
-                                  </div>
-
-                                  <div className="card p-3 mb-2">
-
-                                    <div className="d-flex flex-row">
-                                      <img src="https://i.imgur.com/dwiGgJr.jpg" height="40" width="40"
-                                           className="rounded-circle"/>
-                                        <div className="d-flex flex-column ms-2">
-                                          <h6 className="mb-1 text-primary">Emma</h6>
-                                          <p className="comment-text">Lorem ipsum dolor sit amet, consectetur adipiscing
-                                            elit. Sed lectus nibh, efficitur in bibendum id, pellentesque quis nibh. Ut
-                                            dictum facilisis dui, non faucibus dolor sit amet lorem auctor vitae. Class
-                                            aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
-                                            himenaeos. Quisque risus mauris</p>
-                                        </div>
-                                    </div>
-
-                                    <div className="d-flex justify-content-between">
-                                      <div className="d-flex flex-row gap-3 align-items-center">
-                                        <div className="d-flex align-items-center">
-                                          <i className="fa fa-heart-o"></i>
-                                          <span className="ms-1 fs-10">Like</span>
-                                        </div>
-
-                                        <div className="d-flex align-items-center">
-                                          <i className="fa fa-comment-o"></i>
-                                          <span className="ms-1 fs-10">Comments</span>
-                                        </div>
-                                      </div>
-
-                                      <div className="d-flex flex-row">
-                                        <span className="text-muted fw-normal fs-10">May 22,2020 12:10 PM</span>
-                                      </div>
-                                    </div>
-
-                                  </div>
-                                  </div>
-                              </div>
-                            </div>
-                            */}
                           </div>
                         </div>
                       </div>

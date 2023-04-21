@@ -18,7 +18,7 @@ const Footer = () => (
         otherwise) into the system. The assignment runs until May 31st 2023, at which time the server and all associated data will be
         destroyed.
       </p>
-      <a href="/gdpr">GDPR</a>
+      <a href="/gdpr">Privacy Policy</a>
     </p>
   </div>
 );

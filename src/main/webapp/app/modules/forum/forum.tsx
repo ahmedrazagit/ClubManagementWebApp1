@@ -51,14 +51,14 @@ export const Forum = () => {
 
   //Added by KB
 
-  //const isAdmin = useAppSelector(state => state.authentication.account.authorities.includes('ROLE_ADMIN'));
+  //const isAdmin = useAppSelector(state => state.authentication.account && state.authentication.account.authorities.includes('ROLE_ADMIN'));
 
   const isAuthenticated = useAppSelector(state => state.authentication.isAuthenticated);
 
   const currentUser = useAppSelector(state => state.authentication.account);
 
   const isCurrentUserPost = post => {
-    return isAuthenticated && post.user && post.user.login === currentUser.login;
+    return (isAuthenticated && post.user && post.user.login === currentUser.login) || currentUser.authorities.includes('ROLE_ADMIN');
   };
 
   const getAllEntities = () => {

@@ -4,8 +4,11 @@ import React from 'react';
 import { Translate } from 'react-jhipster';
 import { Col, Row } from 'reactstrap';
 
+import UserWayWidget from 'app/shared/layout/footer/accessibilitywidget';
+
 const Footer = () => (
   <div className="text-center" style={{ fontSize: '10px' }}>
+    <UserWayWidget />
     <p>
       {/*
             <Translate contentKey="footer">Your footer</Translate>
@@ -18,7 +21,7 @@ const Footer = () => (
         otherwise) into the system. The assignment runs until May 31st 2023, at which time the server and all associated data will be
         destroyed.
       </p>
-      <a href="/gdpr">GDPR</a>
+      <a href="/gdpr">Privacy Policy</a>
     </p>
   </div>
 );

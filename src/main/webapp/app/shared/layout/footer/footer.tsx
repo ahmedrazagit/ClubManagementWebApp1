@@ -4,8 +4,11 @@ import React from 'react';
 import { Translate } from 'react-jhipster';
 import { Col, Row } from 'reactstrap';
 
+import UserWayWidget from 'app/shared/layout/footer/accessibilitywidget';
+
 const Footer = () => (
   <div className="text-center" style={{ fontSize: '10px' }}>
+    <UserWayWidget />
     <p>
       {/*
             <Translate contentKey="footer">Your footer</Translate>

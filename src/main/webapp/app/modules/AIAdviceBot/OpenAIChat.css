@@ -1,0 +1,60 @@
+.openai-chat {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.chatbox {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 20px;
+  background-color: #f5f5f5;
+  min-height: 400px;
+  overflow-y: auto;
+}
+
+.message {
+  margin-bottom: 10px;
+}
+
+.message.user {
+  color: #1f7a8c;
+}
+
+.message.gpt-3 {
+  color: #7a1f1f;
+}
+
+.input-form {
+  display: flex;
+  margin-top: 20px;
+}
+
+.input-field {
+  flex-grow: 1;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  margin-right: 10px;
+}
+
+.send-button {
+  padding: 8px 12px;
+  background-color: #1f7a8c;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+}
+
+.send-button:hover {
+  background-color: #226a7a;
+}

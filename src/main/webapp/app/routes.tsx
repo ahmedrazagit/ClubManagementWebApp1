@@ -24,6 +24,7 @@ import PrivateRoute from 'app/shared/auth/private-route';
 import ErrorBoundaryRoutes from 'app/shared/error/error-boundary-routes';
 import PageNotFound from 'app/shared/error/page-not-found';
 import { AUTHORITIES } from 'app/config/constants';
+import AIAdviceBotPage from 'app/modules/AIAdviceBot/AIAdviceBotPage';
 
 const loading = <div>loading ...</div>;
 
@@ -59,7 +60,7 @@ const AppRoutes = () => {
         <Route path="forum" element={<Forum />} />
         <Route path="universities" element={<Universities />} />
         <Route path="chatbot" element={<Chatbotty />} />
-        <Route path="OpenAIChatBox" element={<OpenAIChat />} />
+        <Route path="OpenAIChatBox" element={<AIAdviceBotPage />} />
         <Route path="account">
           <Route
             path="*"

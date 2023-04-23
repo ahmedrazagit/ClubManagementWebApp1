@@ -17,7 +17,7 @@ import Messages from 'app/modules/messages/messages';
 import Forum from 'app/modules/forum/forum';
 import Universities from 'app/modules/universities/universities';
 import ViewEvents from 'app/modules/view-events/view-events';
-
+import OpenAIChat from 'app/modules/AIAdviceBot/OpenAIChatBox';
 import Chatbotty from 'app/modules/chatbot/Chatbotty';
 
 import PrivateRoute from 'app/shared/auth/private-route';
@@ -59,6 +59,7 @@ const AppRoutes = () => {
         <Route path="forum" element={<Forum />} />
         <Route path="universities" element={<Universities />} />
         <Route path="chatbot" element={<Chatbotty />} />
+        <Route path="OpenAIChatBox" element={<OpenAIChat />} />
         <Route path="account">
           <Route
             path="*"

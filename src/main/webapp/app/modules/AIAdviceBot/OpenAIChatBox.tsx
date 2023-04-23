@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import './OpenAIChat.css';
 interface ChatMessage {
   id: string;
   user: 'user' | 'gpt-3';

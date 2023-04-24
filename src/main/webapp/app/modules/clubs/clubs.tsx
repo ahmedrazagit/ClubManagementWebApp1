@@ -179,6 +179,7 @@ const Clubs = () => {
               {/* Add other details as needed */}
             </div>
           )}
+          -
         </div>
       </div>
     </div>

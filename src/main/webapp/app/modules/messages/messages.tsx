@@ -1,14 +1,10 @@
 import React, { useEffect } from 'react';
 
-export const Messages = () => {
-  useEffect(() => {
-    document.title = 'Messages';
-  }, []);
-
+function Messages() {
   return (
     <div>
-      <h1 style={{ textAlign: 'left' }}>Messages</h1>
+      <iframe src="https://deadsimplechat.com/8EKgMwNNIG" width="100%" height="600px"></iframe>
     </div>
   );
-};
+}
 export default Messages;

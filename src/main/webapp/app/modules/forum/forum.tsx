@@ -26,6 +26,7 @@ import { IUser } from 'app/shared/model/user.model';
 import { getUsers } from 'app/modules/administration/user-management/user-management.reducer';
 import { IComments } from 'app/shared/model/comments.model';
 import { updateEntity, createEntity, reset as commentreset } from 'app/entities/comments/comments.reducer';
+import { v4 as uuidv4 } from 'uuid';
 
 export const Forum = () => {
   useEffect(() => {
@@ -169,7 +170,7 @@ export const Forum = () => {
 
   useEffect(() => {
     if (isNew) {
-      dispatch(reset());
+      dispatch(commentreset());
     } else {
       dispatch(getEntity(id));
     }
@@ -184,7 +185,8 @@ export const Forum = () => {
     }
   }, [updateCommentSuccess]);
 
-  const saveEntity = values => {
+  {
+    /*const saveEntity = values => {
     const entity = {
       ...commentsEntity,
       ...values,
@@ -196,6 +198,27 @@ export const Forum = () => {
       dispatch(createEntity(entity));
     } else {
       dispatch(updateEntity(entity));
+    }
+  };
+  */
+  }
+
+  const saveEntity = values => {
+    const entity = {
+      ...commentsEntity,
+      ...values,
+      post: posts.find(it => it.id.toString() === values.post.toString()),
+      user: users.find(it => it.id.toString() === values.user.toString()),
+    };
+
+    if (isNew) {
+      dispatch(createEntity(entity)).then(() => {
+        window.location.reload();
+      });
+    } else {
+      dispatch(updateEntity(entity)).then(() => {
+        window.location.reload();
+      });
     }
   };
 
@@ -370,10 +393,10 @@ export const Forum = () => {
                                     }}
                                   />
                                   <ValidatedField style={{ display: 'none' }} id="comments-post" name="post" data-cy="post" type="select">
-                                    <option value={post.id} key="0" />
+                                    <option value={post.id} />
                                   </ValidatedField>
                                   <ValidatedField style={{ display: 'none' }} id="comments-user" name="user" data-cy="user" type="select">
-                                    <option value="" key="0" />
+                                    <option value="" />
                                   </ValidatedField>
                                   &nbsp; &nbsp;
                                   <Button

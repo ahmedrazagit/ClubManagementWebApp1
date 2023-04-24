@@ -1,0 +1,71 @@
+// Define the University entity
+entity University {
+    university_id Long,
+    name String unique,
+    uni_location String,
+    uni_desc String,
+    uni_email String unique,
+    uni_phone_no String unique,
+}
+
+// Define the Student entity
+entity Student {
+    id Long required unique,
+    name String required unique,
+    email String required unique
+}
+
+// Define the Club entity
+entity Club {
+    club_id Long,
+    name String,
+    description String,
+    uni_name String,
+}
+
+// Define the UniversityUser entity
+entity UniversityUser {
+    id Long,
+    username String,
+    password String,
+    email String,
+    university_name String
+}
+
+// Define the relationships between entities
+relationship OneToOne {
+    // One student can have one university user account
+    UniversityUser{student(name)} to Student
+}
+
+relationship ManyToOne {
+    // Many clubs can belong to one university
+    Club{university(uni_name)} to University
+    // Many students can belong to one university
+    Student{university(uni_name)} to University
+    // Many university users can belong to one university
+    UniversityUser{university(uni_name)} to University
+}
+
+relationship ManyToMany {
+    // Each club can have many students, and each student can belong to many clubs
+    Club{members} to Student{clubs}
+}
+
+// Define the unique constraints
+// Each university has a unique name
+//constraint uniqueUniversityName {
+//name unique
+//}
+
+// Each university user has a unique email
+//constraint uniqueUniversityUserEmail {
+//email unique,
+//university_name unique
+//}
+
+// Each student has a unique email
+//constraint uniqueStudentEmail {
+//email unique
+//}
+

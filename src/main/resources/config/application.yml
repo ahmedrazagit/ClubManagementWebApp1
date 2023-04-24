@@ -201,7 +201,7 @@ jhipster:
     license-url:
   security:
     content-security-policy: "default-src 'self';
-      frame-src 'self' data: https://cdn.userway.org/;
+      frame-src 'self' data: https://cdn.userway.org/ deadsimplechat.com;
       script-src 'self' 'unsafe-inline' 'unsafe-eval' https://storage.googleapis.com https://cdn.userway.org;
       style-src 'self' 'unsafe-inline' https://fonts.googleapis.com/css?family=DM+Sans https://cdn.userway.org;
       img-src 'self' data: https://cdn.userway.org/; font-src 'self' https://fonts.gstatic.com data:;

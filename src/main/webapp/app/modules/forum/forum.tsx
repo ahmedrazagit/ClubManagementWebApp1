@@ -341,12 +341,12 @@ export const Forum = () => {
                           <div className="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3">
                             <div className="px-4 pt-3">
                               <div className="btn-group flex-btn-group-container ml-auto">
-                                <Button tag={Link} to={`/post/${post.id}`} color="info" size="sm" data-cy="entityDetailsButton">
+                                {/*<Button tag={Link} to={`/post/${post.id}`} color="info" size="sm" data-cy="entityDetailsButton">
                                   <FontAwesomeIcon icon="eye" />{' '}
                                   <span className="d-none d-md-inline">
                                     <Translate contentKey="entity.action.view">View</Translate>
                                   </span>
-                                </Button>
+                                </Button>*/}
                                 {isCurrentUserPost(post) && (
                                   <>
                                     <Button tag={Link} to={`/post/${post.id}/edit`} color="primary" size="sm" data-cy="entityEditButton">
@@ -416,6 +416,24 @@ export const Forum = () => {
                                   </Button>
                                 </ValidatedForm>
 
+                                {/*
+                                            <div className="col-md-8">
+                                                <div className="card p-3 mb-2">
+                                                  <div className="d-flex flex-row">
+                                                    <div className="d-flex flex-column ms-2">
+                                                      <h6 className="mb-1 text-primary">{comment.user ? comment.user.login : ''}</h6>
+                                                      <p className="comment-text">{comment.comment}</p>
+                                                    </div>
+                                                  </div>
+                                                  <div className="d-flex justify-content-between">
+                                                    <div className="d-flex flex-row gap-3 align-items-center">
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                            */}
+
                                 {post && showComments[post.id] && (
                                   <div className="table-responsive-comment text-end">
                                     {commentsList && commentsList.length > 0 ? (
@@ -432,20 +450,39 @@ export const Forum = () => {
                                                     </div>
                                                   </div>
                                                   <div className="d-flex justify-content-between">
-                                                    <div className="d-flex flex-row gap-3 align-items-center">
-                                                      {/*
-                      <div className="d-flex align-items-center">
-                        <FaThumbsUp />
-                        <span className="ms-1 fs-10">Like</span>
-                      </div>
-                      */}
-                                                    </div>
-                                                    {/*
-                    <div className="d-flex flex-row">
-                      <span className="text-muted fw-normal fs-10">May 22, 2020 12:10 PM</span>
-                    </div>
-                    */}
+                                                    <div className="d-flex flex-row gap-3 align-items-center"></div>
                                                   </div>
+                                                  {isCurrentUserComment(comment) && (
+                                                    <>
+                                                      <div style={{ display: 'flex', gap: '8px', justifyContent: 'center' }}>
+                                                        <Button
+                                                          tag={Link}
+                                                          to={`/comments/${comment.id}/edit`}
+                                                          color="primary"
+                                                          style={{ fontSize: '12px', padding: '4px 8px' }}
+                                                          data-cy="entityEditButton"
+                                                        >
+                                                          <FontAwesomeIcon icon="pencil-alt" />{' '}
+                                                          <span className="d-none d-md-inline">
+                                                            <Translate contentKey="entity.action.edit">Edit</Translate>
+                                                          </span>
+                                                        </Button>
+
+                                                        <Button
+                                                          tag={Link}
+                                                          to={`/comments/${comment.id}/delete`}
+                                                          color="danger"
+                                                          style={{ fontSize: '12px', padding: '4px 8px' }}
+                                                          data-cy="entityDeleteButton"
+                                                        >
+                                                          <FontAwesomeIcon icon="trash" />{' '}
+                                                          <span className="d-none d-md-inline">
+                                                            <Translate contentKey="entity.action.delete">Delete</Translate>
+                                                          </span>
+                                                        </Button>
+                                                      </div>
+                                                    </>
+                                                  )}
                                                 </div>
                                               </div>
                                             </div>

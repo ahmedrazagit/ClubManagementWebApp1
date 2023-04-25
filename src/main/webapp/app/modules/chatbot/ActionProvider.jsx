@@ -13,7 +13,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 
   const handleButton = () => {
     const botMessage = createChatBotMessage(
-      "Here's ur buttons",
+      "Here are the links to each page:",
       {
         widget: 'MyButton',
       }
@@ -24,6 +24,8 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
       messages: [...prev.messages, botMessage],
     }));
   };
+
+
 
 
 

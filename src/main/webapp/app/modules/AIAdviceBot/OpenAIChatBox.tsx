@@ -7,7 +7,7 @@ interface ChatMessage {
   content: string;
 }
 const apiKey = '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';
-const OpenAIChat: React.FC = () => {
+const OpenAIChat = () => {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState('');
 

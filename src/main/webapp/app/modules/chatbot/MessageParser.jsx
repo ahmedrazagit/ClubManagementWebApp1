@@ -11,6 +11,19 @@ const MessageParser = ({ children, actions }) => {
       return;
     }
 
+    /*if (message.includes('')) {
+      actions.handleButton();
+    }*/
+
+    /*if (message.toLowerCase().includes('show pages')) {
+      actions.handleButton();
+    }*/
+    if (/show\s+pages/i.test(message)) {
+      actions.handleButton();
+    }
+
+
+
 
   };
 

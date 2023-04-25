@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Button, Row, Col, FormText } from 'reactstrap';
 import { isNumber, Translate, translate, ValidatedField, ValidatedForm, ValidatedBlobField } from 'react-jhipster';
@@ -61,6 +61,28 @@ export const PostUpdate = () => {
     }
   };
 
+  function padTo2Digits(num: number) {
+    return num.toString().padStart(2, '0');
+  }
+
+  function formatDate(date: Date) {
+    return (
+      [date.getFullYear(), padTo2Digits(date.getMonth() + 1), padTo2Digits(date.getDate())].join('-') +
+      'T' +
+      [padTo2Digits(date.getHours()), padTo2Digits(date.getMinutes()), padTo2Digits(date.getSeconds())].join(':')
+    );
+  }
+
+  const fieldRef = useRef(null);
+
+  useEffect(() => {
+    if (fieldRef.current) {
+      fieldRef.current.focus();
+    }
+  }, []);
+
+  const [date, setDate] = useState(formatDate(new Date()));
+
   const defaultValues = () =>
     isNew
       ? {
@@ -118,13 +140,23 @@ export const PostUpdate = () => {
                   required: { value: true, message: translate('entity.validation.required') },
                 }}
               />
-              <ValidatedField
+              {/*<ValidatedField
                 label={translate('teamprojectApp.post.date')}
                 id="post-date"
                 name="date"
                 data-cy="date"
                 type="datetime-local"
                 placeholder="YYYY-MM-DD HH:mm"
+                validate={{
+                  required: { value: true, message: translate('entity.validation.required') },
+                }}
+              />*/}
+              <ValidatedField
+                label={translate('teamprojectApp.post.date')}
+                id="post-date"
+                name="date"
+                value={formatDate(new Date())} // pre-fill with current date and time
+                disabled // prevent user input
                 validate={{
                   required: { value: true, message: translate('entity.validation.required') },
                 }}

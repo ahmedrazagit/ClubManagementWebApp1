@@ -1,0 +1,54 @@
+{
+  "changelogDate": "20230426095537",
+  "dto": "no",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength"],
+      "fieldValidateRulesMinlength": "3"
+    },
+    {
+      "fieldName": "nickname",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "role",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "studentId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "gender",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "birthday",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "clubs",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "uni",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "balance",
+      "fieldType": "Long"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "UniversityUser",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

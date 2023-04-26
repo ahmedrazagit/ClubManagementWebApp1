@@ -14,6 +14,17 @@
 
     <repositories>
         <!-- jhipster-needle-maven-repository -->
+        <repository>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+
+        </repository>
     </repositories>
 
     <pluginRepositories>
@@ -295,6 +306,11 @@
             <artifactId>metrics-core</artifactId>
         </dependency>
         <!-- jhipster-needle-maven-add-dependency -->
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>3.3.2</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -915,6 +931,7 @@
                     <groupId>com.h2database</groupId>
                     <artifactId>h2</artifactId>
                 </dependency>
+
             </dependencies>
             <build>
                 <plugins>
@@ -988,8 +1005,9 @@
                                 <dependency>
                                     <groupId>org.liquibase.ext</groupId>
                                     <artifactId>liquibase-hibernate5</artifactId>
-                                    <version>${liquibase-hibernate5.version}</version>
+                                    <version>4.15.0</version>
                                 </dependency>
+
                                 <dependency>
                                     <groupId>org.springframework.boot</groupId>
                                     <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -1018,14 +1036,18 @@
             <id>prod</id>
             <dependencies>
                 <dependency>
-                    <groupId>org.testcontainers</groupId>
-                    <artifactId>postgresql</artifactId>
+                    <groupId>mysql</groupId>
+                    <artifactId>mysql-connector-java</artifactId>
+                    <version>8.0.32</version>
                     <scope>test</scope>
                 </dependency>
                 <dependency>
-                    <groupId>org.postgresql</groupId>
-                    <artifactId>postgresql</artifactId>
+                    <groupId>mysql</groupId>
+                    <artifactId>mysql-connector-java</artifactId>
+                    <version>8.0.32</version>
                 </dependency>
+
+
             </dependencies>
             <build>
                 <pluginManagement>
@@ -1087,7 +1109,7 @@
                                 <dependency>
                                     <groupId>org.liquibase.ext</groupId>
                                     <artifactId>liquibase-hibernate5</artifactId>
-                                    <version>${liquibase-hibernate5.version}</version>
+                                    <version>4.15.0</version>
                                 </dependency>
                                 <dependency>
                                     <groupId>org.springframework.boot</groupId>
@@ -1195,6 +1217,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-war-plugin</artifactId>
+                        <version>3.3.2</version>
                     </plugin>
                 </plugins>
             </build>

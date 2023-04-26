@@ -12,6 +12,8 @@
         "extendEvent": "Extend Event",
         "clubs": "Clubs",
         "post": "Post",
+        "universityUser": "University User",
+        "uniUser": "Uni User",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

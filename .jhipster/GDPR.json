@@ -5,5 +5,6 @@
   "pagination": "infinite-scroll",
   "readOnly": true,
   "relationships": [],
-  "service": "no"
+  "service": "no",
+  "skipUiGrouping": true
 }

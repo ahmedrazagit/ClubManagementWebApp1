@@ -134,39 +134,6 @@ export const Forum = () => {
     resetAll();
   };
 
-  //SearchBar and Comment button
-
-  {
-    /*const [searchText, setSearchText] = useState('');
-  const [filteredPosts, setFilteredPosts] = useState(postList);
-
-  useEffect(() => {
-    setFilteredPosts(postList.filter(post => post.title.toLowerCase().includes(searchText.toLowerCase())));
-  }, [postList, searchText]);
-  */
-  }
-  const [searchText, setSearchText] = useState('');
-  const [isAnnouncement, setIsAnnouncement] = useState(false);
-  const [filteredPosts, setFilteredPosts] = useState(postList);
-
-  useEffect(() => {
-    setFilteredPosts(
-      postList.filter(post => {
-        const titleMatch = post.title.toLowerCase().includes(searchText.toLowerCase());
-        const announcementMatch = isAnnouncement ? post.announcement : true;
-        return titleMatch && announcementMatch;
-      })
-    );
-  }, [postList, searchText, isAnnouncement]);
-
-  const handleFilter = value => {
-    if (value === 'announcement') {
-      setIsAnnouncement(true);
-    } else if (value === 'non-announcement') {
-      setIsAnnouncement(false);
-    }
-  };
-
   const entityTable = document.querySelector('[data-cy="entityTable"]');
 
   const [showComments, setShowComments] = useState({});
@@ -281,6 +248,46 @@ export const Forum = () => {
 
   //End of Comments code
 
+  //SearchBar and Comment button
+
+  {
+    /*const [searchText, setSearchText] = useState('');
+  const [filteredPosts, setFilteredPosts] = useState(postList);
+
+  useEffect(() => {
+    setFilteredPosts(postList.filter(post => post.title.toLowerCase().includes(searchText.toLowerCase())));
+  }, [postList, searchText]);
+  */
+  }
+
+  const [showAnnouncements, setShowAnnouncements] = useState(false);
+
+  const handleFilter = filter => {
+    if (filter === 'Announcements') {
+      setShowAnnouncements(true);
+    } else {
+      setShowAnnouncements(false);
+    }
+  };
+
+  const [searchText, setSearchText] = useState('');
+  const [filteredPosts, setFilteredPosts] = useState(postList);
+
+  useEffect(() => {
+    setFilteredPosts(postList.filter(post => post.title.toLowerCase().includes(searchText.toLowerCase())));
+  }, [postList, searchText]);
+
+  // Announcements filter
+  const [filterAnnouncements, setFilterAnnouncement] = useState('all');
+
+  const filteredAnnouncements = posts.filter(post =>
+    filterAnnouncements === 'all' ? true : post.announcement === (filterAnnouncements === 'announcement')
+  );
+
+  // Combined filter
+  const filteredData = showAnnouncements ? filteredAnnouncements : filteredPosts;
+  //End of Announcements filter
+
   return (
     <div>
       <h1 style={{ textAlign: 'center' }}>Forum</h1>
@@ -295,12 +302,10 @@ export const Forum = () => {
             onChange={e => setSearchText(e.target.value)}
           />
 
-          {/*
           <Button className="btn btn-outline-secondary" color="info" onClick={handleSyncList} disabled={loading}>
             <FontAwesomeIcon icon="sync" spin={loading} />{' '}
             <Translate contentKey="teamprojectApp.post.home.refreshListLabel">Refresh List</Translate>
           </Button>
-          */}
 
           {/*
           <div className="btn-group">
@@ -317,10 +322,34 @@ export const Forum = () => {
           </div>
           */}
 
-          <DropdownButton id="dropdown-basic-button" title="Filter">
-            <Dropdown.Item onClick={() => handleFilter('all')}>All posts</Dropdown.Item>
-            <Dropdown.Item onClick={() => handleFilter('announcement')}>Announcements only</Dropdown.Item>
-            <Dropdown.Item onClick={() => handleFilter('non-announcement')}>Non-announcement posts only</Dropdown.Item>
+          <DropdownButton title="Filter posts">
+            <Dropdown.Item
+              active={filterAnnouncements === 'all'}
+              onClick={() => {
+                setFilterAnnouncement('all');
+                handleFilter('All Posts');
+              }}
+            >
+              All posts
+            </Dropdown.Item>
+            <Dropdown.Item
+              active={filterAnnouncements === 'announcement'}
+              onClick={() => {
+                setFilterAnnouncement('announcement');
+                handleFilter('Announcements');
+              }}
+            >
+              Announcements
+            </Dropdown.Item>
+            <Dropdown.Item
+              active={filterAnnouncements === 'general'}
+              onClick={() => {
+                setFilterAnnouncement('general');
+                handleFilter('General Posts');
+              }}
+            >
+              General posts
+            </Dropdown.Item>
           </DropdownButton>
 
           <Link to="/post/new" className="btn btn-primary jh-create-entity" id="jh-create-entity" data-cy="entityCreateButton">
@@ -331,14 +360,14 @@ export const Forum = () => {
         </div>
 
         <InfiniteScroll
-          dataLength={filteredPosts ? filteredPosts.length : 0}
+          dataLength={filteredData ? filteredData.length : 0}
           next={handleLoadMore}
           hasMore={paginationState.activePage - 1 < links.next}
           loader={<div className="loader">Loading ...</div>}
         >
-          {filteredPosts && filteredPosts.length > 0 ? (
+          {filteredData && filteredData.length > 0 ? (
             <>
-              {filteredPosts.map((post, i) => (
+              {filteredData.map((post, i) => (
                 <div
                   key={`entity-${i}`}
                   data-cy="entityTable"

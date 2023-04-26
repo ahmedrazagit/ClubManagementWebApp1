@@ -21,6 +21,9 @@ import { FaComments, FaThumbsUp, FaUsers } from 'react-icons/fa';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
 import { mapIdList } from 'app/shared/util/entity-utils';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Dropdown, DropdownButton } from 'react-bootstrap';
+
 import { getEntities as getPosts } from 'app/entities/post/post.reducer';
 import { IUser } from 'app/shared/model/user.model';
 import { getUsers } from 'app/modules/administration/user-management/user-management.reducer';
@@ -133,12 +136,36 @@ export const Forum = () => {
 
   //SearchBar and Comment button
 
-  const [searchText, setSearchText] = useState('');
+  {
+    /*const [searchText, setSearchText] = useState('');
   const [filteredPosts, setFilteredPosts] = useState(postList);
 
   useEffect(() => {
     setFilteredPosts(postList.filter(post => post.title.toLowerCase().includes(searchText.toLowerCase())));
   }, [postList, searchText]);
+  */
+  }
+  const [searchText, setSearchText] = useState('');
+  const [isAnnouncement, setIsAnnouncement] = useState(false);
+  const [filteredPosts, setFilteredPosts] = useState(postList);
+
+  useEffect(() => {
+    setFilteredPosts(
+      postList.filter(post => {
+        const titleMatch = post.title.toLowerCase().includes(searchText.toLowerCase());
+        const announcementMatch = isAnnouncement ? post.announcement : true;
+        return titleMatch && announcementMatch;
+      })
+    );
+  }, [postList, searchText, isAnnouncement]);
+
+  const handleFilter = value => {
+    if (value === 'announcement') {
+      setIsAnnouncement(true);
+    } else if (value === 'non-announcement') {
+      setIsAnnouncement(false);
+    }
+  };
 
   const entityTable = document.querySelector('[data-cy="entityTable"]');
 
@@ -259,7 +286,7 @@ export const Forum = () => {
       <h1 style={{ textAlign: 'center' }}>Forum</h1>
 
       <div className="forum">
-        <div className="input-group mb-3" style={{ marginRight: '5px' }}>
+        <div className="input-group mb-3" style={{ margin: '5px' }}>
           <input
             type="text"
             className="form-control"
@@ -268,16 +295,41 @@ export const Forum = () => {
             onChange={e => setSearchText(e.target.value)}
           />
 
+          {/*
           <Button className="btn btn-outline-secondary" color="info" onClick={handleSyncList} disabled={loading}>
             <FontAwesomeIcon icon="sync" spin={loading} />{' '}
             <Translate contentKey="teamprojectApp.post.home.refreshListLabel">Refresh List</Translate>
           </Button>
+          */}
+
+          {/*
+          <div className="btn-group">
+            <button type="button" className="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              Action
+            </button>
+            <ul className = "dropdown-menu">
+              <li><a className ="dropdown-item" href="#">Action</a></li>
+              <li><a className ="dropdown-item" href="#">Another action</a></li>
+              <li><a className="dropdown-item" href="#">Something else here</a></li>
+              <li><hr className ="dropdown-divider" /></li>
+              <li><a className ="dropdown-item" href="#">Separated link</a></li>
+            </ul>
+          </div>
+          */}
+
+          <DropdownButton id="dropdown-basic-button" title="Filter">
+            <Dropdown.Item onClick={() => handleFilter('all')}>All posts</Dropdown.Item>
+            <Dropdown.Item onClick={() => handleFilter('announcement')}>Announcements only</Dropdown.Item>
+            <Dropdown.Item onClick={() => handleFilter('non-announcement')}>Non-announcement posts only</Dropdown.Item>
+          </DropdownButton>
+
           <Link to="/post/new" className="btn btn-primary jh-create-entity" id="jh-create-entity" data-cy="entityCreateButton">
             <FontAwesomeIcon icon="plus" />
             &nbsp;
             <Translate contentKey="teamprojectApp.post.home.createLabel">Create new Post</Translate>
           </Link>
         </div>
+
         <InfiniteScroll
           dataLength={filteredPosts ? filteredPosts.length : 0}
           next={handleLoadMore}

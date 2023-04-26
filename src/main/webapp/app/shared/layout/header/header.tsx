@@ -71,7 +71,7 @@ const Header = (props: IHeaderProps) => {
                 <div className="text-muted small fw-bold text-uppercase px-3">CORE</div>
               </li>
               <li>
-                <a href="/event" className="nav-link px-3 active">
+                <a href="/events-page" className="nav-link px-3 active">
                   {/*<span className="me-2"><i className="bi bi-speedometer2"></i></span>*/}
                   <span className="me-2">
                     <FaUsers />

@@ -53,13 +53,13 @@ const AppRoutes = () => {
         <Route path="gdpr/*" element={<GDPR />} />
         <Route path="login" element={<Login />} />
         <Route path="logout" element={<Logout />} />
-        <Route path="view-events" element={<ViewEvents />} />
+        <Route path="events-page" element={<ViewEvents />} />
         <Route path="clubs" element={<Clubs />} />
         <Route path="announcements" element={<Announcements />} />
         <Route path="messages" element={<Messages />} />
         <Route path="forum" element={<Forum />} />
         <Route path="universities" element={<Universities />} />
-        <Route path="chatbot" element={<Chatbotty />} />
+        {/*<Route path="chatbot" element={<Chatbotty />} />*/}
         <Route path="OpenAIChatBox" element={<AIAdviceBotPage />} />
         <Route path="account">
           <Route

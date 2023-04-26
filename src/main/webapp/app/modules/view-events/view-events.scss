@@ -1,0 +1,110 @@
+$primary-color: #3498db;
+$secondary-color: #2c3e50;
+$border-color: #dcdcdc;
+$background-color: #f2f2f2;
+
+.search-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid $border-color;
+
+  input[type='text'] {
+    width: 60%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+    transition: border-color 0.2s ease-in-out;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+    }
+  }
+
+  select {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+    background-color: white;
+    transition: border-color 0.2s ease-in-out;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+    }
+  }
+}
+
+.announcement-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+
+  a {
+    text-decoration: none;
+    color: $secondary-color;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    .announcement-box {
+      background-color: $primary-color;
+      padding: 20px;
+      border-radius: 4px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      transition: box-shadow 0.2s ease-in-out;
+
+      h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+        color: white;
+      }
+
+      p {
+        font-size: 16px;
+        color: white;
+        opacity: 0.8;
+      }
+
+      &:hover {
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      }
+    }
+  }
+}
+
+h1 {
+  font-size: 32px;
+  color: $secondary-color;
+  padding: 20px;
+  margin-bottom: 0;
+  border-bottom: 1px solid $border-color;
+  text-align: left;
+}
+
+/* Additional styles for color gradient effect */
+.announcement-list a:nth-child(1) .announcement-box {
+  background: linear-gradient(to right, #ff416c, #ff4b2b);
+}
+
+.announcement-list a:nth-child(2) .announcement-box {
+  background: linear-gradient(to right, #1e3c72, #2a5298);
+}
+
+.announcement-list a:nth-child(3) .announcement-box {
+  background: linear-gradient(to right, #00b4db, #0083b0);
+}
+
+.announcement-list a:nth-child(4) .announcement-box {
+  background: linear-gradient(to right, #c33764, #1d2671);
+}
+
+.announcement-list a:nth-child(5) .announcement-box {
+  background: linear-gradient(to right, #e44d26, #f16529);
+}

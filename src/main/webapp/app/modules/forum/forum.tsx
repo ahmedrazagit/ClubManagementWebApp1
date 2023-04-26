@@ -360,7 +360,7 @@ export const Forum = () => {
         </div>
 
         <InfiniteScroll
-          dataLength={filteredData ? filteredData.length : 0}
+          dataLength={filterAnnouncements ? filteredAnnouncements.length : 0}
           next={handleLoadMore}
           hasMore={paginationState.activePage - 1 < links.next}
           loader={<div className="loader">Loading ...</div>}

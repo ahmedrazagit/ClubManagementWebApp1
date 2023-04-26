@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './OpenAIChat.css';
+
 interface ChatMessage {
   id: string;
-  user: 'user' | 'gpt-3';
+  user: 'User' | 'ClubPing bot';
   content: string;
 }
+
 const apiKey = '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';
-const OpenAIChat = () => {
+
+const OpenAIChat: React.FC = () => {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInput(event.target.value);
@@ -24,12 +28,13 @@ const OpenAIChat = () => {
 
     const userMessage: ChatMessage = {
       id: Date.now().toString(),
-      user: 'user',
+      user: 'User',
       content: input,
     };
 
     setMessages(prevMessages => [...prevMessages, userMessage]);
     setInput('');
+    setIsLoading(true);
 
     const response = await axios.post(
       'https://api.openai.com/v1/engines/text-davinci-003/completions',
@@ -56,22 +61,24 @@ const OpenAIChat = () => {
 
     const gpt3Message: ChatMessage = {
       id: (Date.now() + 1).toString(),
-      user: 'gpt-3',
+      user: 'ClubPing bot',
       content: gpt3Response,
     };
 
     setMessages(prevMessages => [...prevMessages, gpt3Message]);
+    setIsLoading(false);
   };
 
   return (
     <div className="openai-chat">
-      <h1>GPT-3 Chat Room</h1>
+      <h1>ClubPing AI advice bot</h1>
       <div className="chatbox">
         {messages.map(message => (
-          <div key={message.id} className={`message ${message.user}`}>
+          <div key={message.id} className={`message ${message.user === 'User' ? 'user-message' : 'ai-message'}`}>
             <span className="user">{message.user}:</span> {message.content}
           </div>
         ))}
+        {isLoading && <div className="loading">Loading...</div>}
       </div>
       <form onSubmit={handleSubmit} className="input-form">
         <input type="text" value={input} onChange={handleInputChange} className="input-field" placeholder="Type your message..." />

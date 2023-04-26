@@ -44,7 +44,6 @@ h1 {
   outline: none;
   margin-right: 10px;
 }
-
 .send-button {
   padding: 8px 12px;
   background-color: #1f7a8c;
@@ -57,4 +56,23 @@ h1 {
 
 .send-button:hover {
   background-color: #226a7a;
+}
+
+.message {
+  padding: 8px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  max-width: 80%;
+}
+
+.user {
+  font-weight: bold;
+}
+
+.User {
+  background-color: #ffffff;
+}
+
+.ClubPing {
+  background-color: #e8f5ff;
 }

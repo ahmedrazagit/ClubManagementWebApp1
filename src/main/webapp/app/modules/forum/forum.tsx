@@ -260,6 +260,14 @@ export const Forum = () => {
   */
   }
 
+  const [searchText, setSearchText] = useState('');
+  const [filteredPosts, setFilteredPosts] = useState(postList);
+
+  useEffect(() => {
+    setFilteredPosts(postList.filter(post => post.title.toLowerCase().includes(searchText.toLowerCase())));
+  }, [postList, searchText]);
+
+  // Announcements filter
   const [showAnnouncements, setShowAnnouncements] = useState(false);
 
   const handleFilter = filter => {
@@ -270,22 +278,15 @@ export const Forum = () => {
     }
   };
 
-  const [searchText, setSearchText] = useState('');
-  const [filteredPosts, setFilteredPosts] = useState(postList);
+  const [filterAnnouncements, setFilterAnnouncement] = useState(postList);
 
   useEffect(() => {
-    setFilteredPosts(postList.filter(post => post.title.toLowerCase().includes(searchText.toLowerCase())));
-  }, [postList, searchText]);
-
-  // Announcements filter
-  const [filterAnnouncements, setFilterAnnouncement] = useState('all');
-
-  const filteredAnnouncements = posts.filter(post =>
-    filterAnnouncements === 'all' ? true : post.announcement === (filterAnnouncements === 'announcement')
-  );
+    setFilterAnnouncement(postList.filter(post => post.announcement === true));
+  }, [postList]);
 
   // Combined filter
-  const filteredData = showAnnouncements ? filteredAnnouncements : filteredPosts;
+  let filteredData = useState(postList);
+  filteredData = showAnnouncements ? filterAnnouncements : filteredPosts;
   //End of Announcements filter
 
   return (
@@ -324,31 +325,19 @@ export const Forum = () => {
 
           <DropdownButton title="Filter posts">
             <Dropdown.Item
-              active={filterAnnouncements === 'all'}
+              active={showAnnouncements === false}
               onClick={() => {
-                setFilterAnnouncement('all');
                 handleFilter('All Posts');
               }}
             >
               All posts
             </Dropdown.Item>
             <Dropdown.Item
-              active={filterAnnouncements === 'announcement'}
               onClick={() => {
-                setFilterAnnouncement('announcement');
                 handleFilter('Announcements');
               }}
             >
               Announcements
-            </Dropdown.Item>
-            <Dropdown.Item
-              active={filterAnnouncements === 'general'}
-              onClick={() => {
-                setFilterAnnouncement('general');
-                handleFilter('General Posts');
-              }}
-            >
-              General posts
             </Dropdown.Item>
           </DropdownButton>
 
@@ -360,7 +349,7 @@ export const Forum = () => {
         </div>
 
         <InfiniteScroll
-          dataLength={filterAnnouncements ? filteredAnnouncements.length : 0}
+          dataLength={filteredData ? filteredData.length : 0}
           next={handleLoadMore}
           hasMore={paginationState.activePage - 1 < links.next}
           loader={<div className="loader">Loading ...</div>}

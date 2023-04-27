@@ -278,10 +278,10 @@ export const Forum = () => {
     }
   };
 
-  const [filterAnnouncements, setFilterAnnouncement] = useState(postList);
+  const [filterAnnouncements, setFilterAnnouncement] = useState([]);
 
   useEffect(() => {
-    setFilterAnnouncement(postList.filter(post => post.announcement === true));
+    setFilterAnnouncement(postList.filter(post => post.annoncement === true));
   }, [postList]);
 
   // Combined filter
@@ -325,9 +325,8 @@ export const Forum = () => {
 
           <DropdownButton title="Filter posts">
             <Dropdown.Item
-              active={showAnnouncements === false}
               onClick={() => {
-                handleFilter('All Posts');
+                handleFilter('All posts');
               }}
             >
               All posts
@@ -335,6 +334,7 @@ export const Forum = () => {
             <Dropdown.Item
               onClick={() => {
                 handleFilter('Announcements');
+                console.log(filterAnnouncements);
               }}
             >
               Announcements

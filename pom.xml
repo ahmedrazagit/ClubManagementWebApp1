@@ -14,17 +14,6 @@
 
     <repositories>
         <!-- jhipster-needle-maven-repository -->
-        <repository>
-            <id>central</id>
-            <url>https://repo.maven.apache.org/maven2/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-
-        </repository>
     </repositories>
 
     <pluginRepositories>
@@ -306,11 +295,6 @@
             <artifactId>metrics-core</artifactId>
         </dependency>
         <!-- jhipster-needle-maven-add-dependency -->
-        <dependency>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-war-plugin</artifactId>
-            <version>3.3.2</version>
-        </dependency>
     </dependencies>
 
     <build>
@@ -540,7 +524,7 @@
                         </execution>
                     </executions>
                     <configuration>
-                      <javaVersion>${java.version}</javaVersion>
+                        <javaVersion>${java.version}</javaVersion>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -738,7 +722,7 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
                     <version>${maven-jar-plugin.version}</version>
-               </plugin>
+                </plugin>
                 <plugin>
                     <groupId>org.sonarsource.scanner.maven</groupId>
                     <artifactId>sonar-maven-plugin</artifactId>
@@ -931,7 +915,6 @@
                     <groupId>com.h2database</groupId>
                     <artifactId>h2</artifactId>
                 </dependency>
-
             </dependencies>
             <build>
                 <plugins>
@@ -1005,9 +988,8 @@
                                 <dependency>
                                     <groupId>org.liquibase.ext</groupId>
                                     <artifactId>liquibase-hibernate5</artifactId>
-                                    <version>4.15.0</version>
+                                    <version>${liquibase-hibernate5.version}</version>
                                 </dependency>
-
                                 <dependency>
                                     <groupId>org.springframework.boot</groupId>
                                     <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -1036,17 +1018,6 @@
             <id>prod</id>
             <dependencies>
                 <dependency>
-                    <groupId>mysql</groupId>
-                    <artifactId>mysql-connector-java</artifactId>
-                    <version>8.0.32</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>mysql</groupId>
-                    <artifactId>mysql-connector-java</artifactId>
-                    <version>8.0.32</version>
-                </dependency>
-                <dependency>
                     <groupId>org.testcontainers</groupId>
                     <artifactId>postgresql</artifactId>
                     <scope>test</scope>
@@ -1055,10 +1026,6 @@
                     <groupId>org.postgresql</groupId>
                     <artifactId>postgresql</artifactId>
                 </dependency>
-
-
-
-
             </dependencies>
             <build>
                 <pluginManagement>
@@ -1120,7 +1087,7 @@
                                 <dependency>
                                     <groupId>org.liquibase.ext</groupId>
                                     <artifactId>liquibase-hibernate5</artifactId>
-                                    <version>4.15.0</version>
+                                    <version>${liquibase-hibernate5.version}</version>
                                 </dependency>
                                 <dependency>
                                     <groupId>org.springframework.boot</groupId>
@@ -1228,7 +1195,6 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-war-plugin</artifactId>
-                        <version>3.3.2</version>
                     </plugin>
                 </plugins>
             </build>

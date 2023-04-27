@@ -6,6 +6,8 @@ import { Navbar, Nav, NavbarToggler, Collapse } from 'reactstrap';
 import LoadingBar from 'react-redux-loading-bar';
 
 import { FaHome, FaBullhorn, FaUniversity, FaUsers, FaEnvelope, FaComments, FaTwitter, FaFacebookF, FaInstagram } from 'react-icons/fa';
+import { BsRobot } from 'react-icons/bs';
+import { SiOpenai } from 'react-icons/si';
 import { FaCog, FaQuestionCircle, FaUser } from 'react-icons/fa';
 
 import { Home, Brand } from './header-components';
@@ -69,7 +71,7 @@ const Header = (props: IHeaderProps) => {
                 <div className="text-muted small fw-bold text-uppercase px-3">CORE</div>
               </li>
               <li>
-                <a href="/event" className="nav-link px-3 active">
+                <a href="/events-page" className="nav-link px-3 active">
                   {/*<span className="me-2"><i className="bi bi-speedometer2"></i></span>*/}
                   <span className="me-2">
                     <FaUsers />
@@ -120,6 +122,15 @@ const Header = (props: IHeaderProps) => {
                     <FaEnvelope />
                   </span>
                   <span>Forum</span>
+                </a>
+              </li>
+              <li>
+                <a href="/openAIChatBox" className="nav-link px-3 active">
+                  {/*<span className="me-2"><i className="bi bi-speedometer2"></i></span>*/}
+                  <span className="me-2">
+                    <BsRobot />
+                  </span>
+                  <span>AI Advice Bot</span>
                 </a>
               </li>
               <li className="my-4">

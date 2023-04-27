@@ -17,13 +17,14 @@ import Messages from 'app/modules/messages/messages';
 import Forum from 'app/modules/forum/forum';
 import Universities from 'app/modules/universities/universities';
 import ViewEvents from 'app/modules/view-events/view-events';
-
+import OpenAIChat from 'app/modules/AIAdviceBot/OpenAIChatBox';
 import Chatbotty from 'app/modules/chatbot/Chatbotty';
 
 import PrivateRoute from 'app/shared/auth/private-route';
 import ErrorBoundaryRoutes from 'app/shared/error/error-boundary-routes';
 import PageNotFound from 'app/shared/error/page-not-found';
 import { AUTHORITIES } from 'app/config/constants';
+import AIAdviceBotPage from 'app/modules/AIAdviceBot/AIAdviceBotPage';
 
 const loading = <div>loading ...</div>;
 
@@ -52,13 +53,14 @@ const AppRoutes = () => {
         <Route path="gdpr/*" element={<GDPR />} />
         <Route path="login" element={<Login />} />
         <Route path="logout" element={<Logout />} />
-        <Route path="view-events" element={<ViewEvents />} />
+        <Route path="events-page" element={<ViewEvents />} />
         <Route path="clubs" element={<Clubs />} />
         <Route path="announcements" element={<Announcements />} />
         <Route path="messages" element={<Messages />} />
         <Route path="forum" element={<Forum />} />
         <Route path="universities" element={<Universities />} />
-        <Route path="chatbot" element={<Chatbotty />} />
+        {/*<Route path="chatbot" element={<Chatbotty />} />*/}
+        <Route path="OpenAIChatBox" element={<AIAdviceBotPage />} />
         <Route path="account">
           <Route
             path="*"

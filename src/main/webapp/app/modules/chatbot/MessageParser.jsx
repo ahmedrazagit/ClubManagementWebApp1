@@ -6,6 +6,23 @@ const MessageParser = ({ children, actions }) => {
     if (message.includes('hello')) {
       actions.handleHello();
     }
+    if (!message.trim()) {
+      // Message is empty or only contains whitespace
+      return;
+    }
+
+    /*if (message.includes('')) {
+      actions.handleButton();
+    }*/
+
+    /*if (message.toLowerCase().includes('show pages')) {
+      actions.handleButton();
+    }*/
+    if (/show\s+pages/i.test(message)) {
+      actions.handleButton();
+    }
+
+
 
 
   };

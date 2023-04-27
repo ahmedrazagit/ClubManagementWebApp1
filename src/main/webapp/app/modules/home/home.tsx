@@ -49,21 +49,10 @@ export const Home = () => {
   const navigate = useNavigate();
 
   //Chatbot code
-  const [isChatOpen, setIsChatOpen] = useState(false);
-  const [chatState, setChatState] = useState(null);
-
-  const toggleChat = () => {
-    setIsChatOpen(!isChatOpen);
-  };
-
-  const handleEnd = chatState => {
-    setIsChatOpen(false);
-    setChatState(chatState);
-  };
-
-  const closeChat = event => {
-    event.stopPropagation(); // prevent state reset
-    setIsChatOpen(false);
+  const loadMessages = () => {
+    const messages = JSON.parse(localStorage.getItem('chat_messages'));
+    console.log(messages);
+    return messages;
   };
 
   //Chatbot code ends
@@ -144,7 +133,8 @@ export const Home = () => {
   };
 
   return (
-    <main className="mt-5 pt-3">
+    <main className="home mt-5 pt-3">
+      <Chatbutton />
       {/*<div className="container" style={{ position: 'relative' }}>
         <img src="content/images/student-pic.jpg" alt="logo" style={{ width: '100%' }} />
         <div className="welcomeText"> Welcome to Clubping</div>
@@ -187,8 +177,6 @@ export const Home = () => {
           <span className="visually-hidden">Next</span>
         </button>
       </div>
-
-      <Chatbutton />
 
       {/*}
           <div style={{marginRight: '10px'}} className="col-md-3 mb-3">

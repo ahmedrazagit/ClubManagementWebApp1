@@ -1,0 +1,22 @@
+entity Post {
+    title String required minlength(10)
+    content TextBlob required,
+    date Instant required
+}
+
+entity Comment {
+    comment TextBlob required
+}
+
+relationship ManyToOne {
+    Comment{post} to Post
+    Post{comments} to Comment
+}
+
+relationship ManyToOne {
+    Post{user} to User
+}
+
+relationship ManyToOne {
+    Comment{user} to User
+}

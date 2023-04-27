@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button, Table } from 'reactstrap';
 import { Translate, getSortState } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import './gdpr.css';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/shared/util/pagination.constants';
 import { overridePaginationStateWithQueryParams } from 'app/shared/util/entity-utils';
@@ -97,70 +97,13 @@ export const GDPR = () => {
 
   return (
     <div>
-      {/*
-      <h2 id="gdpr-heading" data-cy="GDPRHeading">
-        <Translate contentKey="teamprojectApp.gDPR.home.title">GDPRS</Translate>
-        <div className="d-flex justify-content-end">
-          <Button className="me-2" color="info" onClick={handleSyncList} disabled={loading}>
-            <FontAwesomeIcon icon="sync" spin={loading} />{' '}
-            <Translate contentKey="teamprojectApp.gDPR.home.refreshListLabel">Refresh List</Translate>
-          </Button>
-        </div>
-      </h2>
-      <div className="table-responsive">
-        <InfiniteScroll
-          dataLength={gDPRList ? gDPRList.length : 0}
-          next={handleLoadMore}
-          hasMore={paginationState.activePage - 1 < links.next}
-          loader={<div className="loader">Loading ...</div>}
-        >
-          {gDPRList && gDPRList.length > 0 ? (
-            <Table responsive>
-              <thead>
-                <tr>
-                  <th className="hand" onClick={sort('id')}>
-                    <Translate contentKey="teamprojectApp.gDPR.id">ID</Translate> <FontAwesomeIcon icon="sort" />
-                  </th>
-                  <th />
-                </tr>
-              </thead>
-              <tbody>
-                {gDPRList.map((gDPR, i) => (
-                  <tr key={`entity-${i}`} data-cy="entityTable">
-                    <td>
-                      <Button tag={Link} to={`/gdpr/${gDPR.id}`} color="link" size="sm">
-                        {gDPR.id}
-                      </Button>
-                    </td>
-                    <td className="text-end">
-                      <div className="btn-group flex-btn-group-container">
-                        <Button tag={Link} to={`/gdpr/${gDPR.id}`} color="info" size="sm" data-cy="entityDetailsButton">
-                          <FontAwesomeIcon icon="eye" />{' '}
-                          <span className="d-none d-md-inline">
-                            <Translate contentKey="entity.action.view">View</Translate>
-                          </span>
-                        </Button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </Table>
-          ) : (
-            !loading && (
-              <div className="alert alert-warning">
-                <Translate contentKey="teamprojectApp.gDPR.home.notFound">No GDPRS found</Translate>
-              </div>
-            )
-          )}
-        </InfiniteScroll>
-      </div>
-      */}
       <pre>
-        <p>Clubping Privacy Policy</p>
-        <p>This privacy policy will explain how our organisation uses the personal data we collect from you when you use our website.</p>
-        <h3 style={{ fontWeight: 'bold' }}>Topics:</h3>
-        <li>What data do we collect?</li>
+        <h3 style={{ fontWeight: 'bold', fontFamily: 'Arial' }}>Clubping Privacy Policy</h3>
+        <p style={{ fontFamily: 'Arial' }}>
+          This privacy policy will explain how our organisation uses the personal data we collect from you when you use our website.
+        </p>
+        <h3 style={{ fontWeight: 'bold', fontFamily: 'Arial' }}>Topics:</h3>
+        <li style={{ fontFamily: 'Arial' }}>What data do we collect?</li>
         <li>How do we collect your data?</li>
         <li>How will we use your data?</li>
         <li>How do we store your data?</li>
@@ -174,7 +117,7 @@ export const GDPR = () => {
         <li>Changes to our privacy policy</li>
         <li>How to contact us</li>
         <li>How to contact the appropriate authorities</li>
-        <h3 style={{ fontWeight: 'bold' }}>What data do we collect?</h3>
+        <h3 style={{ fontWeight: 'bold', fontFamily: 'Arial' }}>What data do we collect?</h3>
         <p>Clubping collects the following data:</p>
         <li>Personal identification information: Name, email address, phone number</li>
         <li>
@@ -183,17 +126,19 @@ export const GDPR = () => {
         <li>City and Country of residence</li>
         <li>User behaviour patterns which include the clubs you will join, events you will attend, any searches that you make</li>
 
-        <h3 style={{ fontWeight: 'bold' }}>How do we collect your data?</h3>
+        <h3 style={{ fontWeight: 'bold', fontFamily: 'Arial' }}>How do we collect your data?</h3>
         <p>You directly provide Clubping with most of the data we collect. We collect data and process data when you:</p>
         <li>Register online for our service.</li>
         <li>Voluntarily complete a customer survey or provide feedback on any of our message boards or via email.</li>
         <li>Use or view our website via your browser’s cookies.</li>
         <li>Sign up fo events where we require you to give us registration info</li>
 
-        <h3 style={{ fontWeight: 'bold' }}>Clubping may also receive your data indirectly from the following sources:</h3>
+        <h3 style={{ fontWeight: 'bold', fontFamily: 'Arial' }}>
+          Clubping may also receive your data indirectly from the following sources:
+        </h3>
         <p>If you attend one of the universities we are partnered with, we will already have your information in our records.</p>
 
-        <h3 style={{ fontWeight: 'bold' }}>How will we use your data?</h3>
+        <h3 style={{ fontWeight: 'bold', fontFamily: 'Arial' }}>How will we use your data?</h3>
 
         <p>Clubping collects your data so that we can:</p>
         <li>Manage your account.</li>
@@ -212,26 +157,33 @@ export const GDPR = () => {
           it to our identity protection department to prevent identity theft and any sort of fraud.
         </p>
 
-        <h3 style={{ fontWeight: 'bold' }}>How do we store your data?</h3>
+        <h3 style={{ fontWeight: 'bold', fontFamily: 'Arial' }}>How do we store your data?</h3>
         <p>
-          Clubping securely stores your data within the European Union. To ensure the security of your data, Clubping likely uses a variety
-          of security measures, such as encryption, firewalls, access controls,and intrusion detection systems. Access to data is restricted
-          only to authorised personnel who require it for their job functions, and all access to data is monitored and logged.
+          Clubping securely stores your data within the European Union.
+          <br />
+          To ensure the security of your data, Clubping likely uses a variety of security measures, such as encryption, firewalls, access
+          controls,and intrusion detection systems.
+          <br />
+          Access to data is restricted only to authorised personnel who require it for their job functions, and all access to data is
+          monitored and logged.
         </p>
         <p>
-          {' '}
-          In addition, Clubping likely follows industry-standard practices and regulations for data protection, such as GDPR, CCPA, and
-          HIPAA, depending on the type of data being stored and the location of the user. Overall, Clubping takes significant steps to
-          ensure the security and privacy of your data.
+          In addition, Clubping likely follows industry-standard practices and regulations for data protection,
+          <br />
+          such as GDPR, CCPA, and HIPAA, depending on the type of data being stored and the location of the user.
+          <br />
+          Overall, Clubping takes significant steps to ensure the security and privacy of your data.
         </p>
 
         <p>
-          Clubping will keep your personal identification information for 1 year. Once this time period has expired, we will delete your
-          data by completely removing it from our database unless you renew your account which you will be prompted by us to do so 6 months
-          prior from the data of last renewal.
+          Clubping will keep your personal identification information for 1 year.
+          <br />
+          Once this time period has expired,
+          <br /> we will delete your data by completely removing it from our database unless you renew your account which you will be
+          prompted by us to do so 6 months prior from the data of last renewal.
         </p>
 
-        <h3 style={{ fontWeight: 'bold' }}>Marketing</h3>
+        <h3 style={{ fontWeight: 'bold', fontFamily: 'Arial' }}>Marketing</h3>
         <p>
           Clubping would like to send you information about our services that we think you might like, as well as those of our partner
           companies.
@@ -245,29 +197,45 @@ export const GDPR = () => {
         </p>
         <p>If you no longer wish to be contacted for marketing purposes, please contact clubpingforbusiness@gmail.com</p>
 
-        <h3 style={{ fontWeight: 'bold' }}>What are your data protection rights?</h3>
+        <h3 style={{ fontWeight: 'bold', fontFamily: 'Arial' }}>What are your data protection rights?</h3>
         <p>
-          Clubping would like to make sure you are fully aware of all of your data protection rights. Every user is entitled to the
-          following: The right to access - You have the right to request Clubping for copies of your personal data. We may charge you a
-          small fee for this service. The right to rectification - You have the right to request that Clubping correct any information you
-          believe is inaccurate. You also have the right to request Clubping to complete information you believe is incomplete. The right to
-          erasure — You have the right to request that Clubping erase your personal data, under certain conditions. The right to restrict
-          processing - You have the right to request that Clubping restrict the processing of your personal data, under certain conditions.
+          Clubping would like to make sure you are fully aware of all of your data protection rights.
+          <br />
+          Every user is entitled to the following:
+          <br />
+          The right to access - You have the right to request Clubping for copies of your personal data. We may charge you a small fee for
+          this service.
+          <br />
+          The right to rectification - You have the right to request that Clubping correct any information you believe is inaccurate. You
+          also have the right to request Clubping to complete information you believe is incomplete.
+          <br />
+          The right to erasure — You have the right to request that Clubping erase your personal data, under certain conditions.
+          <br />
+          The right to restrict processing - You have the right to request that Clubping restrict the processing of your personal data,
+          under certain conditions.
+          <br />
           The right to object to processing - You have the right to object to Clubping’s processing of your personal data, under certain
-          conditions. The right to data portability - You have the right to request that Clubping transfer the data that we have collected
-          to another organisation, or directly to you, under certain conditions. If you make a request, we have one month to respond to you.
-          If you would like to exercise any of these rights, please contact us at our email: clubpingforbusiness@gmail.com
+          conditions.
+          <br />
+          The right to data portability - You have the right to request that Clubping transfer the data that we have collected to another
+          organisation, or directly to you, under certain conditions.
+          <br />
+          If you make a request, we have one month to respond to you. If you would like to exercise any of these rights, please contact us
+          at our email:<a href="mailto:clubpingforbusiness@gmail.com">clubpingforbusiness@gmail.com</a>
         </p>
 
-        <h3 style={{ fontWeight: 'bold' }}>What are cookies?</h3>
+        <h3 style={{ fontWeight: 'bold', fontFamily: 'Arial' }}>What are cookies?</h3>
         <p>
           Cookies are text files placed on your computer to collect standard Internet log information and visitor behaviour information.
+          <br />
           When you visit our websites, we may collect information from you automatically through cookies or similar technology.
         </p>
 
-        <p>For further information, visit aIIaboutcookies.org</p>
+        <p>
+          For further information, visit <a href="aIIaboutcookies.org">aIIaboutcookies.org</a>
+        </p>
 
-        <h3 style={{ fontWeight: 'bold' }}>How do we use cookies?</h3>
+        <h3 style={{ fontWeight: 'bold', fontFamily: 'Arial' }}>How do we use cookies?</h3>
         <p>Clubping uses cookies in a range of ways to improve your experience on our website, including:</p>
         <li>Keeping you signed in</li>
         <li>Understanding how you use our website</li>
@@ -275,61 +243,76 @@ export const GDPR = () => {
         <li>Event attendance history</li>
         <li>Origin of where you are searching from</li>
 
-        <h3 style={{ fontWeight: 'bold' }}>What types of cookies do we use?</h3>
+        <h3 style={{ fontWeight: 'bold', fontFamily: 'Arial' }}>What types of cookies do we use?</h3>
         <p>There are a number of different types of cookies, however, our website uses:</p>
         <li>
           Functionality — Clubping uses these cookies so that we recognize you on our website and remember your previously selected
-          preferences. These could include what language you prefer and location you are in. A mix of first-party and third-party cookies
-          are used.
+          preferences.
+          <br /> These could include what language you prefer and location you are in. A mix of first-party and third-party cookies are
+          used.
         </li>
         <li>
           Advertising — Clubping uses these cookies to collect information about your visit to our website, the content you viewed, the
-          links you followed and information about your browser, device, and your IP address. Clubping sometimes shares some limited aspects
-          of this data with third parties for advertising purposes. We may also share online data collected through cookies with our
-          advertising partners. This means that when you visit another website, you may be shown advertising based on your browsing patterns
-          on our website.
+          links you followed and information about your browser, device, and your IP address.
+          <br /> Clubping sometimes shares some limited aspects of this data with third parties for advertising purposes.
+          <br /> We may also share online data collected through cookies with our advertising partners.
+          <br /> This means that when you visit another website, you may be shown advertising based on your browsing patterns on our
+          website.
         </li>
 
-        <h3 style={{ fontWeight: 'bold' }}>How to manage cookies</h3>
+        <h3 style={{ fontWeight: 'bold', fontFamily: 'Arial' }}>How to manage cookies</h3>
         <p>
-          You can set your browser not to accept cookies, and the above website tells you how to remove cookies from your browser. However,
-          in a few cases, some of our website features may not function as a result.
+          You can set your browser not to accept cookies, and the above website tells you how to remove cookies from your browser.
+          <br /> However, in a few cases, some of our website features may not function as a result.
         </p>
 
-        <h3 style={{ fontWeight: 'bold' }}>Privacy policies of other websites</h3>
+        <h3 style={{ fontWeight: 'bold', fontFamily: 'Arial' }}>Privacy policies of other websites</h3>
         <p>
-          The Clubping website contains links to other websites. Our privacy policy applies only to our website, so if you click on a link
-          to another website, you should read their privacy policy.
+          The Clubping website contains links to other websites.
+          <br /> Our privacy policy applies only to our website, so if you click on a link to another website, you should read their privacy
+          policy.
         </p>
 
-        <h3 style={{ fontWeight: 'bold' }}>Changes to our privacy policy</h3>
+        <h3 style={{ fontWeight: 'bold', fontFamily: 'Arial' }}>Changes to our privacy policy</h3>
         <p>
-          Clubping keeps its privacy policy under regular review and places any updates on this web page. This privacy policy was last
-          updated on 15 March 2023.
+          Clubping keeps its privacy policy under regular review and places any updates on this web page.
+          <br /> This privacy policy was last updated on 15 March 2023.
         </p>
 
-        <h3 style={{ fontWeight: 'bold' }}>How to contact us</h3>
+        <h3 style={{ fontWeight: 'bold', fontFamily: 'Arial' }}>How to contact us</h3>
         <p>
           If you have any questions about Clubping’s privacy policy, the data we hold on you, or you would like to exercise one of your data
           protection rights, please do not hesitate to contact us.
         </p>
 
-        <p>
-          Email us at: clubpingforbusiness@gmail.com or contact any of our entire team:
+        <p style={{ fontFamily: 'Arial' }}>
+          Email us at: <a href="mailto:clubpingforbusiness@gmail.com">clubpingforbusiness@gmail.com</a> or contact any of our entire team:
           <ul>
-            <li>Ahmed Raza: axa1874@student.bham.ac.uk</li>
-            <li>Meena Muthukumar: mxm1397@student.bham.ac.uk</li>
-            <li>Kavin Babu: kxb195@student.bham.ac.uk</li>
-            <li>Rayna Felix: rxf138@student.bham.ac.uk</li>
-            <li>Rohit Manikuttan: rmu186@student.bham.ac.uk</li>
-            <li>Zhange Luo: zxl084@student.bham.ac.uk</li>
+            <li>
+              Ahmed Raza<a href="mailto:axa1874@student.bham.ac.uk">axa1874@student.bham.ac.uk</a>
+            </li>
+            <li>
+              <a href="mailto:mxm1397@student.bham.ac.uk">mxm1397@student.bham.ac.uk</a>
+            </li>
+            <li>
+              <a href="mailto:kxb195@student.bham.ac.uk">kxb195@student.bham.ac.uk</a>
+            </li>
+            <li>
+              <a href="mailto:rxf138@student.bham.ac.uk">rxf138@student.bham.ac.uk</a>
+            </li>
+            <li>
+              <a href="mailto:rmu186@student.bham.ac.uk">rmu186@student.bham.ac.uk</a>
+            </li>
+            <li>
+              <a href="mailto:zxl084@student.bham.ac.uk">zxl084@student.bham.ac.uk</a>
+            </li>
           </ul>
           If you wish to report a complaint or if you feel that Clubping has not addressed your concern in a satisfactory manner, please
           contact the Information Commissioner’s Office.
         </p>
-
-        <p>
-          Contact via : <a href={'https://ico.org.uk/global/contact-us/contact-us-public/'}></a>
+        <p style={{ fontFamily: 'Arial' }}>
+          Contact via:{' '}
+          <a href="https://ico.org.uk/global/contact-us/contact-us-public/">https://ico.org.uk/global/contact-us/contact-us-public/</a>
         </p>
       </pre>
     </div>

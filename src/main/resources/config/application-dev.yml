@@ -49,18 +49,18 @@ spring:
   mail:
     host: smtp.mail.yahoo.com
     port: 587
-    username: clubpingbham@yahoo.com #Replace this field with your Yahoo username.
-    password: bhamteamd07 #Replace this field with your Yahoo password.
+    username: ooviya31@yahoo.com #Replace this field with your Yahoo username.
+    password: pjzcmowqoqzsbesb #Replace this field with your Yahoo password.
     protocol: smtp
     tls: true
     properties.mail.smtp:
       auth: true
       starttls.enable: true
       ssl.trust: smtp.mail.yahoo.com
-  #messages:
-  #  cache-duration: PT1S # 1 second, see the ISO 8601 standard
-  #thymeleaf:
-  #  cache: false
+  messages:
+    cache-duration: PT1S # 1 second, see the ISO 8601 standard
+  thymeleaf:
+    cache: false
 
 server:
   port: 8080

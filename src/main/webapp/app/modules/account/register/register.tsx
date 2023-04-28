@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import PasswordStrengthBar from 'app/shared/layout/password/password-strength-bar';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 import { handleRegister, reset } from './register.reducer';
+import { useNavigate } from 'react-router-dom';
 
 export const RegisterPage = () => {
   const [password, setPassword] = useState('');
@@ -42,13 +43,16 @@ export const RegisterPage = () => {
 
   const updatePassword = event => setPassword(event.target.value);
 
-  const successMessage = useAppSelector(state => state.register.successMessage);
+  const regsuccessMessage = useAppSelector(state => state.register.successMessage);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (successMessage) {
-      toast.success(translate(successMessage));
+    if (regsuccessMessage) {
+      toast.success(translate(regsuccessMessage));
+      //add code to navigate to '/login'
+      navigate('/login');
     }
-  }, [successMessage]);
+  }, [regsuccessMessage]);
 
   return (
     <div>
@@ -117,6 +121,7 @@ export const RegisterPage = () => {
               }}
               data-cy="secondPassword"
             />
+
             <div>
               <input
                 type="checkbox"

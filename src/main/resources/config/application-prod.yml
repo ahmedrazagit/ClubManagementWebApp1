@@ -45,10 +45,16 @@ spring:
   liquibase:
     contexts: prod
   mail:
-    host: localhost
-    port: 25
-    username:
-    password:
+    host: smtp.mail.yahoo.com
+    port: 587
+    username: ooviya31@yahoo.com #Replace this field with your Yahoo username.
+    password: pjzcmowqoqzsbesb #Replace this field with your Yahoo password.
+    protocol: smtp
+    tls: true
+    properties.mail.smtp:
+      auth: true
+      starttls.enable: true
+      ssl.trust: smtp.mail.yahoo.com
   thymeleaf:
     cache: true
 

@@ -45,5 +45,6 @@
       "relationshipType": "many-to-one"
     }
   ],
-  "service": "no"
+  "service": "no",
+  "skipUiGrouping": true
 }

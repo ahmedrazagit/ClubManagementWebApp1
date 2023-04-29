@@ -9,6 +9,7 @@ import { FaHome, FaBullhorn, FaUniversity, FaUsers, FaEnvelope, FaComments, FaTw
 import { BsRobot } from 'react-icons/bs';
 import { SiOpenai } from 'react-icons/si';
 import { FaCog, FaQuestionCircle, FaUser } from 'react-icons/fa';
+import { ImProfile } from 'react-icons/im';
 
 import { Home, Brand } from './header-components';
 import { AdminMenu, EntitiesMenu, AccountMenu, LocaleMenu } from '../menus';
@@ -124,6 +125,7 @@ const Header = (props: IHeaderProps) => {
                   <span>Forum</span>
                 </a>
               </li>
+
               <li>
                 <a href="/openAIChatBox" className="nav-link px-3 active">
                   {/*<span className="me-2"><i className="bi bi-speedometer2"></i></span>*/}
@@ -133,6 +135,16 @@ const Header = (props: IHeaderProps) => {
                   <span>AI Advice Bot</span>
                 </a>
               </li>
+
+              <li>
+                <a href="/profile" className="nav-link px-3 active">
+                  <span className="me-2">
+                    <ImProfile />
+                  </span>
+                  <span>Profile</span>
+                </a>
+              </li>
+
               <li className="my-4">
                 <hr className="dropdown-divider bg-light" />
               </li>
@@ -183,6 +195,7 @@ const Header = (props: IHeaderProps) => {
         <LoadingBar className="loading-bar" />
         <Navbar data-cy="navbar" dark expand="md" fixed="top" className="jh-navbar">
           <NavbarToggler aria-label="Menu" onClick={toggleMenu} />
+
           <Brand />
           <Collapse isOpen={menuOpen} navbar>
             <Nav id="header-tabs" className="ms-auto" navbar>

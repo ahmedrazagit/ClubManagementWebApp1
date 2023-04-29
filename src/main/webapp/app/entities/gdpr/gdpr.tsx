@@ -315,6 +315,64 @@ export const GDPR = () => {
           <a href="https://ico.org.uk/global/contact-us/contact-us-public/">https://ico.org.uk/global/contact-us/contact-us-public/</a>
         </p>
       </pre>
+
+      <h2 id="gdpr-heading" data-cy="GDPRHeading">
+        <Translate contentKey="teamprojectApp.gDPR.home.title">GDPRS</Translate>
+        <div className="d-flex justify-content-end">
+          <Button className="me-2" color="info" onClick={handleSyncList} disabled={loading}>
+            <FontAwesomeIcon icon="sync" spin={loading} />{' '}
+            <Translate contentKey="teamprojectApp.gDPR.home.refreshListLabel">Refresh List</Translate>
+          </Button>
+        </div>
+      </h2>
+      <div className="table-responsive">
+        <InfiniteScroll
+          dataLength={gDPRList ? gDPRList.length : 0}
+          next={handleLoadMore}
+          hasMore={paginationState.activePage - 1 < links.next}
+          loader={<div className="loader">Loading ...</div>}
+        >
+          {gDPRList && gDPRList.length > 0 ? (
+            <Table responsive>
+              <thead>
+                <tr>
+                  <th className="hand" onClick={sort('id')}>
+                    <Translate contentKey="teamprojectApp.gDPR.id">ID</Translate> <FontAwesomeIcon icon="sort" />
+                  </th>
+                  <th />
+                </tr>
+              </thead>
+              <tbody>
+                {gDPRList.map((gDPR, i) => (
+                  <tr key={`entity-${i}`} data-cy="entityTable">
+                    <td>
+                      <Button tag={Link} to={`/gdpr/${gDPR.id}`} color="link" size="sm">
+                        {gDPR.id}
+                      </Button>
+                    </td>
+                    <td className="text-end">
+                      <div className="btn-group flex-btn-group-container">
+                        <Button tag={Link} to={`/gdpr/${gDPR.id}`} color="info" size="sm" data-cy="entityDetailsButton">
+                          <FontAwesomeIcon icon="eye" />{' '}
+                          <span className="d-none d-md-inline">
+                            <Translate contentKey="entity.action.view">View</Translate>
+                          </span>
+                        </Button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          ) : (
+            !loading && (
+              <div className="alert alert-warning">
+                <Translate contentKey="teamprojectApp.gDPR.home.notFound">No GDPRS found</Translate>
+              </div>
+            )
+          )}
+        </InfiniteScroll>
+      </div>
     </div>
   );
 };

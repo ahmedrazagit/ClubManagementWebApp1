@@ -1,0 +1,33 @@
+{
+  "teamprojectApp": {
+    "universityUser": {
+      "home": {
+        "title": "University Users",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new University User",
+        "createOrEditLabel": "Create or edit a University User",
+        "notFound": "No University Users found"
+      },
+      "created": "A new University User is created with identifier {{ param }}",
+      "updated": "A University User is updated with identifier {{ param }}",
+      "deleted": "A University User is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete University User {{ id }}?"
+      },
+      "detail": {
+        "title": "University User"
+      },
+      "id": "ID",
+      "name": "Name",
+      "nickname": "Nickname",
+      "role": "Role",
+      "studentId": "Student Id",
+      "gender": "Gender",
+      "birthday": "Birthday",
+      "clubs": "Clubs",
+      "uni": "Uni",
+      "email": "Email",
+      "balance": "Balance"
+    }
+  }
+}

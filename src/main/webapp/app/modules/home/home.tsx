@@ -1,7 +1,8 @@
 import { FaCog, FaCross, FaQuestion, FaQuestionCircle, FaUser } from 'react-icons/fa';
+
 import './home.scss';
 
-import { FaHome, FaBullhorn, FaUniversity, FaUsers, FaEnvelope, FaComments, FaTwitter, FaFacebookF, FaInstagram } from 'react-icons/fa';
+//import { FaHome, FaBullhorn, FaUniversity, FaUsers, FaEnvelope, FaComments, FaTwitter, FaFacebookF, FaInstagram } from 'react-icons/fa';
 
 import { Button, Table } from 'reactstrap';
 import { Translate, TextFormat, getSortState, JhiPagination, JhiItemCount } from 'react-jhipster';
@@ -29,6 +30,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 //import { Row, Col, Alert } from 'reactstrap';
+
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 //import MyApp from 'src/main/webapp/app/modules/components/App';

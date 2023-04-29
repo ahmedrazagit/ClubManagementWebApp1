@@ -21,13 +21,16 @@
     "enableHibernateCache": true,
     "enableSwaggerCodegen": false,
     "enableTranslation": true,
-    "entities": ["Event", "GDPR", "ExtendEvent", "Clubs", "Post", "Comments"],
+    "entities": ["Event", "GDPR", "ExtendEvent", "Clubs", "Post", "UniUser", "UniversityUser"],
+
     "entitySuffix": "",
     "jhiPrefix": "jhi",
     "jhipsterVersion": "7.9.3",
     "jwtSecretKey": "ZDg3OGJmYWQwMzUzYWJjZTM2NDE5ZmRiMWZkZTY1OWVkZGMyNjRiZGUyMGQwYjE0NjBkYTY3YmU2OTVjMzEwNDQ4NDk1YjQ2Y2E1MWJiMjliZjY0NDU5MjU5YmEwYjNjMjAxY2RlODZiMWYwYzVjODA2ZDEwZmZmMTBhNDdlMTE=",
     "languages": ["en"],
-    "lastLiquibaseTimestamp": 1681414215000,
+
+    "lastLiquibaseTimestamp": 1682502937000,
+
     "messageBroker": false,
     "microfrontend": false,
     "microfrontends": [],

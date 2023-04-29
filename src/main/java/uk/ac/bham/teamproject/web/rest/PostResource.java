@@ -69,6 +69,7 @@ public class PostResource {
         if (post.getId() != null) {
             throw new BadRequestAlertException("A new post cannot already have an ID", ENTITY_NAME, "idexists");
         }
+
         final Optional<User> isUser = userService.getUserWithAuthorities();
         if (!isUser.isPresent()) {
             log.error("User is not logged in");

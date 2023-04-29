@@ -31,6 +31,7 @@ spring:
     serialization:
       indent-output: true
   datasource:
+    #mySql database: Uni_Users
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:h2:file:./target/h2db/db/teamproject;DB_CLOSE_DELAY=-1;MODE=LEGACY
     username: teamproject

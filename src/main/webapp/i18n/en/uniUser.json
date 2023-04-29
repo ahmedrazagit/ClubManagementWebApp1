@@ -1,0 +1,33 @@
+{
+  "teamprojectApp": {
+    "uniUser": {
+      "home": {
+        "title": "Uni Users",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Uni User",
+        "createOrEditLabel": "Create or edit a Uni User",
+        "notFound": "No Uni Users found"
+      },
+      "created": "A new Uni User is created with identifier {{ param }}",
+      "updated": "A Uni User is updated with identifier {{ param }}",
+      "deleted": "A Uni User is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Uni User {{ id }}?"
+      },
+      "detail": {
+        "title": "Uni User"
+      },
+      "id": "ID",
+      "name": "Name",
+      "nickname": "Nickname",
+      "role": "Role",
+      "studentId": "Student Id",
+      "gender": "Gender",
+      "birthday": "Birthday",
+      "clubs": "Clubs",
+      "uni": "Uni",
+      "email": "Email",
+      "balance": "Balance"
+    }
+  }
+}

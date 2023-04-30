@@ -11,6 +11,7 @@ import { overridePaginationStateWithQueryParams } from 'app/shared/util/entity-u
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
 import { IClubs } from 'app/shared/model/clubs.model';
+git;
 import { getEntities } from 'app/entities/clubs/clubs.reducer';
 import clubs from 'app/entities/clubs/clubs';
 import { match } from 'cypress/types/minimatch';

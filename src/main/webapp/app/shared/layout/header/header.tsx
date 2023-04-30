@@ -125,7 +125,15 @@ const Header = (props: IHeaderProps) => {
                   <span>Forum</span>
                 </a>
               </li>
-
+              <li>
+                <a href="/gallery" className="nav-link px-3 active">
+                  {/*<span className="me-2"><i className="bi bi-speedometer2"></i></span>*/}
+                  <span className="me-2">
+                    <FaInstagram />
+                  </span>
+                  <span>Social Gallery</span>
+                </a>
+              </li>
               <li>
                 <a href="/openAIChatBox" className="nav-link px-3 active">
                   {/*<span className="me-2"><i className="bi bi-speedometer2"></i></span>*/}

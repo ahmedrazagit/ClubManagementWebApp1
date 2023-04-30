@@ -201,6 +201,8 @@ export const ViewEvent = () => {
   });
 
   {
+    /*
+  {
     showAddEditBox ? (
       <div className="add-edit-box">
         <h2>{editMode ? 'Edit Announcement' : 'Add Announcement'}</h2>
@@ -243,7 +245,9 @@ export const ViewEvent = () => {
         </form>
       </div>
     ) : null;
+  }*/
   }
+
   return (
     <div>
       <h1 style={{ textAlign: 'left' }}>Events</h1>

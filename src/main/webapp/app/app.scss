@@ -23,6 +23,7 @@ a {
 
 .app-container {
   box-sizing: border-box;
+  padding-top: 1rem;
   .view-container {
     width: 100%;
     height: calc(100% - 40px);
@@ -30,7 +31,7 @@ a {
     overflow-x: hidden;
     padding: 0rem; //edited by KB from 1rem to 0
     .card {
-      padding: 1rem;
+      padding-top: 1rem;
     }
     .view-routes {
       height: 100%;

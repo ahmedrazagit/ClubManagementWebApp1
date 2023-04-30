@@ -270,12 +270,19 @@ export const Forum = () => {
   // Announcements filter
   const [showAnnouncements, setShowAnnouncements] = useState(false);
 
+  const [filter, setFilter] = useState('');
+
   const handleFilter = filter => {
     if (filter === 'Announcements') {
       setShowAnnouncements(true);
     } else {
       setShowAnnouncements(false);
     }
+  };
+
+  const selectFilter = event => {
+    setFilter(event.target.value);
+    handleFilter(filter);
   };
 
   const [filterAnnouncements, setFilterAnnouncement] = useState([]);
@@ -290,11 +297,17 @@ export const Forum = () => {
   //End of Announcements filter
 
   return (
-    <div>
-      <h1 style={{ textAlign: 'center' }}>Forum</h1>
+    <div
+      style={{
+        backgroundImage: `url('content/images/pexels-pixabay-531880.jpg')`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
+      <h1 style={{ textAlign: 'center', border: '0px', color: 'white', fontWeight: 'bold' }}>Forum</h1>
 
       <div className="forum">
-        <div className="input-group mb-3" style={{ margin: '5px' }}>
+        <div className="search-bar" style={{ margin: '5px', border: '0px' }}>
           <input
             type="text"
             className="form-control"
@@ -303,25 +316,32 @@ export const Forum = () => {
             onChange={e => setSearchText(e.target.value)}
           />
 
-          <Button className="btn btn-outline-secondary" color="info" onClick={handleSyncList} disabled={loading}>
+          {/*<Button className="btn btn-outline-secondary" color="info" onClick={handleSyncList} disabled={loading}>
             <FontAwesomeIcon icon="sync" spin={loading} />{' '}
             <Translate contentKey="teamprojectApp.post.home.refreshListLabel">Refresh List</Translate>
-          </Button>
+          </Button>*/}
 
-          {/*
-          <div className="btn-group">
-            <button type="button" className="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-              Action
-            </button>
-            <ul className = "dropdown-menu">
-              <li><a className ="dropdown-item" href="#">Action</a></li>
-              <li><a className ="dropdown-item" href="#">Another action</a></li>
-              <li><a className="dropdown-item" href="#">Something else here</a></li>
-              <li><hr className ="dropdown-divider" /></li>
-              <li><a className ="dropdown-item" href="#">Separated link</a></li>
-            </ul>
-          </div>
-          */}
+          <button className="my-button btn btn-outline-secondary" onClick={handleSyncList} disabled={loading}>
+            <span className="glyphicon glyphicon-refresh" style={{ marginRight: '5px' }}></span>
+            <Translate contentKey="teamprojectApp.post.home.refreshListLabel">Refresh List</Translate>
+          </button>
+
+          {/*<select value={filter} onChange={(event) => selectFilter(event.target.value)}>
+            <option value="All Posts">All posts</option>
+            <option value="Announcements">Announcements</option>
+          </select>*/}
+
+          {/*<select className="form-select" aria-label="Default select example">
+            <option selected onClick={() => {
+              handleFilter('All posts');
+            }}>Open this select menu</option>
+            <option value="1"
+                    onClick={() => {
+                      handleFilter('Announcements');
+                      console.log(filterAnnouncements);
+                    }}
+            >Announcements</option>
+          </select>*/}
 
           <DropdownButton title="Filter posts">
             <Dropdown.Item
@@ -368,7 +388,7 @@ export const Forum = () => {
                     <div className="row">
                       <div className="col-md-12">
                         <div className="card mb-4 forumcard">
-                          <div className="card-header">
+                          {/*<div className="card-header">
                             <div className="media flex-wrap w-100 align-items-center">
                               {post.annoncement ? (
                                 <button type="button" className="btn btn-outline-warning btn-sm">
@@ -393,7 +413,38 @@ export const Forum = () => {
                                 </div>
                               </div>
                             </div>
+                          </div>*/}
+                          <div className={post.annoncement ? 'card-header bg-warning' : 'card-header bg-success bg-midgreen'}>
+                            <div className="media flex-wrap w-100 align-items-center">
+                              {/*{post.annoncement ? (
+                                <div className = "bg-washed-yellow">Announcement</div>
+                              ) : (
+                                <div className = "bg-washed-green">General Post</div>
+                              )}*/}
+                              <div style={{ textAlign: 'center', fontSize: '30px' }}>
+                                <strong>{post.title}</strong>
+                              </div>
+
+                              {/*<div className="text-muted small ml-3 font-weight-bold">
+                                <div>
+                                  Posted at{' '}
+                                  <strong>
+                                    {post.date ? <TextFormat type="date" value={post.date} format={APP_DATE_FORMAT} /> : null}
+                                  </strong>{' '}
+                                  by {post.user ? post.user.login : ''}
+                                </div>
+                              </div>*/}
+
+                              <div style={{ color: 'white', textShadow: '1px 1px 0px black' }}>
+                                <span style={{ fontWeight: 'bold' }}>Posted at</span>{' '}
+                                <strong style={{ fontWeight: 'bold' }}>
+                                  {post.date ? <TextFormat type="date" value={post.date} format={APP_DATE_FORMAT} /> : null}
+                                </strong>{' '}
+                                <span style={{ fontWeight: 'bold' }}>by</span> {post.user ? post.user.login : ''}
+                              </div>
+                            </div>
                           </div>
+
                           <div className="card-body">
                             <p style={{ textAlign: 'center', margin: '4px' }}>{post.content}</p>
                             {post.image ? (

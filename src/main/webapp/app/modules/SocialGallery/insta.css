@@ -88,19 +88,17 @@ select::-ms-expand {
 }
 
 .image-container {
-  width: 100%;
-  height: 0;
-  padding-bottom: 100%;
+  width: calc(33.33% - 10px);
+  margin-bottom: 20px;
+  height: 300px;
+  overflow: hidden;
   position: relative;
   border-radius: 10px;
 }
 
 .image-container img {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 100%;
+  height: 50%;
   object-fit: cover;
   border-radius: 10px;
 }

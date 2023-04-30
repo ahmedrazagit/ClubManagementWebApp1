@@ -21,6 +21,10 @@ const Gallery = () => {
         'IGQVJWR2lwazBtdm1EeTN6MEtJa2lNN1U2Q2NON1hHbkxlSUpzaGUxUGwxQ1ZAoR05VUno1dTQtNk5oS004ZA3ZAxUC04b1BBQ2NfVF92b3M4ejJtWU02Qi1ZAZAHlCZAnhHczItTTRpRnFYaUJMYmE4YUw4UQZDZD',
     },
     {
+      label: 'Account 2',
+      token: 'access_token_for_account_2',
+    },
+    {
       label: 'Account 3',
       token: 'access_token_for_account_3',
     },
@@ -30,7 +34,7 @@ const Gallery = () => {
     if (accessToken) {
       axios
         .get(
-          `https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,thumbnail_url,permalink&access_token=${accessToken}`
+          `https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,thumbnail_url,permalink&access_token=${accessToken}&limit=12`
         )
         .then(response => {
           setMedia(response.data.data);
@@ -63,7 +67,11 @@ const Gallery = () => {
           {media.map(item => (
             <div key={item.id} className="image-container">
               <a href={item.permalink} target="_blank" rel="noopener noreferrer">
-                <img src={item.media_url} alt={item.caption} />
+                {item.media_type === 'VIDEO' ? (
+                  <video src={item.media_url} poster={item.thumbnail_url} controls />
+                ) : (
+                  <img src={item.media_url} alt={item.caption} />
+                )}
               </a>
               <div className="image-caption">{item.caption}</div>
             </div>

@@ -22,7 +22,7 @@ export const Featured = () => {
               backgroundClip: 'text',
             }}
           >
-            Hey I'm Clubby, looks like there is a new club in town!
+            Hey, looks like there is a new club in town!
           </h1>
           <p
             style={{

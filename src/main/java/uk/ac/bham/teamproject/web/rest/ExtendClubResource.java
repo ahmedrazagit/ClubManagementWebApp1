@@ -5,6 +5,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
@@ -17,6 +18,7 @@ import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
 import uk.ac.bham.teamproject.domain.ExtendClub;
 import uk.ac.bham.teamproject.repository.ExtendClubRepository;
+import uk.ac.bham.teamproject.repository.ExtendedEventsRepository;
 import uk.ac.bham.teamproject.web.rest.errors.BadRequestAlertException;
 
 /**
@@ -31,12 +33,15 @@ public class ExtendClubResource {
 
     private static final String ENTITY_NAME = "extendClub";
 
+    private final ExtendedEventsRepository extendedEventsRepository;
+
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
     private final ExtendClubRepository extendClubRepository;
 
-    public ExtendClubResource(ExtendClubRepository extendClubRepository) {
+    public ExtendClubResource(ExtendedEventsRepository extendedEventsRepository, ExtendClubRepository extendClubRepository) {
+        this.extendedEventsRepository = extendedEventsRepository;
         this.extendClubRepository = extendClubRepository;
     }
 
@@ -254,6 +259,10 @@ public class ExtendClubResource {
     @DeleteMapping("/extend-clubs/{id}")
     public ResponseEntity<Void> deleteExtendClub(@PathVariable Long id) {
         log.debug("REST request to delete ExtendClub : {}", id);
+
+        ExtendClub club = extendClubRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Club not found"));
+
+        extendedEventsRepository.deleteEventsByClub(club);
         extendClubRepository.deleteById(id);
         return ResponseEntity
             .noContent()

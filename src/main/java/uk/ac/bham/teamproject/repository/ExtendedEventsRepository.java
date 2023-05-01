@@ -7,7 +7,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import uk.ac.bham.teamproject.domain.ExtendClub;
 import uk.ac.bham.teamproject.domain.ExtendedEvents;
+import uk.ac.bham.teamproject.domain.Post;
 
 /**
  * Spring Data JPA repository for the ExtendedEvents entity.
@@ -20,6 +22,10 @@ public interface ExtendedEventsRepository extends JpaRepository<ExtendedEvents, 
     default Optional<ExtendedEvents> findOneWithEagerRelationships(Long id) {
         return this.findOneWithToOneRelationships(id);
     }
+
+    @Modifying
+    @Query("DELETE FROM ExtendedEvents event WHERE event.club = :club")
+    void deleteEventsByClub(@Param("club") ExtendClub club);
 
     default List<ExtendedEvents> findAllWithEagerRelationships() {
         return this.findAllWithToOneRelationships();

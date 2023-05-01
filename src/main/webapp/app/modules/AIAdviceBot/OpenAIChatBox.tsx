@@ -70,22 +70,29 @@ const OpenAIChat: React.FC = () => {
   };
 
   return (
-    <div className="openai-chat">
-      <h1>ClubPing AI advice bot</h1>
-      <div className="chatbox">
-        {messages.map(message => (
-          <div key={message.id} className={`message ${message.user === 'User' ? 'user-message' : 'ai-message'}`}>
-            <span className="user">{message.user}:</span> {message.content}
-          </div>
-        ))}
-        {isLoading && <div className="loading">Loading...</div>}
+    <div className="openai-chat-container">
+      <div className="openai-chat-tab">
+        <p className="openai-chat-tab-text">
+          This is the ClubPing AI advice bot. Type your questions about university/school clubs, activities, and event management and I'll
+          provide helpful and accurate responses. If your question is out of my scope, I'll let you know!
+        </p>
       </div>
-      <form onSubmit={handleSubmit} className="input-form">
-        <input type="text" value={input} onChange={handleInputChange} className="input-field" placeholder="Type your message..." />
-        <button type="submit" className="send-button">
-          Send
-        </button>
-      </form>
+      <div className="openai-chat">
+        <div className="chatbox">
+          {messages.map(message => (
+            <div key={message.id} className={`message ${message.user === 'User' ? 'user-message' : 'ai-message'}`}>
+              <span className="user">{message.user}:</span> {message.content}
+            </div>
+          ))}
+          {isLoading && <div className="loading">Loading...</div>}
+        </div>
+        <form onSubmit={handleSubmit} className="input-form">
+          <input type="text" value={input} onChange={handleInputChange} className="input-field" placeholder="Type your message..." />
+          <button type="submit" className="send-button">
+            Send
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

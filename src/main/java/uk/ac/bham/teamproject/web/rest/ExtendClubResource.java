@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,8 +18,10 @@ import org.springframework.web.bind.annotation.*;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
 import uk.ac.bham.teamproject.domain.ExtendClub;
+import uk.ac.bham.teamproject.domain.User;
 import uk.ac.bham.teamproject.repository.ExtendClubRepository;
 import uk.ac.bham.teamproject.repository.ExtendedEventsRepository;
+import uk.ac.bham.teamproject.service.UserService;
 import uk.ac.bham.teamproject.web.rest.errors.BadRequestAlertException;
 
 /**
@@ -34,6 +37,9 @@ public class ExtendClubResource {
     private static final String ENTITY_NAME = "extendClub";
 
     private final ExtendedEventsRepository extendedEventsRepository;
+
+    @Autowired
+    private UserService userService;
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
@@ -58,6 +64,17 @@ public class ExtendClubResource {
         if (extendClub.getId() != null) {
             throw new BadRequestAlertException("A new extendClub cannot already have an ID", ENTITY_NAME, "idexists");
         }
+
+        final Optional<User> isUser = userService.getUserWithAuthorities();
+        if (!isUser.isPresent()) {
+            log.error("User is not logged in");
+            throw new BadRequestAlertException("User is not logged in", ENTITY_NAME, "usernotloggedin");
+        }
+
+        final User user = isUser.get();
+
+        extendClub.setUser(user);
+
         int eventCount = extendClubRepository.countEventsByClubId(extendClub.getId());
         extendClub.setNumberofevents(eventCount);
         ExtendClub result = extendClubRepository.save(extendClub);

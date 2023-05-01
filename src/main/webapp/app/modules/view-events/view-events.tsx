@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from 'react';
 import './view-events.scss';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button, Table } from 'reactstrap';
-import { Translate, TextFormat, getSortState, JhiPagination, JhiItemCount } from 'react-jhipster';
+import { Translate, TextFormat } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
-import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/shared/util/pagination.constants';
-import { overridePaginationStateWithQueryParams } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
-import { IEvent } from 'app/shared/model/event.model';
-import { getEntities } from 'app/entities/event/event.reducer';
+import { IExtendedEvents } from 'app/shared/model/extended-events.model';
+import { getEntities } from 'app/entities/extended-events/extended-events.reducer';
+
+import { getEntities as getClubEntities } from 'app/entities/extend-club/extend-club.reducer';
 
 export const ViewEvent = () => {
   const [announcements, setAnnouncements] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+  //const [searchTerm, setSearchTerm] = useState('');
   const [category, setCategory] = useState('all');
   const [university, setUniversity] = useState('all');
   const [place, setPlace] = useState('all');
@@ -36,80 +36,19 @@ export const ViewEvent = () => {
 
   const fetchAnnouncements = () => {
     // Replace this with your own API call or data source
-    const mockAnnouncements = [
-      {
-        id: 1,
-        title: 'Spring Festival',
-        content: 'Join us for a celebration of spring!',
-        category: 'Fest',
-        university: 'AUD',
-        place: 'Dubai',
-      },
-      {
-        id: 2,
-        title: 'Arabian Nights',
-        content: 'Experience the magic of Arabian Nights!',
-        category: 'Culture',
-        university: 'UOB',
-        place: 'Dubai',
-      },
-      {
-        id: 3,
-        title: 'Bollywood Dance Workshop',
-        content: 'Learn some of the hottest Bollywood moves!',
-        category: 'Dance',
-        university: 'BITS',
-        place: 'Dubai',
-      },
-      {
-        id: 4,
-        title: 'Dance Battle',
-        content: 'Showcase your moves!',
-        category: 'Dance',
-        university: 'Skyline University',
-        place: 'Sharjah',
-      },
-      {
-        id: 5,
-        title: 'Asian Food Fest',
-        content: 'Come and discover various foods!',
-        category: 'Fest',
-        university: 'BITS',
-        place: 'Dubai',
-      },
-      {
-        id: 6,
-        title: 'Fashion Show',
-        content: 'Runway and more',
-        category: 'Fest',
-        university: 'BITS',
-        place: 'Dubai',
-      },
-      {
-        id: 7,
-        title: 'Hip Hop Dance',
-        content: 'Groove to recent hits!',
-        category: 'Dance',
-        university: 'UOB',
-        place: 'Dubai',
-      },
-    ];
+    const mockAnnouncements = [];
     setAnnouncements(mockAnnouncements);
   };
 
-  const handleInputChange = event => {
-    const value = event.target.value;
-    setSearchTerm(value);
-  };
+  //const handleCategoryChange = event => {
+  //  const value = event.target.value;
+  //  setCategory(value);
+  //};
 
-  const handleCategoryChange = event => {
-    const value = event.target.value;
-    setCategory(value);
-  };
-
-  const handleUniversityChange = event => {
-    setUniversity(event.target.value);
-  };
+  //const handleUniversityChange = event => {
+  //  setUniversity(event.target.value);
+  //  console.log(universityNames);
+  //};
 
   const handlePlaceChange = event => {
     setPlace(event.target.value);
@@ -148,34 +87,7 @@ export const ViewEvent = () => {
     const updatedAnnouncements = announcements.filter(announcement => announcement.id !== id);
     setAnnouncements(updatedAnnouncements);
   };
-  const handleAddNewAnnouncement = event => {
-    event.preventDefault();
-    const newId = announcements.length + 1;
-    const newAnnouncement = {
-      id: newId,
-      title: prompt('Enter the event name'),
-      content: prompt('Enter the description'),
-      university: prompt('Enter the university name'),
-      place: prompt('Enter the place'),
-    };
-    setAnnouncements([...announcements, newAnnouncement]);
-    setNewAnnouncement(null);
-    setShowAddEditBox(false);
-  };
-  const handleEditAnnouncementClick = id => {
-    console.log('handleEditAnnouncementClick triggered');
-    const announcementToEdit = announcements.find(announcement => announcement.id === id);
-    console.log('announcementToEdit before:', announcementToEdit);
-    setAnnouncementToEdit(announcementToEdit);
-    setNewAnnouncement({
-      title: announcementToEdit.title,
-      content: announcementToEdit.content,
-      university: announcementToEdit.university,
-      place: announcementToEdit.place,
-    });
-    setEditMode(true);
-    setShowAddEditBox(true);
-  };
+
   const handleCancelEditAnnouncement = event => {
     event.preventDefault();
     setNewAnnouncement(null);
@@ -191,7 +103,7 @@ export const ViewEvent = () => {
     if (category === 'all' || announcement.category.toLowerCase() === category.toLowerCase()) {
       if (university === 'all' || announcement.university.toLowerCase() === university.toLowerCase()) {
         if (place === 'all' || announcement.place.toLowerCase() === place.toLowerCase()) {
-          if (searchTerm === '' || announcement.title.toLowerCase().includes(searchTerm.toLowerCase())) {
+          if (searchText === '' || announcement.title.toLowerCase().includes(searchText.toLowerCase())) {
             return true;
           }
         }
@@ -200,99 +112,235 @@ export const ViewEvent = () => {
     return false;
   });
 
+  const dispatch = useAppDispatch();
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const extendedEventsList = useAppSelector(state => state.extendedEvents.entities);
+  const loading = useAppSelector(state => state.extendedEvents.loading);
+
+  const extendClubList = useAppSelector(state => state.extendClub.entities);
+  const clubloading = useAppSelector(state => state.extendClub.loading);
+
+  useEffect(() => {
+    dispatch(getClubEntities({}));
+  }, []);
+
+  const handleClubSyncList = () => {
+    dispatch(getClubEntities({}));
+  };
+
+  const commentsList = useAppSelector(state => state.comments.entities);
+  const commentloading = useAppSelector(state => state.comments.loading);
+
+  useEffect(() => {
+    dispatch(getEntities({}));
+  }, []);
+
+  const handleSyncList = () => {
+    dispatch(getEntities({}));
+  };
+
+  //const universityNames = Array.from(new Set(extendedEventsList.map(entity => entity.university)));
+  const [selectedUniversity, setSelectedUniversity] = useState('all');
+
+  const [selectedClub, setSelectedClub] = useState('all');
+
+  const [selectedCategory, setSelectedCategory] = useState('all');
+
+  const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedCategory(e.target.value);
+  };
+
+  const handleClubChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedClub(e.target.value);
+  };
+
+  const handleUniversityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedUniversity(e.target.value);
+  };
+
+  //const [searchText, setSearchText] = useState('');
+
   {
-    /*
-  {
-    showAddEditBox ? (
-      <div className="add-edit-box">
-        <h2>{editMode ? 'Edit Announcement' : 'Add Announcement'}</h2>
-        <form onSubmit={editMode ? handleEditAnnouncement : handleAddAnnouncement}>
-          <label htmlFor="title">Title:</label>
-          <input
-            type="text"
-            id="title"
-            name="title"
-            value={newAnnouncement.title}
-            onChange={event => setNewAnnouncement({ ...newAnnouncement, title: event.target.value })}
-          />
-          <label htmlFor="content">Content:</label>
-          <textarea
-            id="content"
-            name="content"
-            value={newAnnouncement.content}
-            onChange={event => setNewAnnouncement({ ...newAnnouncement, content: event.target.value })}
-          />
-          <label htmlFor="university">University:</label>
-          <input
-            type="text"
-            id="university"
-            name="university"
-            value={newAnnouncement.university}
-            onChange={event => setNewAnnouncement({ ...newAnnouncement, university: event.target.value })}
-          />
-          <label htmlFor="place">Place:</label>
-          <input
-            type="text"
-            id="place"
-            name="place"
-            value={newAnnouncement.place}
-            onChange={event => setNewAnnouncement({ ...newAnnouncement, place: event.target.value })}
-          />
-          <button type="submit">{editMode ? 'Save Changes' : 'Add Announcement'}</button>
-          <button type="button" onClick={handleCancelEditAnnouncement}>
-            Cancel
-          </button>
-        </form>
-      </div>
-    ) : null;
-  }*/
+    /*const filteredEventsList = selectedUniversity === 'all' && selectedClub === 'all'
+    ? extendedEventsList
+    : extendedEventsList.filter(entity =>
+      (selectedUniversity === 'all' || entity.university === selectedUniversity) ||
+      (selectedClub === 'all' || (entity.club && entity.club.clubname === selectedClub))
+    );*/
+  }
+
+  let [filteredEventsList, setFilteredEventsList] = useState(extendedEventsList);
+
+  const [searchText, setSearchText] = useState('');
+
+  useEffect(() => {
+    setFilteredEventsList(extendedEventsList.filter(entity => entity.event.toLowerCase().includes(searchText.toLowerCase())));
+  }, [extendedEventsList, searchText]);
+
+  if (selectedUniversity !== 'all') {
+    filteredEventsList = filteredEventsList.filter(entity => entity.club && entity.club.university === selectedUniversity);
+  }
+
+  if (selectedCategory !== 'all') {
+    filteredEventsList = filteredEventsList.filter(entity => entity.category === selectedCategory);
+  }
+
+  if (selectedClub !== 'all') {
+    filteredEventsList = filteredEventsList.filter(entity => entity.club && entity.club.clubname === selectedClub);
   }
 
   return (
     <div>
-      <h1 style={{ textAlign: 'left' }}>Events</h1>
+      <div className="table-responsive">
+        {extendedEventsList && extendedEventsList.length > 0 ? (
+          <>
+            <h2 id="extended-events-heading" data-cy="ExtendedEventsHeading">
+              <Translate contentKey="teamprojectApp.extendedEvents.home.title">Extended Events</Translate>
 
-      <div className="search-bar">
-        <input type="text" placeholder="Search" value={searchTerm} onChange={handleInputChange} />
-        <select value={category} onChange={handleCategoryChange}>
-          <option value="all">All Categories</option>
-          <option value="Fest">Fest</option>
-          <option value="Culture">Culture</option>
-          <option value="Dance">Dance</option>
-        </select>
-        <select value={university} onChange={handleUniversityChange}>
-          <option value="all">All Universities</option>
-          <option value="AUD">AUD</option>
-          <option value="UOB">UOB</option>
-          <option value="BITS">BITS</option>
-          <option value="Skyline University">Skyline University</option>
-          <option value="AUS">AUS</option>
-        </select>
-        <select value={place} onChange={handlePlaceChange}>
-          <option value="all">All Places</option>
-          <option value="Dubai">Dubai</option>
-          <option value="Sharjah">Sharjah</option>
-        </select>
-      </div>
+              <div className="search-bar">
+                <input type="text" placeholder="Search" value={searchText} onChange={e => setSearchText(e.target.value)} />
+                {/*<select value={category} onChange={handleCategoryChange}>
+                  <option value="all">All Categories</option>
+                  {extendedEventsList.map((extendedEvents, i) => (
+                    <option key={`entity-${i}`} value={extendedEvents.category}></option>
+                    ))}
+                </select>*/}
 
-      <div className="announcement-list">
-        {filteredAnnouncements.map(announcement => (
-          <Link key={announcement.id} to={`/announcements/${announcement.id}`}>
-            <div className="announcement-box">
-              <h2>{announcement.title}</h2>
-              <p>{announcement.content}</p>
-              <button className="btn btn-primary btn-sm" onClick={() => handleEditAnnouncementClick(announcement.id)}>
-                Edit
-              </button>
-              <button className="btn btn-primary btn-sm" onClick={() => handleDeleteAnnouncement(announcement.id)}>
-                Delete
-              </button>
+                <select value={selectedCategory} onChange={handleCategoryChange}>
+                  <option value="all">All Categories</option>
+                  <option value="Fest">Fest</option>
+                  <option value="Culture">Culture</option>
+                  <option value="Dance">Dance</option>
+                  <option value="Other">Other</option>
+                </select>
+
+                <select value={selectedClub} onChange={handleClubChange}>
+                  <option value="all">All Clubs</option>
+                  {extendedEventsList &&
+                    extendedEventsList
+                      .filter(extendedEvents => extendedEvents.club && extendedEvents.club.clubname) // filter out null entries
+                      .reduce((uniqueClubs, extendedEvents) => {
+                        const clubName = extendedEvents.club.clubname;
+                        if (!uniqueClubs.includes(clubName)) {
+                          uniqueClubs.push(clubName);
+                        }
+                        return uniqueClubs;
+                      }, [])
+                      .map((clubName, i) => (
+                        <option key={`entity-${i}`} value={clubName}>
+                          {clubName}
+                        </option>
+                      ))}
+                </select>
+
+                <select value={selectedUniversity} onChange={handleUniversityChange}>
+                  <option value="all">All Universities</option>
+                  {extendClubList.map((extendedClubs, i) => (
+                    <option key={`entity-${i}`} value={extendedClubs.university}>
+                      {extendedClubs.university}
+                    </option>
+                  ))}
+                </select>
+
+                {/*<Button className="me-2" color="info" onClick={handleSyncList} disabled={loading}>
+                  <FontAwesomeIcon icon="sync" spin={loading}/>{' '}
+                  <Translate contentKey="teamprojectApp.extendedEvents.home.refreshListLabel">Refresh List</Translate>
+                </Button>*/}
+
+                <Link
+                  to="/extended-events/new"
+                  className="btn btn-primary jh-create-entity"
+                  id="jh-create-entity"
+                  data-cy="entityCreateButton"
+                >
+                  <FontAwesomeIcon icon="plus" />
+                  &nbsp;
+                  <Translate contentKey="teamprojectApp.extendedEvents.home.createLabel">Create new Extended Events</Translate>
+                </Link>
+              </div>
+            </h2>
+            <div className="announcement-list">
+              {filteredEventsList.map((extendedEvents, i) => (
+                <div key={`entity-${i}`} data-cy="entityTable" className="row">
+                  {/*
+            <div className="col-1">
+              <Button tag={Link} to={`/extended-events/${extendedEvents.id}`} color="link" size="sm">
+                {extendedEvents.id}
+              </Button>
             </div>
-          </Link>
-        ))}
+            <div className="col-1">{extendedEvents.event}</div>
+            <div className="col-2">{extendedEvents.date ? <TextFormat type="date" value={extendedEvents.date} format={APP_DATE_FORMAT} /> : null}</div>
+            <div className="col-2">{extendedEvents.location}</div>
+            <div className="col-2">{extendedEvents.eventdescription}</div>
+            <div className="col-1">
+              <Translate contentKey={`teamprojectApp.CategoryType.${extendedEvents.category}`} />
+            </div>
+            <div className="col-1">
+              {extendedEvents.club ? <Link to={`/extend-club/${extendedEvents.club.id}`}>{extendedEvents.club.clubname}</Link> : ''}
+            </div>
+            <div className="col-1">{extendedEvents.user ? extendedEvents.user.login : ''}</div>
+            <div className="col-2 text-end">
+              <div className="btn-group flex-btn-group-container">
+                <Button tag={Link} to={`/extended-events/${extendedEvents.id}`} color="info" size="sm" data-cy="entityDetailsButton">
+                  <FontAwesomeIcon icon="eye" />{' '}
+                  <span className="d-none d-md-inline">
+                   <Translate contentKey="entity.action.view">View</Translate>
+                  </span>
+                </Button>
+                <Button
+                  tag={Link}
+                  to={`/extended-events/${extendedEvents.id}/edit`}
+                  color="primary"
+                  size="sm"
+                  data-cy="entityEditButton"
+                >
+                  <FontAwesomeIcon icon="pencil-alt"/>{' '}
+                  <span className="d-none d-md-inline">
+                    <Translate contentKey="entity.action.edit">Edit</Translate>
+                  </span>
+                </Button>
+                <Button
+                  tag={Link}
+                  to={`/extended-events/${extendedEvents.id}/delete`}
+                  color="danger"
+                  size="sm"
+                  data-cy="entityDeleteButton"
+                >
+                  <FontAwesomeIcon icon="trash"/>{' '}
+                  <span className="d-none d-md-inline">
+                    <Translate contentKey="entity.action.delete">Delete</Translate>
+                  </span>
+                </Button>
+              </div>
+            </div>
+            */}
+                  <Link to={`/extended-events/${extendedEvents.id}`}>
+                    <div className="announcement-box">
+                      <h2>{extendedEvents.event}</h2>
+                      {/*<p>{announcement.content}</p>*/}
+                      <button className="btn btn-primary btn-sm">
+                        <FontAwesomeIcon icon="pencil-alt" /> Edit
+                      </button>
+                      <button className="btn btn-primary btn-sm">
+                        <FontAwesomeIcon icon="trash" /> Delete
+                      </button>
+                    </div>
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </>
+        ) : (
+          !loading && (
+            <div className="alert alert-warning">
+              <Translate contentKey="teamprojectApp.extendedEvents.home.notFound">No Extended Events found</Translate>
+            </div>
+          )
+        )}
       </div>
-
-      <button onClick={handleAddNewAnnouncement}>Add Event</button>
     </div>
   );
 };

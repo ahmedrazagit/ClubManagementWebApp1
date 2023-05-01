@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,8 +22,10 @@ import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
 import uk.ac.bham.teamproject.domain.ExtendEvent;
+import uk.ac.bham.teamproject.domain.User;
 import uk.ac.bham.teamproject.repository.ExtendEventRepository;
 import uk.ac.bham.teamproject.service.ExtendEventService;
+import uk.ac.bham.teamproject.service.UserService;
 import uk.ac.bham.teamproject.web.rest.errors.BadRequestAlertException;
 
 /**
@@ -40,6 +43,9 @@ public class ExtendEventResource {
     private String applicationName;
 
     private final ExtendEventService extendEventService;
+
+    @Autowired
+    private UserService userService;
 
     private final ExtendEventRepository extendEventRepository;
 
@@ -61,6 +67,16 @@ public class ExtendEventResource {
         if (extendEvent.getId() != null) {
             throw new BadRequestAlertException("A new extendEvent cannot already have an ID", ENTITY_NAME, "idexists");
         }
+
+        final Optional<User> isUser = userService.getUserWithAuthorities();
+        if (!isUser.isPresent()) {
+            log.error("User is not logged in");
+            throw new BadRequestAlertException("User is not logged in", ENTITY_NAME, "usernotloggedin");
+        }
+
+        final User user = isUser.get();
+
+        //extendEvent.setUser(user);
 
         ExtendEvent result = extendEventService.save(extendEvent);
         return ResponseEntity

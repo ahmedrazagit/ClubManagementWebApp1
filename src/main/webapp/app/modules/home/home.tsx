@@ -7,7 +7,9 @@ import './home.scss';
 import { Button, Table } from 'reactstrap';
 import { Translate, TextFormat, getSortState, JhiPagination, JhiItemCount } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import '../../../content/images/aus.png';
+import '../../../content/images/football.png';
+import '../../../content/images/bits.png';
 import WebFont from 'webfontloader';
 
 import Chatbutton from 'app/modules/chatbot/Chatbutton';
@@ -23,6 +25,12 @@ import { getEntities } from 'app/entities/event/event.reducer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
+import Home from './Components/Home';
+import About from './Components/About';
+import Work from './Components/Work';
+import Testimonial from './Components/Testimonial';
+import Contact from './Components/Contact';
+import Footer from './Components/Footer';
 import { Row, Col, Alert, Nav, NavLink } from 'reactstrap';
 
 import React, { useEffect, useState } from 'react';
@@ -42,7 +50,7 @@ import ActionProvider from 'app/modules/chatbot/ActionProvider';
 import MessageParser from 'app/modules/chatbot/MessageParser';
 import config from 'app/modules/chatbot/config';
 
-export const Home = () => {
+export const Homes = () => {
   const account = useAppSelector(state => state.authentication.account);
   const [value, onChange] = useState(new Date());
   const dispatch = useAppDispatch();
@@ -71,6 +79,8 @@ export const Home = () => {
     });
   }, []);
 
+  {
+    /*
   const [paginationState, setPaginationState] = useState(
     overridePaginationStateWithQueryParams(getSortState(location, ITEMS_PER_PAGE, 'id'), location.search)
   );
@@ -133,7 +143,8 @@ export const Home = () => {
   const handleSyncList = () => {
     sortEntities();
   };
-
+*/
+  }
   return (
     <main className="home mt-5 pt-3">
       <Chatbutton />
@@ -142,44 +153,48 @@ export const Home = () => {
         <div className="welcomeText"> Welcome to Clubping</div>
       </div>
       */}
-      <div className="font-loader" style={{ position: 'relative', textAlign: 'center' }}>
-        {' '}
-        Welcome to Clubping!
-      </div>
-      <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel">
-        <div className="carousel-indicators">
-          <button
-            type="button"
-            data-bs-target="#carouselExampleIndicators"
-            data-bs-slide-to="0"
-            className="active"
-            aria-current="true"
-            aria-label="Slide 1"
-          ></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
-        <div className="carousel-inner">
-          <div className="carousel-item active">
-            <img src="content/images/elementor-placeholder-image.png" className="d-block w-100" alt="..." />
-          </div>
-          <div className="carousel-item">
-            <img src="content/images/student-pic.jpg" className="d-block w-100" alt="..." />
-          </div>
-          <div className="carousel-item">
-            <img src="..." className="d-block w-100" alt="..." />
-          </div>
-        </div>
-        <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span className="visually-hidden">Previous</span>
-        </button>
-        <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-          <span className="carousel-control-next-icon" aria-hidden="true"></span>
-          <span className="visually-hidden">Next</span>
-        </button>
-      </div>
 
+      <div className="App">
+        <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel">
+          <div className="carousel-indicators">
+            <button
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide-to="0"
+              className="active"
+              aria-current="true"
+              aria-label="Slide 1"
+            ></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          </div>
+          <div className="carousel-inner">
+            <div className="carousel-item active">
+              <img src="../../../content/images/aus.png" className="d-block w-100" alt="..." />
+            </div>
+            <div className="carousel-item">
+              <img src="../../../content/images/bits.png" className="d-block w-100" alt="..." />
+            </div>
+            <div className="carousel-item">
+              <img src="../../../content/images/football.png" className="d-block w-100" alt="..." />
+            </div>
+          </div>
+          <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span className="visually-hidden">Previous</span>
+          </button>
+          <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+            <span className="visually-hidden">Next</span>
+          </button>
+        </div>
+
+        <Home />
+        <About />
+        <Work />
+        <Testimonial />
+        <Footer />
+      </div>
       {/*}
           <div style={{marginRight: '10px'}} className="col-md-3 mb-3">
             <div className="card eventcard" style={{width: '18rem', marginRight: '10px'}}>
@@ -197,7 +212,7 @@ export const Home = () => {
 
       */}
 
-      <div>
+      {/* <div>
         <h2 id="event-heading" data-cy="EventHeading">
           <div className="d-flex justify-content-end">
             <Button className="me-2" color="info" onClick={handleSyncList} disabled={loading}>
@@ -205,8 +220,9 @@ export const Home = () => {
               <Translate contentKey="teamprojectApp.event.home.refreshListLabel">Refresh List</Translate>
             </Button>
           </div>
-        </h2>
-        <div className="container">
+        </h2>  */}
+
+      {/*   <div className="container">
           <div className="row">
             {eventList && eventList.length > 0 && (
               <>
@@ -239,7 +255,7 @@ export const Home = () => {
                 </div>
               )
               */}
-          </div>
+      {/*     </div>
         </div>
 
         {totalItems ? (
@@ -260,9 +276,9 @@ export const Home = () => {
         ) : (
           ''
         )}
-      </div>
+      </div> */}
     </main>
   );
 };
 
-export default Home;
+export default Homes;

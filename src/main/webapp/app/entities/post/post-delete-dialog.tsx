@@ -25,7 +25,7 @@ export const PostDeleteDialog = () => {
   const updateSuccess = useAppSelector(state => state.post.updateSuccess);
 
   const handleClose = () => {
-    navigate('/forum');
+    navigate('/post');
   };
 
   useEffect(() => {

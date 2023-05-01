@@ -26,6 +26,8 @@ import uk.ac.bham.teamproject.domain.Post;
 import uk.ac.bham.teamproject.domain.User;
 import uk.ac.bham.teamproject.repository.CommentsRepository;
 import uk.ac.bham.teamproject.repository.PostRepository;
+import uk.ac.bham.teamproject.security.SecurityUtils;
+import uk.ac.bham.teamproject.service.UserService;
 import uk.ac.bham.teamproject.service.UserService;
 import uk.ac.bham.teamproject.web.rest.errors.BadRequestAlertException;
 
@@ -39,12 +41,12 @@ public class PostResource {
 
     private final Logger log = LoggerFactory.getLogger(PostResource.class);
 
-    private static final String ENTITY_NAME = "post";
+    private final CommentsRepository commentsRepository;
 
     @Autowired
     private UserService userService;
 
-    private final CommentsRepository commentsRepository;
+    private static final String ENTITY_NAME = "post";
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
@@ -227,7 +229,6 @@ public class PostResource {
         Post post = postRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Post not found"));
 
         commentsRepository.deleteByPost(post);
-
         postRepository.deleteById(id);
         return ResponseEntity
             .noContent()

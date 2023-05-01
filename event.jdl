@@ -1,6 +1,34 @@
-entity Event {
-    name String required minlength(3) maxlength(50),
+entity ExtendClub {
+    clubname String required unique minlength(5) maxlength(30),
+    clubdescription String required minlength(10) maxlength(600),
+    numberofmembers Integer required,
+    numberofevents Integer required,
+    university String required pattern(/.*University.*/)
+}
+
+entity ExtendedEvents {
+    event String required unique minlength(10) maxlength(50),
     date ZonedDateTime required,
-    location String required minlength(3) maxlength(100),
-    description String required minlength(10) maxlength(500)
+    location String required minlength(10) maxlength(50),
+    eventdescription String required minlength(10) maxlength(100),
+    category CategoryType,
+}
+
+relationship ManyToOne {
+    ExtendedEvents{club(clubname)} to ExtendClub
+}
+
+relationship ManyToOne {
+    ExtendedEvents{user(login)} to User
+}
+
+relationship ManyToOne {
+    ExtendClub{user(login)} to User
+}
+
+enum CategoryType {
+    Fest
+    Culture
+    Dance
+    Other
 }

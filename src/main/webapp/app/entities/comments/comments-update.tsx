@@ -96,7 +96,8 @@ export const CommentsUpdate = () => {
                   required
                   readOnly
                   id="comments-id"
-                  label={translate('global.field.id')}
+                  style={{ display: 'none' }}
+                  //label={translate('global.field.id')}
                   validate={{ required: true }}
                 />
               ) : null}
@@ -110,7 +111,7 @@ export const CommentsUpdate = () => {
                   required: { value: true, message: translate('entity.validation.required') },
                 }}
               />
-              <ValidatedField id="comments-post" name="post" data-cy="post" label={translate('teamprojectApp.comments.post')} type="select">
+              <ValidatedField style={{ display: 'none' }} id="comments-post" name="post" data-cy="post" type="select">
                 <option value="" key="0" />
                 {posts
                   ? posts.map(otherEntity => (
@@ -120,7 +121,7 @@ export const CommentsUpdate = () => {
                     ))
                   : null}
               </ValidatedField>
-              <ValidatedField id="comments-user" name="user" data-cy="user" label={translate('teamprojectApp.comments.user')} type="select">
+              <ValidatedField style={{ display: 'none' }} id="comments-user" name="user" data-cy="user" type="select">
                 <option value="" key="0" />
                 {users
                   ? users.map(otherEntity => (

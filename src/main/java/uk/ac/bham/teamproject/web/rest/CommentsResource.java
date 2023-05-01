@@ -60,7 +60,6 @@ public class CommentsResource {
         if (comments.getId() != null) {
             throw new BadRequestAlertException("A new comments cannot already have an ID", ENTITY_NAME, "idexists");
         }
-
         final Optional<User> isUser = userService.getUserWithAuthorities();
 
         if (!isUser.isPresent()) {

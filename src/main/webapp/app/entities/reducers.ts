@@ -9,6 +9,8 @@ import comments from 'app/entities/comments/comments.reducer';
 import universityUser from 'app/entities/university-user/university-user.reducer';
 import uniUser from 'app/entities/uni-user/uni-user.reducer';
 
+import extendClub from 'app/entities/extend-club/extend-club.reducer';
+import extendedEvents from 'app/entities/extended-events/extended-events.reducer';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 const entitiesReducers = {
@@ -23,6 +25,8 @@ const entitiesReducers = {
   universityUser,
   uniUser,
 
+  extendClub,
+  extendedEvents,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
 };
 

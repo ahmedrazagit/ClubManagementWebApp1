@@ -24,8 +24,6 @@ import uk.ac.bham.teamproject.web.rest.errors.BadRequestAlertException;
  */
 @RestController
 @RequestMapping("/api")
-//shall I add this?
-@CrossOrigin("http://localhost:8080")
 public class UniversityUserResource {
 
     private final Logger log = LoggerFactory.getLogger(UniversityUserResource.class);

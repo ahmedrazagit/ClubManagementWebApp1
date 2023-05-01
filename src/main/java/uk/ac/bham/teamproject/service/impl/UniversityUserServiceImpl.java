@@ -1,6 +1,5 @@
 package uk.ac.bham.teamproject.service.impl;
 
-import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
@@ -29,21 +28,6 @@ public class UniversityUserServiceImpl implements UniversityUserService {
     @Override
     public UniversityUser save(UniversityUser universityUser) {
         log.debug("Request to save UniversityUser : {}", universityUser);
-
-        // create a new UniversityUser object with the specified properties
-        // UniversityUser newUser = new UniversityUser();
-        universityUser.setName("John Smith");
-        universityUser.setNickname("JS");
-        universityUser.setRole("Student");
-        universityUser.setStudentId("123456789");
-        universityUser.setGender("Male");
-        universityUser.setBirthday(ZonedDateTime.parse("1995-05-20T00:00:00Z"));
-        universityUser.setClubs("Club A, Club B");
-        universityUser.setUni("University of Example");
-        universityUser.setEmail("john.smith@example.com");
-        universityUser.setBalance(100L);
-
-        // save the new UniversityUser object to the database
         return universityUserRepository.save(universityUser);
     }
 

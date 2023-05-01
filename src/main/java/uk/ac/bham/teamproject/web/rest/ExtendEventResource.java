@@ -61,6 +61,7 @@ public class ExtendEventResource {
         if (extendEvent.getId() != null) {
             throw new BadRequestAlertException("A new extendEvent cannot already have an ID", ENTITY_NAME, "idexists");
         }
+
         ExtendEvent result = extendEventService.save(extendEvent);
         return ResponseEntity
             .created(new URI("/api/extend-events/" + result.getId()))
@@ -119,6 +120,7 @@ public class ExtendEventResource {
         @NotNull @RequestBody ExtendEvent extendEvent
     ) throws URISyntaxException {
         log.debug("REST request to partial update ExtendEvent partially : {}, {}", id, extendEvent);
+
         if (extendEvent.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }

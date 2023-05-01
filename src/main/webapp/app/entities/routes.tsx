@@ -16,6 +16,8 @@ import UniversityUser from './university-user';
 
 import UniUser from './uni-user';
 
+import ExtendClub from './extend-club';
+import ExtendedEvents from './extended-events';
 /* jhipster-needle-add-route-import - JHipster will add routes here */
 
 export default () => {
@@ -36,6 +38,8 @@ export default () => {
 
         <Route path="uni-user/*" element={<UniUser />} />
 
+        <Route path="extend-club/*" element={<ExtendClub />} />
+        <Route path="extended-events/*" element={<ExtendedEvents />} />
         {/* jhipster-needle-add-route-path - JHipster will add routes here */}
       </ErrorBoundaryRoutes>
     </div>

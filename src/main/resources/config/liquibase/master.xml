@@ -27,9 +27,13 @@
     <include file="config/liquibase/changelog/20230426094156_added_entity_UniUser.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20230426095537_added_entity_UniversityUser.xml" relativeToChangelogFile="false"/>
 
+    <include file="config/liquibase/changelog/20230430213919_added_entity_ExtendClub.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20230430213920_added_entity_ExtendedEvents.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20230407203542_added_entity_constraints_Post.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20230413193015_added_entity_constraints_Comments.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20230430213919_added_entity_constraints_ExtendClub.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20230430213920_added_entity_constraints_ExtendedEvents.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>

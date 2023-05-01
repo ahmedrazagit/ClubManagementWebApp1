@@ -1,0 +1,11 @@
+{
+  "teamprojectApp": {
+    "CategoryType": {
+      "null": "",
+      "Fest": "Fest",
+      "Culture": "Culture",
+      "Dance": "Dance",
+      "Other": "Other"
+    }
+  }
+}

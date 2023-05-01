@@ -10,19 +10,6 @@ import { useAppDispatch, useAppSelector } from 'app/config/store';
 import { IUniversityUser } from 'app/shared/model/university-user.model';
 import { getEntities } from './university-user.reducer';
 
-export interface UniversityUser {
-  name: string;
-  nickName: string;
-  role: string;
-  studentId: string;
-  gender: string;
-  birthday: string;
-  clubs: string;
-  uni: string;
-  email: string;
-  balance: number;
-}
-
 export const UniversityUser = () => {
   const dispatch = useAppDispatch();
 

@@ -18,16 +18,14 @@ public interface CommentsRepository extends JpaRepository<Comments, Long> {
     @Query("select comments from Comments comments where comments.user.login = ?#{principal.username}")
     List<Comments> findByUserIsCurrentUser();
 
-    default Optional<Comments> findOneWithEagerRelationships(Long id) {
-        return this.findOneWithToOneRelationships(id);
-    }
-
     //Added by KB
     @Modifying
     @Query("DELETE FROM Comments c WHERE c.post = :post")
     void deleteByPost(@Param("post") Post post);
 
-    //Ends here
+    default Optional<Comments> findOneWithEagerRelationships(Long id) {
+        return this.findOneWithToOneRelationships(id);
+    }
 
     default List<Comments> findAllWithEagerRelationships() {
         return this.findAllWithToOneRelationships();

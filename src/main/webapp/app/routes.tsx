@@ -28,7 +28,8 @@ import { AUTHORITIES } from 'app/config/constants';
 import AIAdviceBotPage from 'app/modules/AIAdviceBot/AIAdviceBotPage';
 import Gallery from 'app/modules/SocialGallery/gallery';
 import Featured from 'app/modules/SocialGallery/featured';
-
+import Uobd from 'app/modules/messages/uobdchat';
+import Hwd from 'app/modules/messages/hwdchat';
 const loading = <div>loading ...</div>;
 
 const Account = Loadable({
@@ -69,6 +70,8 @@ const AppRoutes = () => {
         <Route path="OpenAIChatBox" element={<AIAdviceBotPage />} />
         <Route path="gallery" element={<Gallery />} />
         <Route path="featured" element={<Featured />} />
+        <Route path="birminghamdubaichat" element={<Uobd />} />
+        <Route path="heriotwattdubaichat" element={<Hwd />} />
         <Route path="account">
           <Route
             path="*"

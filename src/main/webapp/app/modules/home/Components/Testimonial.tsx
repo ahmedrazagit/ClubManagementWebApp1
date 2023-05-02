@@ -6,20 +6,21 @@ const Testimonial = () => {
   return (
     <div className="work-section-wrapper">
       <div className="work-section-top">
-        <p className="primary-subheading">Testimonial</p>
-        <h1 className="primary-heading" style={{ fontSize: '30px' }}>
-          What They Are Saying
-        </h1>
-        <p className="primary-text">
-          Lorem ipsum dolor sit amet consectetur. Non tincidunt magna non et elit. Dolor turpis molestie dui magnis facilisis at fringilla
-          quam.
+        <p className="primary-subheading" style={{ fontSize: '40px' }}>
+          What They Are Saying{' '}
         </p>
+        {/*}  <h1 className="primary-heading" style={{ fontSize: '30px' }}>
+
+
+        {/*}  <p className="primary-text">
+
+        </p> */}
       </div>
       <div className="testimonial-section-bottom">
         <img src="../../../../content/images/john-doe-image.png" alt="" />
         <p>
-          Lorem ipsum dolor sit amet consectetur. Non tincidunt magna non et elit. Dolor turpis molestie dui magnis facilisis at fringilla
-          quam.
+          As a student ambassador, the thorough integration of the app in university would be really beneficial as its easier to post about
+          clubs and events here
         </p>
         <div className="testimonials-stars-container">
           <AiFillStar />
@@ -28,22 +29,7 @@ const Testimonial = () => {
           <AiFillStar />
           <AiFillStar />
         </div>
-        <h2>John Doe</h2>
-      </div>
-      <div className="testimonial-section-bottom">
-        <img src="../../../../content/images/john-doe-image.png" alt="" />
-        <p>
-          Lorem ipsum dolor sit amet consectetur. Non tincidunt magna non et elit. Dolor turpis molestie dui magnis facilisis at fringilla
-          quam.
-        </p>
-        <div className="testimonials-stars-container">
-          <AiFillStar />
-          <AiFillStar />
-          <AiFillStar />
-          <AiFillStar />
-          <AiFillStar />
-        </div>
-        <h2>John Doe</h2>
+        <h2>Isha Ingersol</h2>
       </div>
     </div>
   );

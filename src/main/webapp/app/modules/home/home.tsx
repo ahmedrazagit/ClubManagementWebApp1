@@ -7,9 +7,9 @@ import './home.scss';
 import { Button, Table } from 'reactstrap';
 import { Translate, TextFormat, getSortState, JhiPagination, JhiItemCount } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import '../../../content/images/aus.png';
+import '../../../content/images/sustainabilitymenews_2023-02_24773145-72a9-4f49-8744-aea8a497aede_Zayed_University_Sustainability_Club_Hosts_Discussion_on_the__Path_to_COP28__2.png';
+import '../../../content/images/student-life-student-activities-1920x1080.png';
 import '../../../content/images/football.png';
-import '../../../content/images/bits.png';
 import WebFont from 'webfontloader';
 
 import Chatbutton from 'app/modules/chatbot/Chatbutton';
@@ -146,7 +146,7 @@ export const Homes = () => {
 */
   }
   return (
-    <main className="home mt-5 pt-3">
+    <main className="body" style={{ background: 'linear-gradient(45deg, #ffb6c1, #87ceeb)' }}>
       <Chatbutton />
       {/*<div className="container" style={{ position: 'relative' }}>
         <img src="content/images/student-pic.jpg" alt="logo" style={{ width: '100%' }} />
@@ -154,8 +154,8 @@ export const Homes = () => {
       </div>
       */}
 
-      <div className="App">
-        <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel">
+      <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel" data-interval="5000">
+        <div className="App" style={{ background: 'linear-gradient(45deg, #ffb6c1, #87ceeb)' }}>
           <div className="carousel-indicators">
             <button
               type="button"
@@ -170,12 +170,25 @@ export const Homes = () => {
           </div>
           <div className="carousel-inner">
             <div className="carousel-item active">
-              <img src="../../../content/images/aus.png" className="d-block w-100" alt="..." />
+              <div className="carousel-text">
+                <h1>Welcome to Clubping</h1>
+              </div>
+              <img
+                src="../../../content/images/sustainabilitymenews_2023-02_24773145-72a9-4f49-8744-aea8a497aede_Zayed_University_Sustainability_Club_Hosts_Discussion_on_the__Path_to_COP28__2.png"
+                className="d-block w-100"
+                alt="..."
+              />
             </div>
             <div className="carousel-item">
-              <img src="../../../content/images/bits.png" className="d-block w-100" alt="..." />
+              <div className="carousel-text">
+                <h1>Welcome to Clubping</h1>
+              </div>
+              <img src="../../../content/images/student-life-student-activities-1920x1080.png" className="d-block w-100" alt="..." />
             </div>
             <div className="carousel-item">
+              <div className="carousel-text">
+                <h1>Welcome to Clubping</h1>
+              </div>
               <img src="../../../content/images/football.png" className="d-block w-100" alt="..." />
             </div>
           </div>
@@ -188,13 +201,13 @@ export const Homes = () => {
             <span className="visually-hidden">Next</span>
           </button>
         </div>
-
-        <Home />
-        <About />
-        <Work />
-        <Testimonial />
-        <Footer />
       </div>
+
+      <Home />
+      <About />
+      <Work />
+      <Testimonial />
+
       {/*}
           <div style={{marginRight: '10px'}} className="col-md-3 mb-3">
             <div className="card eventcard" style={{width: '18rem', marginRight: '10px'}}>

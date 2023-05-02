@@ -22,21 +22,21 @@ const Work = () => {
     },
   ];
   return (
-    <div className="work-section-wrapper">
-      <div className="work-section-top">
-        <p className="primary-subheading">Work</p>
-        <h1 className="primary-heading" style={{ fontSize: '30px' }}>
+    <div className="work-section-wrapper" style={{ backgroundColor: 'transparent' }}>
+      <div className="work-section-top" style={{ backgroundColor: 'transparent' }}>
+        <p className="primary-subheading" style={{ fontSize: '60px' }}>
+          Toolkit
+        </p>
+        <h1 className="primary-heading" style={{ fontSize: '40px' }}>
           How It Works
         </h1>
-        <p className="primary-text">
-          Lorem ipsum dolor sit amet consectetur. Non tincidunt magna non et elit. Dolor turpis molestie dui magnis facilisis at fringilla
-          quam.
-        </p>
+        {/* <p className="primary-text">
+        </p> */}
       </div>
-      <div className="work-section-bottom">
+      <div className="work-section-bottom" style={{ backgroundColor: 'transparent' }}>
         {workInfoData.map(data => (
-          <div className="work-section-info" key={data.title}>
-            <div className="info-boxes-img-container">
+          <div className="work-section-info " style={{ backgroundColor: 'white' }} key={data.title}>
+            <div className="info-boxes-img-container" style={{ backgroundColor: 'transparent' }}>
               <img src={data.image} alt="" />
             </div>
             <h2>{data.title}</h2>

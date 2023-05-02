@@ -6,10 +6,10 @@ export const Featured = () => {
   }, []);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', background: 'linear-gradient(45deg, #ffb6c1, #87ceeb)' }}>
       <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
         <div style={{ marginRight: '50px' }}>
-          <img src="/content/images/cute-robot.jpg" alt="Cute robot" />
+          <img src="/content/images/transparent-robot.png" alt="Cute robot" />
         </div>
         <div>
           <h1
@@ -30,7 +30,7 @@ export const Featured = () => {
               fontWeight: 'bold',
               background: '-webkit-linear-gradient(left, purple , pink)',
               WebkitBackgroundClip: 'text',
-              color: 'transparent',
+              backgroundClip: 'text',
               marginTop: '20px',
             }}
           >
@@ -42,7 +42,7 @@ export const Featured = () => {
               fontWeight: 'bold',
               background: '-webkit-linear-gradient(left, purple , pink)',
               WebkitBackgroundClip: 'text',
-              color: 'transparent',
+              backgroundClip: 'text',
               marginTop: '20px',
             }}
           >

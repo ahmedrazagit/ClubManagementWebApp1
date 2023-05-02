@@ -121,21 +121,21 @@ export const RegisterPage = () => {
               }}
               data-cy="secondPassword"
             />
-
-            <div>
+            <div className="form-check">
               <input
                 type="checkbox"
                 id="privacy-policy-checkbox"
                 checked={agreePrivacyPolicy}
                 onChange={handleCheckboxChange}
                 data-cy="privacyPolicyCheckbox"
+                className="form-check-input"
               />
               <label htmlFor="privacy-policy-checkbox" className="form-check-label">
-                Please agree to our <a href="/GDPR">privacy policy</a>
+                Please agree to our <a href="/GDPR">Privacy policy</a>
               </label>
-              {showAgreePrivacyPolicyError && <div className="text-danger">Please agree to proceed ahead</div>}
             </div>
-
+            {showAgreePrivacyPolicyError && <div className="text-danger">Please agree to proceed ahead</div>}
+            <br />
             <Button id="register-submit" color="primary" type="submit" data-cy="submit">
               <Translate contentKey="register.form.button">Register</Translate>
             </Button>

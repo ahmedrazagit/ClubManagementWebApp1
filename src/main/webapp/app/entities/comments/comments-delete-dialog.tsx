@@ -25,7 +25,7 @@ export const CommentsDeleteDialog = () => {
   const updateSuccess = useAppSelector(state => state.comments.updateSuccess);
 
   const handleClose = () => {
-    navigate('/comments');
+    navigate('/forum');
   };
 
   useEffect(() => {
@@ -46,7 +46,7 @@ export const CommentsDeleteDialog = () => {
       </ModalHeader>
       <ModalBody id="teamprojectApp.comments.delete.question">
         <Translate contentKey="teamprojectApp.comments.delete.question" interpolate={{ id: commentsEntity.id }}>
-          Are you sure you want to delete this Comments?
+          Are you sure you want to delete this Comment?
         </Translate>
       </ModalBody>
       <ModalFooter>

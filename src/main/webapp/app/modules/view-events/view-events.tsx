@@ -260,13 +260,12 @@ export const ViewEvent = () => {
 
                 <Link
                   to="/extended-events/new"
-                  className="btn btn-primary jh-create-entity"
+                  className="btn btn-primary btn-sm jh-create-entity"
                   id="jh-create-entity"
                   data-cy="entityCreateButton"
                 >
                   <FontAwesomeIcon icon="plus" />
-                  &nbsp;
-                  <div>Create a new Event</div>
+                  Create New Event
                 </Link>
               </div>
             </h2>

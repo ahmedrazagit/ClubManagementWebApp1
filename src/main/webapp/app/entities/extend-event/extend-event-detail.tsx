@@ -22,16 +22,16 @@ export const ExtendEventDetail = () => {
   return (
     <Row>
       <Col md="8">
-        <h2 data-cy="extendEventDetailsHeading">
-          <Translate contentKey="teamprojectApp.extendEvent.detail.title">ExtendEvent</Translate>
-        </h2>
+        <h2 data-cy="extendEventDetailsHeading">Event</h2>
         <dl className="jh-entity-details">
+          {/*
           <dt>
             <span id="id">
               <Translate contentKey="global.field.id">ID</Translate>
             </span>
           </dt>
           <dd>{extendEventEntity.id}</dd>
+          */}
           <dt>
             <span id="eventname">
               <Translate contentKey="teamprojectApp.extendEvent.eventname">Eventname</Translate>

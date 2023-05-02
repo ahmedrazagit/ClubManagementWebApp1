@@ -9,7 +9,7 @@ import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/shared/util/pagination.constants';
 import { overridePaginationStateWithQueryParams } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
-
+import './gdpr.css';
 import { IGDPR } from 'app/shared/model/gdpr.model';
 import { getEntities, reset } from './gdpr.reducer';
 
@@ -104,9 +104,9 @@ export const GDPR = () => {
         </p>
         <h3 style={{ fontWeight: 'bold', fontFamily: 'Arial' }}>Topics:</h3>
         <li style={{ fontFamily: 'Arial' }}>What data do we collect?</li>
-        <li>How do we collect your data?</li>
-        <li>How will we use your data?</li>
-        <li>How do we store your data?</li>
+        <li style={{ fontFamily: 'Arial' }}>How do we collect your data?</li>
+        <li style={{ fontFamily: 'Arial' }}>How will we use your data?</li>
+        <li style={{ fontFamily: 'Arial' }}>How do we store your data?</li>
         <li>Marketing</li>
         <li>What are your data protection rights?</li>
         <li>What are cookies?</li>
@@ -251,7 +251,7 @@ export const GDPR = () => {
           <br /> These could include what language you prefer and location you are in. A mix of first-party and third-party cookies are
           used.
         </li>
-        <li>
+        <li style={{ fontFamily: 'Arial' }}>
           Advertising — Clubping uses these cookies to collect information about your visit to our website, the content you viewed, the
           links you followed and information about your browser, device, and your IP address.
           <br /> Clubping sometimes shares some limited aspects of this data with third parties for advertising purposes.
@@ -261,26 +261,26 @@ export const GDPR = () => {
         </li>
 
         <h3 style={{ fontWeight: 'bold', fontFamily: 'Arial' }}>How to manage cookies</h3>
-        <p>
+        <p style={{ fontFamily: 'Arial' }}>
           You can set your browser not to accept cookies, and the above website tells you how to remove cookies from your browser.
           <br /> However, in a few cases, some of our website features may not function as a result.
         </p>
 
         <h3 style={{ fontWeight: 'bold', fontFamily: 'Arial' }}>Privacy policies of other websites</h3>
-        <p>
+        <p style={{ fontFamily: 'Arial' }}>
           The Clubping website contains links to other websites.
           <br /> Our privacy policy applies only to our website, so if you click on a link to another website, you should read their privacy
           policy.
         </p>
 
         <h3 style={{ fontWeight: 'bold', fontFamily: 'Arial' }}>Changes to our privacy policy</h3>
-        <p>
+        <p style={{ fontFamily: 'Arial' }}>
           Clubping keeps its privacy policy under regular review and places any updates on this web page.
           <br /> This privacy policy was last updated on 15 March 2023.
         </p>
 
         <h3 style={{ fontWeight: 'bold', fontFamily: 'Arial' }}>How to contact us</h3>
-        <p>
+        <p style={{ fontFamily: 'Arial' }}>
           If you have any questions about Clubping’s privacy policy, the data we hold on you, or you would like to exercise one of your data
           protection rights, please do not hesitate to contact us.
         </p>
@@ -289,22 +289,22 @@ export const GDPR = () => {
           Email us at: <a href="mailto:clubpingforbusiness@gmail.com">clubpingforbusiness@gmail.com</a> or contact any of our entire team:
           <ul>
             <li>
-              Ahmed Raza<a href="mailto:axa1874@student.bham.ac.uk">axa1874@student.bham.ac.uk</a>
+              Ahmed Raza: <a href="mailto:axa1874@student.bham.ac.uk">axa1874@student.bham.ac.uk</a>
             </li>
             <li>
-              <a href="mailto:mxm1397@student.bham.ac.uk">mxm1397@student.bham.ac.uk</a>
+              Meena Muthukumar: <a href="mailto:mxm1397@student.bham.ac.uk">mxm1397@student.bham.ac.uk</a>
             </li>
             <li>
-              <a href="mailto:kxb195@student.bham.ac.uk">kxb195@student.bham.ac.uk</a>
+              Kavin Babu: <a href="mailto:kxb195@student.bham.ac.uk">kxb195@student.bham.ac.uk</a>
             </li>
             <li>
-              <a href="mailto:rxf138@student.bham.ac.uk">rxf138@student.bham.ac.uk</a>
+              Rayna Felix: <a href="mailto:rxf138@student.bham.ac.uk">rxf138@student.bham.ac.uk</a>
             </li>
             <li>
-              <a href="mailto:rmu186@student.bham.ac.uk">rmu186@student.bham.ac.uk</a>
+              Rohit Manikuttan: <a href="mailto:rmu186@student.bham.ac.uk">rmu186@student.bham.ac.uk</a>
             </li>
             <li>
-              <a href="mailto:zxl084@student.bham.ac.uk">zxl084@student.bham.ac.uk</a>
+              Zhange Luo: <a href="mailto:zxl084@student.bham.ac.uk">zxl084@student.bham.ac.uk</a>
             </li>
           </ul>
           If you wish to report a complaint or if you feel that Clubping has not addressed your concern in a satisfactory manner, please

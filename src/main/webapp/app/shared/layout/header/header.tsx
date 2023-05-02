@@ -90,15 +90,6 @@ const Header = (props: IHeaderProps) => {
                 </a>
               </li>
               <li>
-                <a href="/announcements" className="nav-link px-3 active">
-                  {/*<span className="me-2"><i className="bi bi-speedometer2"></i></span>*/}
-                  <span className="me-2">
-                    <FaBullhorn />
-                  </span>
-                  <span>Announcements</span>
-                </a>
-              </li>
-              <li>
                 <a href="/universities" className="nav-link px-3 active">
                   {/*<span className="me-2"><i className="bi bi-speedometer2"></i></span>*/}
                   <span className="me-2">

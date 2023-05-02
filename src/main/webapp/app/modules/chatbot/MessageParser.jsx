@@ -11,6 +11,24 @@ const MessageParser = ({ children, actions }) => {
       return;
     }
 
+    if(/club/i.test(message) && /event/i.test(message) && /forum/i.test(message) && /suggestions/i.test(message)){
+
+    }
+
+    if (/club/i.test(message)) {
+      actions.handleClub();
+    }
+    if (/event/i.test(message)) {
+      actions.Eventfunc();
+    }
+    if (/forum/i.test(message)) {
+      actions.handleForum();
+    }
+    if (/suggestions/i.test(message)) {
+      actions.handleSuggestion();
+    }
+
+
     /*if (message.includes('')) {
       actions.handleButton();
     }*/

@@ -4,15 +4,15 @@
       "home": {
         "title": "Extend Clubs",
         "refreshListLabel": "Refresh list",
-        "createLabel": "Create a new Extend Club",
-        "createOrEditLabel": "Create or edit a Extend Club",
-        "notFound": "No Extend Clubs found"
+        "createLabel": "Create a new Club",
+        "createOrEditLabel": "Create or edit a Club",
+        "notFound": "No Clubs found"
       },
-      "created": "A new Extend Club is created with identifier {{ param }}",
-      "updated": "A Extend Club is updated with identifier {{ param }}",
-      "deleted": "A Extend Club is deleted with identifier {{ param }}",
+      "created": "A new Club is created",
+      "updated": "A Club is updated by {{ param }}",
+      "deleted": "Club is deleted",
       "delete": {
-        "question": "Are you sure you want to delete Extend Club {{ id }}?"
+        "question": "Are you sure you want to delete the Club {{ clubname }}?"
       },
       "detail": {
         "title": "Extend Club"

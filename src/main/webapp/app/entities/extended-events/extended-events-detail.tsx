@@ -26,12 +26,14 @@ export const ExtendedEventsDetail = () => {
           <Translate contentKey="teamprojectApp.extendedEvents.detail.title">ExtendedEvents</Translate>
         </h2>
         <dl className="jh-entity-details">
+          {/*
           <dt>
             <span id="id">
               <Translate contentKey="global.field.id">ID</Translate>
             </span>
           </dt>
           <dd>{extendedEventsEntity.id}</dd>
+          */}
           <dt>
             <span id="event">
               <Translate contentKey="teamprojectApp.extendedEvents.event">Event</Translate>
@@ -73,7 +75,7 @@ export const ExtendedEventsDetail = () => {
           </dt>
           <dd>{extendedEventsEntity.user ? extendedEventsEntity.user.login : ''}</dd>
         </dl>
-        <Button tag={Link} to="/extended-events" replace color="info" data-cy="entityDetailsBackButton">
+        <Button tag={Link} to="/events-page" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}
           <span className="d-none d-md-inline">
             <Translate contentKey="entity.action.back">Back</Translate>

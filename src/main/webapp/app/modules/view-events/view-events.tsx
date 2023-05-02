@@ -176,6 +176,14 @@ export const ViewEvent = () => {
 
   const [searchText, setSearchText] = useState('');
 
+  const isAuthenticated = useAppSelector(state => state.authentication.isAuthenticated);
+
+  const currentUser = useAppSelector(state => state.authentication.account);
+
+  const isCurrentUserPost = post => {
+    return isAuthenticated && post.user && post.user.login === currentUser.login;
+  };
+
   useEffect(() => {
     setFilteredEventsList(extendedEventsList.filter(entity => entity.event.toLowerCase().includes(searchText.toLowerCase())));
   }, [extendedEventsList, searchText]);
@@ -198,7 +206,7 @@ export const ViewEvent = () => {
         {extendedEventsList && extendedEventsList.length > 0 ? (
           <>
             <h2 id="extended-events-heading" data-cy="ExtendedEventsHeading">
-              <Translate contentKey="teamprojectApp.extendedEvents.home.title">Extended Events</Translate>
+              <h1>Events</h1>
 
               <div className="search-bar">
                 <input type="text" placeholder="Search" value={searchText} onChange={e => setSearchText(e.target.value)} />
@@ -258,14 +266,14 @@ export const ViewEvent = () => {
                 >
                   <FontAwesomeIcon icon="plus" />
                   &nbsp;
-                  <Translate contentKey="teamprojectApp.extendedEvents.home.createLabel">Create new Extended Events</Translate>
+                  <div>Create a new Event</div>
                 </Link>
               </div>
             </h2>
-            <div className="announcement-list">
-              {filteredEventsList.map((extendedEvents, i) => (
-                <div key={`entity-${i}`} data-cy="entityTable" className="row">
-                  {/*
+            {/*<div className="announcement-list">*/}
+            {filteredEventsList.map((extendedEvents, i) => (
+              <div key={`entity-${i}`} data-cy="entityTable" className="row">
+                {/*
             <div className="col-1">
               <Button tag={Link} to={`/extended-events/${extendedEvents.id}`} color="link" size="sm">
                 {extendedEvents.id}
@@ -317,21 +325,44 @@ export const ViewEvent = () => {
               </div>
             </div>
             */}
+                <div className="announcement-list">
                   <Link to={`/extended-events/${extendedEvents.id}`}>
                     <div className="announcement-box">
                       <h2>{extendedEvents.event}</h2>
-                      {/*<p>{announcement.content}</p>*/}
-                      <button className="btn btn-primary btn-sm">
-                        <FontAwesomeIcon icon="pencil-alt" /> Edit
-                      </button>
-                      <button className="btn btn-primary btn-sm">
-                        <FontAwesomeIcon icon="trash" /> Delete
-                      </button>
+                      {isCurrentUserPost(extendedEvents) && (
+                        <>
+                          <Button
+                            tag={Link}
+                            to={`/extended-events/${extendedEvents.id}/edit`}
+                            color="primary"
+                            size="sm"
+                            data-cy="entityEditButton"
+                          >
+                            <FontAwesomeIcon icon="pencil-alt" />{' '}
+                            <span className="d-none d-md-inline">
+                              <Translate contentKey="entity.action.edit">Edit</Translate>
+                            </span>
+                          </Button>
+
+                          <Button
+                            tag={Link}
+                            to={`/extended-events/${extendedEvents.id}/delete`}
+                            color="danger"
+                            size="sm"
+                            data-cy="entityDeleteButton"
+                          >
+                            <FontAwesomeIcon icon="trash" />{' '}
+                            <span className="d-none d-md-inline">
+                              <Translate contentKey="entity.action.delete">Delete</Translate>
+                            </span>
+                          </Button>
+                        </>
+                      )}
                     </div>
                   </Link>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </>
         ) : (
           !loading && (

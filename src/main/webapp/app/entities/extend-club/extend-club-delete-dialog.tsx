@@ -45,7 +45,7 @@ export const ExtendClubDeleteDialog = () => {
         <Translate contentKey="entity.delete.title">Confirm delete operation</Translate>
       </ModalHeader>
       <ModalBody id="teamprojectApp.extendClub.delete.question">
-        <Translate contentKey="teamprojectApp.extendClub.delete.question" interpolate={{ id: extendClubEntity.id }}>
+        <Translate contentKey="teamprojectApp.extendClub.delete.question" interpolate={{ clubname: extendClubEntity.clubname }}>
           Are you sure you want to delete this ExtendClub?
         </Translate>
       </ModalBody>

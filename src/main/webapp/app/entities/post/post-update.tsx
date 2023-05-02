@@ -125,6 +125,7 @@ export const PostUpdate = () => {
                 name="date"
                 data-cy="date"
                 type="datetime-local"
+                readonly
                 placeholder="YYYY-MM-DD HH:mm"
                 validate={{
                   required: { value: true, message: translate('entity.validation.required') },

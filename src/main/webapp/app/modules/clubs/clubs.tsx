@@ -11,7 +11,8 @@ import { overridePaginationStateWithQueryParams } from 'app/shared/util/entity-u
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
 import { IClubs } from 'app/shared/model/clubs.model';
-import { getEntities } from 'app/entities/clubs/clubs.reducer';
+//import { getEntities } from 'app/entities/clubs/clubs.reducer';
+import { getEntities } from 'app/entities/extend-club/extend-club.reducer';
 import clubs from 'app/entities/clubs/clubs';
 import { match } from 'cypress/types/minimatch';
 
@@ -86,14 +87,23 @@ const Clubs = () => {
     sortEntities();
   }, [paginationState.activePage, paginationState.order, paginationState.sort]);
 
+  const [searchText, setSearchText] = useState('');
+
+  const extendClubList = useAppSelector(state => state.extendClub.entities);
+
+  let [filteredClubsList, setFilteredClubsList] = useState(extendClubList);
+
+  useEffect(() => {
+    setFilteredClubsList(extendClubList.filter(entity => entity.clubname.toLowerCase().includes(searchText.toLowerCase())));
+  }, [extendClubList, searchText]);
+
   return (
     <div>
-      <div className="todo-app">
-        <TodoList />
-      </div>
+      <div className="todo-app">{/*<TodoList />*/}</div>
       <h2 id="clubs-heading" data-cy="ClubsHeading">
         <Translate contentKey="teamprojectApp.clubs.home.title">Clubs</Translate>
         <div className="d-flex justify-content-end">
+          <input type="text" placeholder="Search" value={searchText} onChange={e => setSearchText(e.target.value)} />
           <Button className="me-2" color="info" onClick={handleSyncList} disabled={loading}>
             <FontAwesomeIcon icon="sync" spin={loading} />
             &nbsp;
@@ -117,7 +127,7 @@ const Clubs = () => {
             </tr>
           </thead>
           <tbody>
-            {clubsList.map((clubs, i) => (
+            {filteredClubsList.map((clubs, i) => (
               <tr key={`entity-${clubs.id}`} data-cy="entityTable">
                 <td>{clubs.clubname}</td>
                 <td className="text-right">
@@ -157,7 +167,7 @@ const Clubs = () => {
             ))}
           </tbody>
         </Table>
-        <div className={clubsList && clubsList.length > 0 ? '' : 'd-none'}>
+        <div className={filteredClubsList && filteredClubsList.length > 0 ? '' : 'd-none'}>
           <Row className="justify-content-center">
             <JhiItemCount page={paginationState.activePage} total={totalItems} itemsPerPage={paginationState.itemsPerPage} i18nEnabled />
           </Row>

@@ -7,8 +7,9 @@ $background-color: #f2f2f2;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 15px;
   border-bottom: 1px solid $border-color;
+  gap: 10px;
 
   input[type='text'] {
     width: 60%;
@@ -42,8 +43,8 @@ $background-color: #f2f2f2;
 .announcement-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-  padding: 20px;
+  gap: 10px;
+  padding: 10px;
 
   a {
     text-decoration: none;
@@ -57,7 +58,7 @@ $background-color: #f2f2f2;
 
     .announcement-box {
       width: 300px;
-      height: 300px;
+      height: 200px;
       background-color: $primary-color;
       padding: 20px;
       border-radius: 4px;
@@ -103,7 +104,7 @@ h1 {
 }
 
 /* Additional styles for color gradient effect */
-.announcement-list a:nth-child(1) .announcement-box {
+/*.announcement-list a:nth-child(1) .announcement-box {
   background: linear-gradient(to right, #ff416c, #ff4b2b);
 }
 
@@ -116,5 +117,21 @@ h1 {
 }
 
 .announcement-list a:nth-child(4) .announcement-box {
+  background: linear-gradient(to right, #c33764, #1d2671);
+}
+*/
+.announcement-box:nth-child(1) {
+  background: linear-gradient(to right, #ff416c, #ff4b2b);
+}
+
+.announcement-box:nth-child(2) {
+  background: linear-gradient(to right, #1e3c72, #2a5298);
+}
+
+.announcement-box:nth-child(3) {
+  background: linear-gradient(to right, #00b4db, #0083b0);
+}
+
+.announcement-box:nth-child(4) {
   background: linear-gradient(to right, #c33764, #1d2671);
 }

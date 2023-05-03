@@ -90,15 +90,6 @@ const Header = (props: IHeaderProps) => {
                 </a>
               </li>
               <li>
-                <a href="/announcements" className="nav-link px-3 active">
-                  {/*<span className="me-2"><i className="bi bi-speedometer2"></i></span>*/}
-                  <span className="me-2">
-                    <FaBullhorn />
-                  </span>
-                  <span>Announcements</span>
-                </a>
-              </li>
-              <li>
                 <a href="/universities" className="nav-link px-3 active">
                   {/*<span className="me-2"><i className="bi bi-speedometer2"></i></span>*/}
                   <span className="me-2">
@@ -198,20 +189,21 @@ const Header = (props: IHeaderProps) => {
           </nav>
         </div>
       </div>
+
       <div id="app-header">
         {/*{renderDevRibbon()}*/}
         <LoadingBar className="loading-bar" />
         <Navbar data-cy="navbar" dark expand="md" fixed="top" className="jh-navbar">
           <NavbarToggler aria-label="Menu" onClick={toggleMenu} />
-
-          <Brand />
+          <Brand /> {/*this is the logo*/}
           <Collapse isOpen={menuOpen} navbar>
             <Nav id="header-tabs" className="ms-auto" navbar>
               <Home />
-              {props.isAuthenticated && <EntitiesMenu />}
+              {/*{props.isAuthenticated && <EntitiesMenu />}*/}
               {props.isAuthenticated && props.isAdmin && (
                 <AdminMenu showOpenAPI={props.isOpenAPIEnabled} showDatabase={!props.isInProduction} />
               )}
+              {props.isAuthenticated && props.isAdmin && <EntitiesMenu />}
               <LocaleMenu currentLocale={props.currentLocale} onClick={handleLocaleChange} />
               <AccountMenu isAuthenticated={props.isAuthenticated} />
             </Nav>

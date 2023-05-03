@@ -2,6 +2,8 @@ package uk.ac.bham.teamproject.web.rest;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.Instant;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -82,6 +84,9 @@ public class PostResource {
 
         post.setUser(user);
 
+        Instant now = Instant.now();
+        post.setDate(now);
+
         Post result = postRepository.save(post);
         return ResponseEntity
             .created(new URI("/api/posts/" + result.getId()))
@@ -113,6 +118,9 @@ public class PostResource {
         if (!postRepository.existsById(id)) {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
+
+        Instant now = Instant.now();
+        post.setDate(now);
 
         Post result = postRepository.save(post);
         return ResponseEntity

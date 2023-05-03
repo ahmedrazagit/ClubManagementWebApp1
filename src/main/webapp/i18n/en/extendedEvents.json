@@ -4,15 +4,15 @@
       "home": {
         "title": "Extended Events",
         "refreshListLabel": "Refresh list",
-        "createLabel": "Create a new Extended Events",
-        "createOrEditLabel": "Create or edit a Extended Events",
-        "notFound": "No Extended Events found"
+        "createLabel": "Create a new Event",
+        "createOrEditLabel": "Create or edit an Event",
+        "notFound": "No Events found"
       },
-      "created": "A new Extended Events is created with identifier {{ param }}",
-      "updated": "A Extended Events is updated with identifier {{ param }}",
-      "deleted": "A Extended Events is deleted with identifier {{ param }}",
+      "created": "A new Event is created",
+      "updated": "The Event is updated",
+      "deleted": "The Event is deleted",
       "delete": {
-        "question": "Are you sure you want to delete Extended Events {{ id }}?"
+        "question": "Are you sure you want to delete Extended Events {{ event }}?"
       },
       "detail": {
         "title": "Extended Events"

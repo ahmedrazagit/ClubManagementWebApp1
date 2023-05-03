@@ -45,7 +45,7 @@ export const PostDeleteDialog = () => {
         <Translate contentKey="entity.delete.title">Confirm delete operation</Translate>
       </ModalHeader>
       <ModalBody id="teamprojectApp.post.delete.question">
-        <Translate contentKey="teamprojectApp.post.delete.question" interpolate={{ id: postEntity.id }}>
+        <Translate contentKey="teamprojectApp.post.delete.question" interpolate={{ title: postEntity.title }}>
           Are you sure you want to delete this Post?
         </Translate>
       </ModalBody>

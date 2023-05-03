@@ -25,7 +25,7 @@ export const ExtendedEventsDeleteDialog = () => {
   const updateSuccess = useAppSelector(state => state.extendedEvents.updateSuccess);
 
   const handleClose = () => {
-    navigate('/extended-events');
+    navigate('/events-page');
   };
 
   useEffect(() => {
@@ -45,7 +45,7 @@ export const ExtendedEventsDeleteDialog = () => {
         <Translate contentKey="entity.delete.title">Confirm delete operation</Translate>
       </ModalHeader>
       <ModalBody id="teamprojectApp.extendedEvents.delete.question">
-        <Translate contentKey="teamprojectApp.extendedEvents.delete.question" interpolate={{ id: extendedEventsEntity.id }}>
+        <Translate contentKey="teamprojectApp.extendedEvents.delete.question" interpolate={{ event: extendedEventsEntity.event }}>
           Are you sure you want to delete this ExtendedEvents?
         </Translate>
       </ModalBody>

@@ -2,6 +2,7 @@ package uk.ac.bham.teamproject.web.rest;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -70,6 +71,10 @@ public class ExtendedEventsResource {
         final User user = isUser.get();
         extendedEvents.setUser(user);
 
+        ZonedDateTime now = ZonedDateTime.now(); // Get the current time as a ZonedDateTime object
+
+        extendedEvents.setDate(now);
+
         ExtendedEvents result = extendedEventsRepository.save(extendedEvents);
         return ResponseEntity
             .created(new URI("/api/extended-events/" + result.getId()))
@@ -103,6 +108,9 @@ public class ExtendedEventsResource {
         if (!extendedEventsRepository.existsById(id)) {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
+
+        //ZonedDateTime now = ZonedDateTime.now();
+        //extendedEvents.setDate(now);
 
         ExtendedEvents result = extendedEventsRepository.save(extendedEvents);
         return ResponseEntity

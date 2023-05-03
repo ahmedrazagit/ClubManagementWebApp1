@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const Gallery = () => {
   const [accessToken, setAccessToken] = useState<string>(
-    'IGQVJWREtkSmUzZAVJ2SGtncWUzXzJINDktSUVldGM2ZAmEtUk0yeFl1WEZApYkgwV2RqYXZAyVmRmMWZAEblNOdVRiS0FDLVIwa05NR3JRRGlZASXdUa1N1ZA1luRm9ydy1TeFR5QThjUTdOUGx6S1BrNEoycAZDZD'
+    'IGQVJWS09rVmpWem5DZADdYSDRkcXM2aElHUkxjM3BCMThFZAEl1c1YtLTRjNVFSXzUtZAmsxVUk2bzFjRFA3OXc4dVlHX3Itdi1oT0kxeGlXY0FaWklxbnZAlSkFfRGEtV0dXaENjcDNrc2VUT3ljNXpsRgZDZD'
   );
 
   const [media, setMedia] = useState([]);
@@ -13,20 +13,17 @@ const Gallery = () => {
     {
       label: 'Select an account',
       token:
-        'IGQVJWREtkSmUzZAVJ2SGtncWUzXzJINDktSUVldGM2ZAmEtUk0yeFl1WEZApYkgwV2RqYXZAyVmRmMWZAEblNOdVRiS0FDLVIwa05NR3JRRGlZASXdUa1N1ZA1luRm9ydy1TeFR5QThjUTdOUGx6S1BrNEoycAZDZD',
+        'IGQVJWS09rVmpWem5DZADdYSDRkcXM2aElHUkxjM3BCMThFZAEl1c1YtLTRjNVFSXzUtZAmsxVUk2bzFjRFA3OXc4dVlHX3Itdi1oT0kxeGlXY0FaWklxbnZAlSkFfRGEtV0dXaENjcDNrc2VUT3ljNXpsRgZDZD',
+    },
+    {
+      label: 'ClubPing Official Instagram',
+      token:
+        'IGQVJWS09rVmpWem5DZADdYSDRkcXM2aElHUkxjM3BCMThFZAEl1c1YtLTRjNVFSXzUtZAmsxVUk2bzFjRFA3OXc4dVlHX3Itdi1oT0kxeGlXY0FaWklxbnZAlSkFfRGEtV0dXaENjcDNrc2VUT3ljNXpsRgZDZD',
     },
     {
       label: 'UOBD Dance Club',
       token:
         'IGQVJWR2lwazBtdm1EeTN6MEtJa2lNN1U2Q2NON1hHbkxlSUpzaGUxUGwxQ1ZAoR05VUno1dTQtNk5oS004ZA3ZAxUC04b1BBQ2NfVF92b3M4ejJtWU02Qi1ZAZAHlCZAnhHczItTTRpRnFYaUJMYmE4YUw4UQZDZD',
-    },
-    {
-      label: 'Account 2',
-      token: 'access_token_for_account_2',
-    },
-    {
-      label: 'Account 3',
-      token: 'access_token_for_account_3',
     },
   ];
 
@@ -50,7 +47,7 @@ const Gallery = () => {
       <div className="header">
         <span className="banner">Social Gallery</span>
         <a href="/featured" className="button">
-          Wanna Get Featured
+          Wanna Get your club featured? Click Here
         </a>
         <div className="menu">
           <select className="account-select" onChange={e => setAccessToken(e.target.value)} value={accessToken}>

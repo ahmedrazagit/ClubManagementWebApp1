@@ -11,7 +11,7 @@ import '../../../content/images/sustainabilitymenews_2023-02_24773145-72a9-4f49-
 import '../../../content/images/student-life-student-activities-1920x1080.png';
 import '../../../content/images/football.png';
 import WebFont from 'webfontloader';
-
+import SpeechNav from 'app/modules/home/speechnavigation';
 import Chatbutton from 'app/modules/chatbot/Chatbutton';
 
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
@@ -147,6 +147,8 @@ export const Homes = () => {
   }
   return (
     <main className="body" style={{ background: 'linear-gradient(45deg, #ffb6c1, #87ceeb)' }}>
+      <SpeechNav />
+      <Chatbutton />
       {/*<div className="container" style={{ position: 'relative' }}>
         <img src="content/images/student-pic.jpg" alt="logo" style={{ width: '100%' }} />
         <div className="welcomeText"> Welcome to Clubping</div>

@@ -9,8 +9,10 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 export const BrandIcon = props => (
   <div {...props} className="brand-icon">
-    {/*<img style={{ width: 90, height: 60 }} src="content/images/new-clubping-logo.png" alt="Logo" />*/}
-    <FontAwesomeIcon icon={faBars} size="2x" style={{ color: 'white' }} />
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <FontAwesomeIcon icon={faBars} size="2x" style={{ color: 'white' }} />
+      <span style={{ color: 'white', marginTop: 5 }}>Menu</span>
+    </div>
   </div>
 );
 

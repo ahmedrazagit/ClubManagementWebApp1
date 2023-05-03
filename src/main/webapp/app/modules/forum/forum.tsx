@@ -300,7 +300,7 @@ export const Forum = () => {
   return (
     <div
       style={{
-        backgroundImage: `url('content/images/pexels-pixabay-531880.jpg')`,
+        background: 'linear-gradient(45deg, #ffb6c1, #87ceeb)',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
       }}

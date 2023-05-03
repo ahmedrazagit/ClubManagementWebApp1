@@ -322,8 +322,8 @@ export const Forum = () => {
             <Translate contentKey="teamprojectApp.post.home.refreshListLabel">Refresh List</Translate>
           </Button>*/}
 
-          <button className="my-button " onClick={handleSyncList} disabled={loading}>
-            <span className="glyphicon glyphicon-refresh" style={{ marginRight: '5px' }}></span>
+          <button className="btn btn-primary my-button" onClick={handleSyncList} disabled={loading}>
+            <span className="bi bi-arrow-counterclockwise" style={{ marginRight: '5px' }}></span>
             <Translate contentKey="teamprojectApp.post.home.refreshListLabel">Refresh List</Translate>
           </button>
 
@@ -415,18 +415,18 @@ export const Forum = () => {
                               </div>
                             </div>
                           </div>*/}
-                          <div className={post.annoncement ? 'card-header bg-warning' : 'card-header bg-success bg-midgreen'}>
-                            {post.announcement && (
-                              <div className="mr-2">
-                                <FontAwesomeIcon icon={faBullhorn} />
-                              </div>
-                            )}
+                          <div className={post.annoncement ? 'card-header bg-warning' : 'card-header'}>
                             <div className="media flex-wrap w-100 align-items-center">
                               {/*{post.annoncement ? (
                                 <div className = "bg-washed-yellow">Announcement</div>
                               ) : (
                                 <div className = "bg-washed-green">General Post</div>
                               )}*/}
+                              {post.annoncement && (
+                                <div className="mr-2">
+                                  <FontAwesomeIcon icon={faBullhorn} size="2x" />
+                                </div>
+                              )}
                               <div style={{ textAlign: 'center', fontSize: '30px' }}>
                                 <strong>{post.title}</strong>
                               </div>

@@ -322,7 +322,7 @@ export const Forum = () => {
             <Translate contentKey="teamprojectApp.post.home.refreshListLabel">Refresh List</Translate>
           </Button>*/}
 
-          <button className="my-button btn btn-outline-secondary" onClick={handleSyncList} disabled={loading}>
+          <button className="my-button " onClick={handleSyncList} disabled={loading}>
             <span className="glyphicon glyphicon-refresh" style={{ marginRight: '5px' }}></span>
             <Translate contentKey="teamprojectApp.post.home.refreshListLabel">Refresh List</Translate>
           </button>

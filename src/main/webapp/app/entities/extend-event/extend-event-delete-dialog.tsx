@@ -25,7 +25,7 @@ export const ExtendEventDeleteDialog = () => {
   const updateSuccess = useAppSelector(state => state.extendEvent.updateSuccess);
 
   const handleClose = () => {
-    navigate('/extend-event' + location.search);
+    navigate('/events-page' + location.search);
   };
 
   useEffect(() => {

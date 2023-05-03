@@ -25,7 +25,7 @@ export const ExtendEventUpdate = () => {
   const updateSuccess = useAppSelector(state => state.extendEvent.updateSuccess);
 
   const handleClose = () => {
-    navigate('/extend-event' + location.search);
+    navigate('/events-page' + location.search);
   };
 
   useEffect(() => {
@@ -154,7 +154,7 @@ export const ExtendEventUpdate = () => {
                   maxLength: { value: 50, message: translate('entity.validation.maxlength', { max: 50 }) },
                 }}
               />
-              <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/extend-event" replace color="info">
+              <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/events-page" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
                 <span className="d-none d-md-inline">

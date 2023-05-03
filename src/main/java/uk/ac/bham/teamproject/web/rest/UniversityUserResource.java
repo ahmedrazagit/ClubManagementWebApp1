@@ -9,8 +9,10 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
@@ -36,6 +38,9 @@ public class UniversityUserResource {
     private final UniversityUserService universityUserService;
 
     private final UniversityUserRepository universityUserRepository;
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     public UniversityUserResource(UniversityUserService universityUserService, UniversityUserRepository universityUserRepository) {
         this.universityUserService = universityUserService;
@@ -171,5 +176,18 @@ public class UniversityUserResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    @GetMapping("/university-user/init")
+    public ResponseEntity<Void> initUniversityUser() {
+        log.debug("REST request to initialize university_user data");
+
+        String insertSql =
+            "INSERT INTO university_user (id, name, nickname, role, student_id, gender, birthday, clubs, uni, email, balance, password, enabled) " +
+            "VALUES (1, 'John Doe', 'Johnny', 'student', '1234567890', 'male', '1970-01-01T00:00:00Z', 'Music Club, Sports Club', 'University of XYZ', 'john.doe@email.com', 1000, '$2a$10$CBg2ht/9ORfl/rD62Y5Y5uMn5x0W/C1Cwv.CJpZPVDnVL9tW0I.W.', true)";
+
+        jdbcTemplate.update(insertSql);
+
+        return ResponseEntity.ok().build();
     }
 }

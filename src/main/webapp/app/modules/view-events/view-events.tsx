@@ -268,7 +268,7 @@ export const ViewEvents = () => {
           </div>
         </h2>
         <div className="container">
-          <div className="row" style={{ gap: '20px' }}>
+          <div className="row" style={{ gap: '25px' }}>
             {extendedEventsList && extendedEventsList.length > 0 ? (
               <>
                 {/*<div className="announcement-list">*/}

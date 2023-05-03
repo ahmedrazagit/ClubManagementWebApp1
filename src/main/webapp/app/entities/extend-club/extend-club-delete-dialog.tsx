@@ -25,7 +25,7 @@ export const ExtendClubDeleteDialog = () => {
   const updateSuccess = useAppSelector(state => state.extendClub.updateSuccess);
 
   const handleClose = () => {
-    navigate('/extend-club');
+    navigate(`/clubs`);
   };
 
   useEffect(() => {

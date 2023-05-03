@@ -135,15 +135,6 @@ const Header = (props: IHeaderProps) => {
                 </a>
               </li>
 
-              <li>
-                <a href="/profile" className="nav-link px-3 active">
-                  <span className="me-2">
-                    <ImProfile />
-                  </span>
-                  <span>Profile</span>
-                </a>
-              </li>
-
               <li className="my-4">
                 <hr className="dropdown-divider bg-light" />
               </li>

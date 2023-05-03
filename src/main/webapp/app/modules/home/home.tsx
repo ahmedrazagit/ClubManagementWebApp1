@@ -147,7 +147,6 @@ export const Homes = () => {
   }
   return (
     <main className="body" style={{ background: 'linear-gradient(45deg, #ffb6c1, #87ceeb)' }}>
-      <Chatbutton />
       {/*<div className="container" style={{ position: 'relative' }}>
         <img src="content/images/student-pic.jpg" alt="logo" style={{ width: '100%' }} />
         <div className="welcomeText"> Welcome to Clubping</div>

@@ -201,7 +201,7 @@ export const ViewEvents = () => {
   }
 
   return (
-    <div>
+    <div style={{ background: 'linear-gradient(45deg, #ffb6c1, #87ceeb)', backgroundSize: 'cover' }}>
       <div className="table-responsive">
         <h2 id="extended-events-heading" data-cy="ExtendedEventsHeading">
           <h1>Events</h1>

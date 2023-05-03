@@ -20,6 +20,12 @@ export const Brand = () => (
   </a>
 );
 
+export const Logo = () => (
+  <a href="/">
+    <img style={{ width: 90, height: 60 }} src="content/images/new-clubping-logo.png" alt="Logo" />
+  </a>
+);
+
 export const Home = () => (
   <NavItem>
     <NavLink tag={Link} to="/" className="d-flex align-items-center">

@@ -11,7 +11,7 @@ import { SiOpenai } from 'react-icons/si';
 import { FaCog, FaQuestionCircle, FaUser } from 'react-icons/fa';
 import { ImProfile } from 'react-icons/im';
 
-import { Home, Brand } from './header-components';
+import { Home, Brand, Logo } from './header-components';
 import { AdminMenu, EntitiesMenu, AccountMenu, LocaleMenu } from '../menus';
 import { useAppDispatch } from 'app/config/store';
 import { setLocale } from 'app/shared/reducers/locale';

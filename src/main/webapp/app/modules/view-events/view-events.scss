@@ -3,66 +3,57 @@ $secondary-color: #2c3e50;
 $border-color: #dcdcdc;
 $background-color: linear-gradient(45deg, #ffb6c1, #87ceeb);
 
-.announcement-container {
+.announcement-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 20px;
   padding: 20px;
-  background-color: white;
-  border-radius: 4px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  transition: box-shadow 0.2s ease-in-out;
 
-  &:hover {
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-  }
-
-  .announcement {
+  a {
+    text-decoration: none;
+    color: $secondary-color;
+    display: flex;
+    justify-content: center;
     width: calc(33.33% - 20px);
-    height: 200px;
-    border: 1px solid $border-color;
-    border-radius: 4px;
-    overflow: hidden;
 
-    a {
-      text-decoration: none;
-      color: $secondary-color;
+    &:hover {
+      text-decoration: underline;
+      color: $primary-color;
+    }
+
+    .announcement-box {
+      width: 100%;
+      height: 200px;
+      background-color: white;
+      padding: 20px;
+      border-radius: 4px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      transition: box-shadow 0.2s ease-in-out;
       display: flex;
-      justify-content: center;
-      height: 100%;
+      flex-direction: column;
+      justify-content: space-between;
 
-      &:hover {
-        text-decoration: underline;
-        color: $primary-color;
+      h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+        color: $secondary-color;
       }
 
-      .announcement-box {
-        width: 100%;
-        height: 100%;
-        background-color: white;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+      p {
+        font-size: 16px;
+        color: $secondary-color;
+        opacity: 0.8;
+      }
 
-        h2 {
-          font-size: 24px;
-          margin-bottom: 10px;
-          color: $secondary-color;
-        }
-
-        p {
-          font-size: 16px;
-          color: $secondary-color;
-          opacity: 0.8;
-        }
+      &:hover {
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
       }
     }
   }
 }
 
-.announcement-container {
+.announcement-list-container {
   padding: 20px;
   border: 1px solid $border-color;
   border-radius: 4px;
@@ -80,6 +71,6 @@ h1 {
 }
 
 /* Additional style for hover effect */
-.announcement .announcement-box:hover {
+.announcement-list a:hover .announcement-box {
   background-color: white;
 }

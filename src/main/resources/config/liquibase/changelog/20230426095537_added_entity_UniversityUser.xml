@@ -11,7 +11,7 @@
     -->
     <changeSet id="20230426095537-1" author="jhipster">
         <createTable tableName="university_user">
-            <column name="id" type="bigint">
+            <column name="id" type="bigint" >
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(255)">
@@ -20,33 +20,33 @@
             <column name="nickname" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="role" type="varchar(255)">
+            <column name="role" type="varchar(255)" >
                 <constraints nullable="true" />
             </column>
-            <column name="student_id" type="varchar(255)">
+            <column name="student_id" type="varchar(255)" >
                 <constraints nullable="true" />
             </column>
-            <column name="gender" type="varchar(255)">
+            <column name="gender" type="varchar(255)" >
                 <constraints nullable="true" />
             </column>
-            <column name="birthday" type="${datetimeType}">
+            <column name="birthday" type="datetime(0)" >
                 <constraints nullable="true" />
             </column>
-            <column name="clubs" type="varchar(255)">
+            <column name="clubs" type="varchar(255)" >
                 <constraints nullable="true" />
             </column>
-            <column name="uni" type="varchar(255)">
+            <column name="uni" type="varchar(255)" >
                 <constraints nullable="true" />
             </column>
-            <column name="email" type="varchar(255)">
+            <column name="email" type="varchar(255)" >
                 <constraints nullable="true" />
             </column>
-            <column name="balance" type="bigint">
+            <column name="balance" type="bigint" >
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
-        <dropDefaultValue tableName="university_user" columnName="birthday" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="university_user" columnName="birthday" columnDataType="datetime(0)"/>
     </changeSet>
 
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->

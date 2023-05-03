@@ -39,6 +39,19 @@ export const Profile = () => {
     const pageText = textNodes.map(node => node.textContent).join('');
     setText(pageText);
   };
+  interface UniversityUser {
+    id: number;
+    name: string;
+    nickname: string;
+    role: string;
+    studentId: string;
+    gender: string;
+    birthday: string;
+    clubs: string;
+    uni: string;
+    email: string;
+    balance: number;
+  }
 
   //temporarily declare the user info here as variables:
   const [name, setName] = useState('John Doe');
@@ -54,9 +67,10 @@ export const Profile = () => {
   const [uni, setUni] = useState('University of Birmingham(Dubai)');
   const [email, setEmail] = useState('1234@bham.ac.uk');
   const [balance, setBalance] = useState(0);
-  /*const [user, setUser] = useState<UniversityUser>({
+  const [user, setUser] = useState<UniversityUser>({
+    id: 0,
     name: '',
-    nickName: '',
+    nickname: '',
     role: '',
     studentId: '',
     gender: '',
@@ -65,7 +79,7 @@ export const Profile = () => {
     uni: '',
     email: '',
     balance: 0,
-  });*/
+  });
 
   /*const fetchUserData = async () => {
     const response = await axios.get('http://localhost:8080/api/university-users'); // Update with the correct API endpoint
@@ -111,6 +125,9 @@ export const Profile = () => {
     };
 
     fetchUser();*/
+    fetch('http://localhost:8080/api/university-user/init')
+      .then(response => response.json())
+      .then(data => setUser(data));
   }, []);
 
   //Below the three functions are used for dropdown buttons for birthday
@@ -264,18 +281,7 @@ export const Profile = () => {
             </div>
             <div className="info-value">{clubs}</div>
 
-            <div className="info-label">
-              {/*} <h2 style={{
-                fontWeight: "bold",
-                fontSize: "px",
-                marginRight: "auto",
-                marginTop: "20px",
-                marginBottom: "10px"
-              }}>Transaction Record</h2>*/}
-              <FaList />
-              Transaction Record
-            </div>
-            <div
+            {/*<div
               style={{
                 width: '90%',
                 height: '500px',
@@ -285,9 +291,9 @@ export const Profile = () => {
                 margin: '0 auto',
               }}
             >
-              {/* Transaction line chart goes here */}
+
               <TransactionChart />
-            </div>
+            </div>*/}
           </div>
           <div className="info-row">
             <div className="info-label">
@@ -302,6 +308,20 @@ export const Profile = () => {
               <FaHistory /> Activities History:
             </div>
             <div className="info-value">Activity 1, Activity 2</div>
+          </div>
+          <div className="info-row">
+            {' '}
+            <div className="info-label">
+              {/*} <h2 style={{
+                fontWeight: "bold",
+                fontSize: "px",
+                marginRight: "auto",
+                marginTop: "20px",
+                marginBottom: "10px"
+              }}>Transaction Record</h2>*/}
+              <FaList />
+              Transaction Record
+            </div>
           </div>
           <div className="info-row">
             <div className="info-label">

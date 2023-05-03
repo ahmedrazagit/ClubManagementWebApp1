@@ -26,7 +26,7 @@ const About = () => {
         </p>
         <p className="primary-text">Catch up with fests and events hosted by Universities, happening all across UAE! .</p>
         <div className="about-buttons-container">
-          <Link to="/clubs">
+          <Link to="/events-page">
             <button className="secondary-button">View Events happening now!</button>
           </Link>
         </div>

@@ -178,7 +178,7 @@ const Header = (props: IHeaderProps) => {
                 </a>
               </li>
               <li>
-                <a href="https://www.instagram.com/unibirmingham/?hl=en" className="nav-link px-3">
+                <a href="https://www.instagram.com/clubping.uni/" className="nav-link px-3">
                   <span className="me-2">
                     <FaInstagram />
                   </span>

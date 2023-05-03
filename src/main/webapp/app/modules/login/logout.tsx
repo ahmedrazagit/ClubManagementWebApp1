@@ -16,7 +16,9 @@ export const Logout = () => {
 
   return (
     <div className="p-5">
-      <h4>Logged out successfully!</h4>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <h4>Logged out successfully!</h4>
+      </div>
     </div>
   );
 };

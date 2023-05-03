@@ -8,11 +8,11 @@
         "createOrEditLabel": "Create or edit a Comments",
         "notFound": "No Comments found"
       },
-      "created": "A new Comments is created with identifier {{ param }}",
-      "updated": "A Comments is updated with identifier {{ param }}",
-      "deleted": "A Comments is deleted with identifier {{ param }}",
+      "created": "A new Comment is created",
+      "updated": "A Comment is updated",
+      "deleted": "The Comment is deleted",
       "delete": {
-        "question": "Are you sure you want to delete Comments {{ id }}?"
+        "question": "Are you sure you want to delete this comment?"
       },
       "detail": {
         "title": "Comments"

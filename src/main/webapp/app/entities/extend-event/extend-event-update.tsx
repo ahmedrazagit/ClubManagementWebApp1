@@ -87,8 +87,9 @@ export const ExtendEventUpdate = () => {
                   name="id"
                   required
                   readOnly
+                  style={{ display: 'none' }}
                   id="extend-event-id"
-                  label={translate('global.field.id')}
+                  //label={translate('global.field.id')}
                   validate={{ required: true }}
                 />
               ) : null}
@@ -105,11 +106,13 @@ export const ExtendEventUpdate = () => {
                 }}
               />
               <ValidatedField
-                label={translate('teamprojectApp.extendEvent.date')}
+                //label={translate('teamprojectApp.extendEvent.date')}
                 id="extend-event-date"
                 name="date"
                 data-cy="date"
                 type="datetime-local"
+                readOnly
+                style={{ display: 'none' }}
                 placeholder="YYYY-MM-DD HH:mm"
                 validate={{
                   required: { value: true, message: translate('entity.validation.required') },

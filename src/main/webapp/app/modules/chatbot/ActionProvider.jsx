@@ -2,6 +2,7 @@ import React from 'react';
 
 
 const ActionProvider = ({ createChatBotMessage, setState, children }) => {
+  const Message = createChatBotMessage('Opening page');
   const handleHello = () => {
     const botMessage = createChatBotMessage('Hello. Nice to meet you.');
 
@@ -25,6 +26,51 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
     }));
   };
 
+  const handleClub = () => {
+    window.open('/clubs');
+
+    setState((prev) => ({
+      ...prev,
+      messages: [...prev.messages, Message],
+    }));
+  };
+
+  const handleForum = () => {
+    window.open('/forum');
+
+    setState((prev) => ({
+      ...prev,
+      messages: [...prev.messages, Message],
+    }));
+  };
+
+  const Eventfunc = () => {
+    window.open('/events-page');
+
+    setState((prev) => ({
+      ...prev,
+      messages: [...prev.messages, Message],
+    }));
+  };
+  const handleSuggestion = () => {
+    window.open('/openAIChatBox');
+
+    setState((prev) => ({
+      ...prev,
+      messages: [...prev.messages, Message],
+    }));
+  };
+
+  const TryAgain = () => {
+    const Try = createChatBotMessage('Try again');
+    setState((prev) => ({
+      ...prev,
+      messages: [...prev.messages, Try],
+    }));
+  };
+
+
+
 
 
 
@@ -37,6 +83,10 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
           actions: {
             handleHello,
             handleButton,
+            handleClub,
+            handleForum,
+            Eventfunc,
+            handleSuggestion,
           },
         });
       })}

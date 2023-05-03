@@ -33,7 +33,7 @@ export const ExtendedEventsUpdate = () => {
   const categoryTypeValues = Object.keys(CategoryType);
 
   const handleClose = () => {
-    navigate('/extended-events');
+    navigate('/events-page');
   };
 
   useEffect(() => {
@@ -88,7 +88,7 @@ export const ExtendedEventsUpdate = () => {
       <Row className="justify-content-center">
         <Col md="8">
           <h2 id="teamprojectApp.extendedEvents.home.createOrEditLabel" data-cy="ExtendedEventsCreateUpdateHeading">
-            <Translate contentKey="teamprojectApp.extendedEvents.home.createOrEditLabel">Create or edit a ExtendedEvents</Translate>
+            Create or Edit an Event
           </h2>
         </Col>
       </Row>
@@ -103,8 +103,9 @@ export const ExtendedEventsUpdate = () => {
                   name="id"
                   required
                   readOnly
+                  style={{ display: 'none' }}
                   id="extended-events-id"
-                  label={translate('global.field.id')}
+                  //label={translate('global.field.id')}
                   validate={{ required: true }}
                 />
               ) : null}
@@ -121,11 +122,13 @@ export const ExtendedEventsUpdate = () => {
                 }}
               />
               <ValidatedField
-                label={translate('teamprojectApp.extendedEvents.date')}
+                //label={translate('teamprojectApp.extendedEvents.date')}
                 id="extended-events-date"
                 name="date"
                 data-cy="date"
                 type="datetime-local"
+                readOnly
+                style={{ display: 'none' }}
                 placeholder="YYYY-MM-DD HH:mm"
                 validate={{
                   required: { value: true, message: translate('entity.validation.required') },
@@ -175,7 +178,6 @@ export const ExtendedEventsUpdate = () => {
                 label={translate('teamprojectApp.extendedEvents.club')}
                 type="select"
               >
-                <option value="" key="0" />
                 {extendClubs
                   ? extendClubs.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
@@ -188,10 +190,11 @@ export const ExtendedEventsUpdate = () => {
                 id="extended-events-user"
                 name="user"
                 data-cy="user"
-                label={translate('teamprojectApp.extendedEvents.user')}
+                style={{ display: 'none' }}
+                //label={translate('teamprojectApp.extendedEvents.user')}
                 type="select"
               >
-                <option value="" key="0" />
+                <option value="" />
                 {users
                   ? users.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>

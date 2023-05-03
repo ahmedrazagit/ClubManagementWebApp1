@@ -5,10 +5,12 @@ import './header.scss';
 import { NavItem, NavLink, NavbarBrand } from 'reactstrap';
 import { NavLink as Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 export const BrandIcon = props => (
   <div {...props} className="brand-icon">
-    <img style={{ width: 90, height: 60 }} src="content/images/new-clubping-logo.png" alt="Logo" />
+    {/*<img style={{ width: 90, height: 60 }} src="content/images/new-clubping-logo.png" alt="Logo" />*/}
+    <FontAwesomeIcon icon={faBars} size="2x" style={{ color: 'white' }} />
   </div>
 );
 

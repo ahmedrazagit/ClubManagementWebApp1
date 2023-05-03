@@ -120,11 +120,12 @@ export const PostUpdate = () => {
                 }}
               />
               <ValidatedField
-                label={translate('teamprojectApp.post.date')}
+                //label={translate('teamprojectApp.post.date')}
                 id="post-date"
                 name="date"
                 data-cy="date"
                 type="datetime-local"
+                style={{ display: 'none' }}
                 readonly
                 placeholder="YYYY-MM-DD HH:mm"
                 validate={{
@@ -157,7 +158,7 @@ export const PostUpdate = () => {
                     ))
                   : null}*/}
               </ValidatedField>
-              <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/post" replace color="info">
+              <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/forum" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
                 <span className="d-none d-md-inline">

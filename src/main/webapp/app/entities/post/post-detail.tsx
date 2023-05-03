@@ -26,17 +26,20 @@ export const PostDetail = () => {
           <Translate contentKey="teamprojectApp.post.detail.title">Post</Translate>
         </h2>
         <dl className="jh-entity-details">
+          {/*
           <dt>
             <span id="id">
               <Translate contentKey="global.field.id">ID</Translate>
             </span>
           </dt>
           <dd>{postEntity.id}</dd>
+          */}
           <dt>
             <span id="title">
               <Translate contentKey="teamprojectApp.post.title">Title</Translate>
             </span>
           </dt>
+
           <dd>{postEntity.title}</dd>
           <dt>
             <span id="content">

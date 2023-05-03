@@ -89,7 +89,7 @@ export const ExtendClubUpdate = () => {
       <Row className="justify-content-center">
         <Col md="8">
           <h2 id="teamprojectApp.extendClub.home.createOrEditLabel" data-cy="ExtendClubCreateUpdateHeading">
-            <Translate contentKey="teamprojectApp.extendClub.home.createOrEditLabel">Create or edit a ExtendClub</Translate>
+            Create or edit a Club
           </h2>
         </Col>
       </Row>
@@ -172,11 +172,12 @@ export const ExtendClubUpdate = () => {
               <ValidatedField
                 id="extend-club-user"
                 name="user"
+                style={{ display: 'none' }}
                 data-cy="user"
-                label={translate('teamprojectApp.extendClub.user')}
+                //label={translate('teamprojectApp.extendClub.user')}
                 type="select"
               >
-                <option value="" key="0" />
+                <option value="" />
                 {users
                   ? users.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>

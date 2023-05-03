@@ -13,7 +13,7 @@ import { getEntities } from 'app/entities/extended-events/extended-events.reduce
 
 import { getEntities as getClubEntities } from 'app/entities/extend-club/extend-club.reducer';
 
-export const ViewEvent = () => {
+export const ViewEvents = () => {
   const [announcements, setAnnouncements] = useState([]);
   //const [searchTerm, setSearchTerm] = useState('');
   const [category, setCategory] = useState('all');
@@ -330,4 +330,4 @@ export const ViewEvent = () => {
   );
 };
 
-export default ViewEvent;
+export default ViewEvents;

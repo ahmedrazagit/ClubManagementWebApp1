@@ -1,17 +1,15 @@
 $primary-color: #3498db;
 $secondary-color: #2c3e50;
 $border-color: #dcdcdc;
-$background-color: linear-gradient(45deg, #ffb6c1, #87ceeb);
+$background-color: #f2f2f2;
 
-.announcement-container {
+.search-bar {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  border: 1px solid $border-color;
-  border-radius: 4px;
-  gap: 20px;
+  padding: 15px;
+  border-bottom: 1px solid $border-color;
+  gap: 10px;
 
   input[type='text'] {
     width: 60%;
@@ -45,62 +43,54 @@ $background-color: linear-gradient(45deg, #ffb6c1, #87ceeb);
 .announcement-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-  padding: 20px;
-  background-color: white;
-  border-radius: 4px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  transition: box-shadow 0.2s ease-in-out;
+  gap: 10px;
+  padding: 10px;
 
-  &:hover {
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-  }
+  a {
+    text-decoration: none;
+    color: $secondary-color;
+    display: flex;
+    justify-content: center;
 
-  .announcement {
-    width: calc(33.33% - 20px);
-    height: 200px;
-    border: 1px solid $border-color;
-    border-radius: 4px;
-    overflow: hidden;
+    &:hover {
+      text-decoration: underline;
+    }
 
-    a {
-      text-decoration: none;
-      color: $secondary-color;
+    .announcement-box {
+      width: 300px;
+      height: 200px;
+      background-color: $primary-color;
+      padding: 20px;
+      border-radius: 4px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      transition: box-shadow 0.2s ease-in-out;
       display: flex;
-      justify-content: center;
-      height: 100%;
+      flex-direction: column;
+      justify-content: space-between;
 
-      &:hover {
-        text-decoration: underline;
-        color: $primary-color;
+      h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+        color: white;
       }
 
-      .announcement-box {
-        width: 100%;
-        height: 100%;
-        background-color: white;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+      p {
+        font-size: 16px;
+        color: white;
+        opacity: 0.8;
+      }
 
-        h2 {
-          font-size: 24px;
-          margin-bottom: 10px;
-          color: $secondary-color;
-        }
-
-        p {
-          font-size: 16px;
-          color: $secondary-color;
-          opacity: 0.8;
-        }
+      &:hover {
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
       }
     }
   }
 }
 
-.announcement-container {
+.announcement-list-container {
+  padding: 20px;
+  border: 1px solid $border-color;
+  border-radius: 4px;
   margin-top: 20px;
 }
 
@@ -111,20 +101,25 @@ h1 {
   margin-bottom: 0;
   border-bottom: 1px solid $border-color;
   text-align: left;
-  background: $background-color;
 }
 
-.announcement-box {
-  border-radius: 4px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  transition: box-shadow 0.2s ease-in-out;
-
-  &:hover {
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-  }
+/* Additional styles for color gradient effect */
+/*.announcement-list a:nth-child(1) .announcement-box {
+  background: linear-gradient(to right, #ff416c, #ff4b2b);
 }
 
-/* Additional style for color gradient effect */
+.announcement-list a:nth-child(2) .announcement-box {
+  background: linear-gradient(to right, #1e3c72, #2a5298);
+}
+
+.announcement-list a:nth-child(3) .announcement-box {
+  background: linear-gradient(to right, #00b4db, #0083b0);
+}
+
+.announcement-list a:nth-child(4) .announcement-box {
+  background: linear-gradient(to right, #c33764, #1d2671);
+}
+*/
 .announcement-box:nth-child(1) {
   background: linear-gradient(to right, #ff416c, #ff4b2b);
 }

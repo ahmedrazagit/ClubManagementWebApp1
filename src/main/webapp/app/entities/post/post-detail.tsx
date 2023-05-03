@@ -83,7 +83,7 @@ export const PostDetail = () => {
           </dt>
           <dd>{postEntity.user ? postEntity.user.login : ''}</dd>
         </dl>
-        <Button tag={Link} to="/post" replace color="info" data-cy="entityDetailsBackButton">
+        <Button tag={Link} to="/forum" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}
           <span className="d-none d-md-inline">
             <Translate contentKey="entity.action.back">Back</Translate>

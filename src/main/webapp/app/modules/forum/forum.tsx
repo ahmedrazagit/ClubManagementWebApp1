@@ -30,6 +30,7 @@ import { getUsers } from 'app/modules/administration/user-management/user-manage
 import { IComments } from 'app/shared/model/comments.model';
 import { updateEntity, createEntity, reset as commentreset } from 'app/entities/comments/comments.reducer';
 import { v4 as uuidv4 } from 'uuid';
+import { faBullhorn } from '@fortawesome/free-solid-svg-icons';
 
 export const Forum = () => {
   useEffect(() => {
@@ -415,6 +416,11 @@ export const Forum = () => {
                             </div>
                           </div>*/}
                           <div className={post.annoncement ? 'card-header bg-warning' : 'card-header bg-success bg-midgreen'}>
+                            {post.announcement && (
+                              <div className="mr-2">
+                                <FontAwesomeIcon icon={faBullhorn} />
+                              </div>
+                            )}
                             <div className="media flex-wrap w-100 align-items-center">
                               {/*{post.annoncement ? (
                                 <div className = "bg-washed-yellow">Announcement</div>

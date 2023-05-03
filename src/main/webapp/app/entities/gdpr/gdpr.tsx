@@ -168,7 +168,7 @@ export const GDPR = () => {
           monitored and logged.
         </p>
         <p>
-          In addition, Clubping likely follows industry-standard practices and regulations for data protection,
+          In addition, Clubping follows industry-standard practices and regulations for data protection,
           <br />
           such as GDPR, CCPA, and HIPAA, depending on the type of data being stored and the location of the user.
           <br />

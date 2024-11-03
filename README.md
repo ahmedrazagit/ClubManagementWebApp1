@@ -39,44 +39,44 @@
 
 #### ## Events Management Page
 <p float="left">
-   <img src="https://github.com/user-attachments/assets/188119e6-9955-4bff-bf2f-f7b0a5eea600" width="200" />
+   <img src="https://github.com/user-attachments/assets/188119e6-9955-4bff-bf2f-f7b0a5eea600" width="400" />
 </p>
 Page for viewing and managing upcoming university events.
 
 #### ## Forum Page
 <p float="left">
-   <img src="https://github.com/user-attachments/assets/59a5aec3-1e13-412d-8a0c-89f6c9a89943" width="200" />
+   <img src="https://github.com/user-attachments/assets/59a5aec3-1e13-412d-8a0c-89f6c9a89943" width="400" />
 </p>
 A place where users can ask questions, post announcements, and discuss topics.
 
 #### ## Club Management Page
 <p float="left">
-   <img src="https://github.com/user-attachments/assets/9e3abca7-04c8-4034-95e0-ad0ddb039d7f" width="200" />
+   <img src="https://github.com/user-attachments/assets/9e3abca7-04c8-4034-95e0-ad0ddb039d7f" width="400" />
 </p>
 Page for viewing, adding, editing, and deleting clubs.
 
 #### ## Club Chat Page
 <p float="left">
-   <img src="https://github.com/user-attachments/assets/a1416a5e-de41-4d71-a7a8-91576886f0b9" width="200" />
+   <img src="https://github.com/user-attachments/assets/a1416a5e-de41-4d71-a7a8-91576886f0b9" width="400" />
 </p>
 Encrypted messaging platform for private club member discussions.
 
 #### ## AI Advice Chatbot
 <p float="left">
-   <img src="https://github.com/user-attachments/assets/299189ea-b92f-4f61-9c3a-dc167e787df7" width="200" />
+   <img src="https://github.com/user-attachments/assets/299189ea-b92f-4f61-9c3a-dc167e787df7" width="400" />
 </p>
 AI chatbot offering personalized advice on club activities and management.
 
 #### ## Universities List Page
 <p float="left">
-   <img src="https://github.com/user-attachments/assets/bfff86ec-3cf2-4e8b-9fd4-87130e01bd88" width="200" />
+   <img src="https://github.com/user-attachments/assets/bfff86ec-3cf2-4e8b-9fd4-87130e01bd88" width="400" />
 </p>
 Directory of universities, organized alphabetically for easy access.
 
 ---
 
 ### How to Run the Project
-1. **Clone the Repository**  
-   ```bash
+
+
   
 

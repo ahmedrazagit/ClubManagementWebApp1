@@ -77,6 +77,7 @@ Directory of universities, organized alphabetically for easy access.
 
 ### How to Run the Project
 
+Currently in testing
 
   
 
